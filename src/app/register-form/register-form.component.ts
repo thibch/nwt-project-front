@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../shared/types/user.type";
 import {MatDialogRef} from "@angular/material/dialog";
 import {LoginComponent} from "../login/login.component";
+import {CustomValidators} from "./custom-validators";
 
 @Component({
   selector: 'app-register-form',
@@ -31,15 +32,10 @@ export class RegisterFormComponent implements OnInit, OnChanges {
     lastname: new FormControl('',Validators.compose([Validators.required, Validators.minLength(2)])),
     pseudo: new FormControl('',Validators.compose([Validators.required, Validators.minLength(2)])),
 
-    /// TODO Custom Validator
-    password: new FormControl('',Validators.compose([Validators.required, Validators.minLength(8)])),
-      passwordConfirm: new FormControl('',Validators.compose([Validators.required, Validators.minLength(8)])),
-
-    /// TODO Custom Validator
+    password: new FormControl('',Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.password])),
+      passwordConfirm: new FormControl('',Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.passwordDif])),
     birthdate: new FormControl(),
-
-    /// TODO Custom Validator
-    email: new FormControl('',Validators.compose([Validators.required, Validators.minLength(2)])),
+    email: new FormControl('',Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
 
     photo: new FormControl()
   });}
