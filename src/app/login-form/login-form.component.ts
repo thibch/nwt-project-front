@@ -11,8 +11,9 @@ import {LoginComponent} from "../login/login.component";
 })
 export class LoginFormComponent implements OnInit {
 
-
   constructor(private _dialogRef: MatDialogRef<LoginComponent>) {
+
+
 
   }
 

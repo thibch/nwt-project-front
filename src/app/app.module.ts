@@ -14,6 +14,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { LoginFormComponent } from './login-form/login-form.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { LoginFormComponent } from './login-form/login-form.component';
     UserComponent,
     HomeComponent,
     LoginComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RegisterComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     ReactiveFormsModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatInputModule,
     FormsModule
   ],
   providers: [],

@@ -9,6 +9,7 @@ export const USERS: User[] = [
     birthdate: '02/01/1974',
     email: 'Leanne.Woodard@BIOSPAN.com',
     pseudo: 'LW',
+    password: ''
   },
   {
     id: '5763cd4d51fdb6588742f99e',
@@ -17,6 +18,7 @@ export const USERS: User[] = [
     lastname: 'Salinas',
     birthdate: '22/01/1963',
     email: 'Castaneda.Salinas@METROZ.com',
-    pseudo: 'OUI'
+    pseudo: 'OUI',
+    password: ''
   }
 ];

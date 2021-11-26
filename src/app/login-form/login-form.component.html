@@ -15,7 +15,7 @@
       </p>
       <p>
           <mat-form-field>
-            <input type="password" matInput placeholder="" ngModel #password=ngModel required name="password" />
+            <input type="password" matInput placeholder="Mot de passe" ngModel #password=ngModel required name="password" />
             <span *ngIf="password?.dirty && password?.hasError('required')">
               Le mot de passe est <strong>requis !</strong>
             </span>

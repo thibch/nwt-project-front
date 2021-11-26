@@ -6,4 +6,5 @@ export type User = {
   pseudo: string;
   birthdate: string;
   photo: string;
+  password: string;
 };
