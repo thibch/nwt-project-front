@@ -1,0 +1,70 @@
+<mat-dialog-content>
+  <form novalidate [formGroup]="registerForm">
+    <mat-form-field class="full-width" [class.mgb15]="registerForm.get('firstname')?.dirty && registerForm.get('firstname')?.invalid">
+      <input matInput placeholder="Prénom" formControlName="firstname" minlength="2" required name="firstname" />
+      <span *ngIf="registerForm.get('firstname')?.dirty && registerForm.get('firstname')?.hasError('required')">
+        Le champ prénom est <strong>requis.</strong>
+      </span>
+      <span *ngIf="registerForm.get('firstname')?.dirty && registerForm.get('firstname')?.hasError('minlength')">
+        Le champ prénom doit contenir au minimum <strong>2 charactères.</strong>
+      </span>
+    </mat-form-field>
+    <mat-form-field class="full-width" [class.mgb15]="registerForm.get('lastname')?.dirty && registerForm.get('lastname')?.invalid">
+      <input matInput placeholder="Nom" formControlName="lastname" minlength="2" required name="lastname" />
+      <span *ngIf="registerForm.get('lastname')?.dirty && registerForm.get('lastname')?.hasError('required')">
+        Le champ nom est <strong>requis.</strong>
+      </span>
+      <span *ngIf="registerForm.get('lastname')?.dirty && registerForm.get('lastname')?.hasError('minlength')">
+        Le champ nom doit contenir au minimum <strong>2 charactères.</strong>
+      </span>
+    </mat-form-field>
+    <mat-form-field class="full-width" [class.mgb15]="registerForm.get('pseudo')?.dirty && registerForm.get('pseudo')?.invalid">
+      <input matInput placeholder="Pseudo" formControlName="pseudo" minlength="2" required name="pseudo" />
+      <span *ngIf="registerForm.get('pseudo')?.dirty && registerForm.get('pseudo')?.hasError('required')">
+        Le champ pseudo est <strong>requis.</strong>
+      </span>
+      <span *ngIf="registerForm.get('pseudo')?.dirty && registerForm.get('pseudo')?.hasError('minlength')">
+        Le champ pseudo doit contenir au minimum <strong>2 charactères.</strong>
+      </span>
+    </mat-form-field>
+    <mat-form-field class="full-width" [class.mgb15]="registerForm.get('email')?.dirty && registerForm.get('email')?.invalid">
+      <input type="email" matInput placeholder="Mail" formControlName="email" minlength="8" required name="email" />
+      <span *ngIf="registerForm.get('email')?.dirty && registerForm.get('email')?.hasError('required')">
+        Le champ mail est <strong>requis.</strong>
+      </span>
+      <span *ngIf="registerForm.get('email')?.dirty && registerForm.get('email')?.hasError('minlength')">
+        Le champ mail doit contenir au minimum <strong>8 charactères.</strong>
+      </span>
+    </mat-form-field>
+    <mat-form-field class="full-width" [class.mgb15]="registerForm.get('password')?.dirty && registerForm.get('password')?.invalid">
+      <input type="password" matInput placeholder="Mot de passe" formControlName="password" minlength="8" required name="password" />
+      <span *ngIf="registerForm.get('password')?.dirty && registerForm.get('password')?.hasError('required')">
+        Le champ mot de passe est <strong>requis.</strong>
+      </span>
+      <span *ngIf="registerForm.get('password')?.dirty && registerForm.get('password')?.hasError('minlength')">
+        Le champ mot de passe doit contenir au minimum <strong>8 charactères.</strong>
+      </span>
+    </mat-form-field>
+      <mat-form-field class="full-width" [class.mgb15]="registerForm.get('passwordConfirm')?.dirty && registerForm.get('passwordConfirm')?.invalid">
+
+      <input type="password" matInput placeholder="Confirmation mot de passe" formControlName="passwordConfirm" minlength="8" required name="passwordConfirm" />
+      <span *ngIf="registerForm.get('passwordConfirm')?.dirty && registerForm.get('passwordConfirm')?.hasError('required')">
+        Le champ confirmation de mot de passe est <strong>requis.</strong>
+      </span>
+      <span *ngIf="registerForm.get('passwordConfirm')?.dirty && registerForm.get('passwordConfirm')?.hasError('minlength')">
+        Le champ confirmation de mot de passe doit contenir au minimum <strong>8 charactères.</strong>
+      </span>
+    </mat-form-field>
+    <mat-form-field class="full-width" [class.mgb15]="registerForm.get('photo')?.dirty && registerForm.get('photo')?.invalid">
+      <input matInput placeholder="Lien vers un avatar" formControlName="photo"  name="photo" />
+    </mat-form-field>
+    <mat-form-field class="full-width" [class.mgb15]="registerForm.get('birthdate')?.dirty && registerForm.get('birthdate')?.invalid">
+      <input matInput type="date" placeholder="Date de naissance" formControlName="birthdate"  name="birthdate" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="redirectBack()" >Annuler</button>
+  <button mat-button   type="submit"  [disabled]="registerForm.invalid">Création du compte</button>
+</mat-dialog-actions>
