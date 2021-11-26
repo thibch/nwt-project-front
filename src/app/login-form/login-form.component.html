@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Connexion</h2>
+
+<mat-dialog-content>
+  <form novalidate #f="ngForm">
+      <p>
+          <mat-form-field>
+            <input matInput placeholder="Pseudo" ngModel minlength="2" #pseudo=ngModel required name="pseudo" />
+            <span *ngIf="pseudo?.dirty && pseudo?.hasError('required')">
+              Le pseudo est <strong>requis.</strong>
+            </span>
+            <span *ngIf="pseudo?.dirty && pseudo?.hasError('minlength')">
+              Le pseudo doit être long d'au moins <strong>2 charactères.</strong>
+            </span>
+          </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field>
+            <input type="password" matInput placeholder="" ngModel #password=ngModel required name="password" />
+            <span *ngIf="password?.dirty && password?.hasError('required')">
+              Le mot de passe est <strong>requis !</strong>
+            </span>
+          </mat-form-field>
+      </p>
+  </form>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="redirectBack()" >Annuler</button>
+  <button mat-button   type="submit"  [disabled]="f.invalid">Connexion</button>
+</mat-dialog-actions>
