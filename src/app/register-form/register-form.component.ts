@@ -29,7 +29,7 @@ export class RegisterFormComponent implements OnInit, OnChanges {
     this._registerForm = new FormGroup({
       firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-      pseudo: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.password])),
       passwordConfirm: new FormControl('', Validators.compose([Validators.required])),
       birthdate: new FormControl(),
@@ -49,7 +49,7 @@ export class RegisterFormComponent implements OnInit, OnChanges {
       lastname: '',
       password: '',
       email: '',
-      pseudo: '',
+      username: '',
       birthdate: 'JJ/MM/AAAA'
     };
 

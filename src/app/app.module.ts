@@ -17,6 +17,8 @@ import {LoginFormComponent} from './login-form/login-form.component';
 import {RegisterComponent} from './register/register.component';
 import {RegisterFormComponent} from './register-form/register-form.component';
 import {MatInputModule} from "@angular/material/input";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
+import {AuthInterceptor} from "./shared/interceptor/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -40,9 +42,10 @@ import {MatInputModule} from "@angular/material/input";
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

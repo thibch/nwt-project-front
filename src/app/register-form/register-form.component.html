@@ -35,12 +35,12 @@
     </table>
     <p>
       <mat-form-field class="full-width"
-                      [class.mgb15]="registerForm.get('pseudo')?.dirty && registerForm.get('pseudo')?.invalid">
-        <input matInput placeholder="Pseudo" formControlName="pseudo" minlength="2" required name="pseudo"/>
-        <mat-error *ngIf="registerForm.get('pseudo')?.dirty && registerForm.get('pseudo')?.hasError('required')">
+                      [class.mgb15]="registerForm.get('username')?.dirty && registerForm.get('username')?.invalid">
+        <input matInput placeholder="Pseudo" formControlName="username" minlength="2" required name="username"/>
+        <mat-error *ngIf="registerForm.get('username')?.dirty && registerForm.get('username')?.hasError('required')">
           Le champ pseudo est <strong>requis.</strong>
         </mat-error>
-        <mat-error *ngIf="registerForm.get('pseudo')?.dirty && registerForm.get('pseudo')?.hasError('minlength')">
+        <mat-error *ngIf="registerForm.get('username')?.dirty && registerForm.get('username')?.hasError('minlength')">
           Le champ pseudo doit contenir au minimum <strong>2 charactères.</strong>
         </mat-error>
       </mat-form-field>

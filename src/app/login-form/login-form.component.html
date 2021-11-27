@@ -4,11 +4,11 @@
   <form novalidate #f="ngForm">
     <p>
       <mat-form-field>
-        <input matInput placeholder="Pseudo" ngModel minlength="2" #pseudo=ngModel required name="pseudo"/>
-        <mat-error *ngIf="pseudo?.dirty && pseudo?.hasError('required')">
+        <input matInput placeholder="Pseudo" ngModel minlength="2" #username=ngModel required name="username"/>
+        <mat-error *ngIf="username?.dirty && username?.hasError('required')">
           Le pseudo est <strong>requis.</strong>
         </mat-error>
-        <mat-error *ngIf="pseudo?.dirty && pseudo?.hasError('minlength')">
+        <mat-error *ngIf="username?.dirty && username?.hasError('minlength')">
           Le pseudo doit être long d'au moins <strong>2 charactères.</strong>
         </mat-error>
       </mat-form-field>
@@ -27,5 +27,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="redirectBack()">Annuler</button>
-  <button mat-button type="submit" [disabled]="f.invalid">Connexion</button>
+  <button mat-button type="submit" (click)="login(f.value)" [disabled]="f.invalid">Connexion</button>
 </mat-dialog-actions>
