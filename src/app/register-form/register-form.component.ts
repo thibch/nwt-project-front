@@ -8,7 +8,7 @@ import {CustomValidators} from "./custom-validators";
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
-  styles: []
+  styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit, OnChanges {
 
