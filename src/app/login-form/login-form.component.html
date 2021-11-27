@@ -2,30 +2,30 @@
 
 <mat-dialog-content>
   <form novalidate #f="ngForm">
-      <p>
-          <mat-form-field>
-            <input matInput placeholder="Pseudo" ngModel minlength="2" #pseudo=ngModel required name="pseudo" />
-            <mat-error *ngIf="pseudo?.dirty && pseudo?.hasError('required')">
-              Le pseudo est <strong>requis.</strong>
-            </mat-error>
-            <mat-error *ngIf="pseudo?.dirty && pseudo?.hasError('minlength')">
-              Le pseudo doit être long d'au moins <strong>2 charactères.</strong>
-            </mat-error>
-          </mat-form-field>
-      </p>
-      <p>
-          <mat-form-field>
-            <input type="password" matInput placeholder="Mot de passe" ngModel #password=ngModel required name="password" />
-            <mat-error *ngIf="password?.dirty && password?.hasError('required')">
-              Le mot de passe est <strong>requis !</strong>
-            </mat-error>
-          </mat-form-field>
-      </p>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Pseudo" ngModel minlength="2" #pseudo=ngModel required name="pseudo"/>
+        <mat-error *ngIf="pseudo?.dirty && pseudo?.hasError('required')">
+          Le pseudo est <strong>requis.</strong>
+        </mat-error>
+        <mat-error *ngIf="pseudo?.dirty && pseudo?.hasError('minlength')">
+          Le pseudo doit être long d'au moins <strong>2 charactères.</strong>
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Mot de passe" ngModel #password=ngModel required name="password"/>
+        <mat-error *ngIf="password?.dirty && password?.hasError('required')">
+          Le mot de passe est <strong>requis !</strong>
+        </mat-error>
+      </mat-form-field>
+    </p>
   </form>
 </mat-dialog-content>
 
 
 <mat-dialog-actions align="end">
-  <button mat-button type="button" (click)="redirectBack()" >Annuler</button>
-  <button mat-button   type="submit"  [disabled]="f.invalid">Connexion</button>
+  <button mat-button type="button" (click)="redirectBack()">Annuler</button>
+  <button mat-button type="submit" [disabled]="f.invalid">Connexion</button>
 </mat-dialog-actions>

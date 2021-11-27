@@ -8,8 +8,7 @@ import {CustomValidators} from "./custom-validators";
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class RegisterFormComponent implements OnInit, OnChanges {
 
@@ -28,31 +27,32 @@ export class RegisterFormComponent implements OnInit, OnChanges {
     this._user = {} as User;
 
     this._registerForm = new FormGroup({
-    firstname: new FormControl('',Validators.compose([Validators.required, Validators.minLength(2)])),
-    lastname: new FormControl('',Validators.compose([Validators.required, Validators.minLength(2)])),
-    pseudo: new FormControl('',Validators.compose([Validators.required, Validators.minLength(2)])),
+      firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      pseudo: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
 
-    password: new FormControl('',Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.password])),
-      passwordConfirm: new FormControl('',Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.passwordDif])),
-    birthdate: new FormControl(),
-    email: new FormControl('',Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
+      password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.password])),
+      passwordConfirm: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.passwordDif])),
+      birthdate: new FormControl(),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
 
-    photo: new FormControl()
-  });}
+      photo: new FormControl()
+    });
+  }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(record: any): void {
-      this._user = {
-        photo: 'https://randomuser.me/api/portraits/lego/6.jpg',
-        firstname: '',
-        lastname: '',
-        password: '',
-        email: '',
-        pseudo: '',
-        birthdate: 'JJ/MM/AAAA'
-      };
+    this._user = {
+      photo: 'https://randomuser.me/api/portraits/lego/6.jpg',
+      firstname: '',
+      lastname: '',
+      password: '',
+      email: '',
+      pseudo: '',
+      birthdate: 'JJ/MM/AAAA'
+    };
 
     this._registerForm.patchValue(this._user);
   }

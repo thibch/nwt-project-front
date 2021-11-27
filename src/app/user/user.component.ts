@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../shared/types/user.type";
 import {USERS} from "../_static/users";
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class UserComponent implements OnInit {
 

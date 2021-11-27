@@ -9,16 +9,16 @@ export class CustomValidators {
     };
   }
 
-  static password(control: AbstractControl): ValidationErrors | null{
+  static password(control: AbstractControl): ValidationErrors | null {
     /// Checking password matching regex (source: https://regexr.com/3bfsi)
     return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(control.value) ? null : {
       regex: true
     }
   }
 
-  static passwordDif(control: AbstractControl): ValidationErrors | null{
+  static passwordDif(control: AbstractControl): ValidationErrors | null {
     return control.value == control.get("password")?.value ? null : {
-      diff : true
+      diff: true
     }
   }
 
