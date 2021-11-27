@@ -60,7 +60,7 @@
         </mat-error>
       </mat-form-field>
     </p>
-    <table class="full-width" cellspacing="0">
+    <table class="full-width" cellspacing="0" >
       <tr>
         <td>
           <mat-form-field class="full-width"
@@ -86,17 +86,18 @@
                           [class.mgb15]="registerForm.get('passwordConfirm')?.dirty && registerForm.get('passwordConfirm')?.invalid">
 
             <input type="password" matInput placeholder="Confirmation mot de passe" formControlName="passwordConfirm"
-                   minlength="8" required name="passwordConfirm"/>
+                   required name="passwordConfirm"/>
+
+
+            /// TODO FIX, NE FONCTIONNE QU'AVEC SPAN
+            <mat-error
+              *ngIf="registerForm.hasError('diff')">
+              Le mot de passe <strong>est différent !</strong>
+            </mat-error>
+
             <mat-error
               *ngIf="registerForm.get('passwordConfirm')?.dirty && registerForm.get('passwordConfirm')?.hasError('required')">
               Le champ confirmation de mot de passe est <strong>requis.</strong>
-            </mat-error>
-            <mat-error
-              *ngIf="registerForm.get('passwordConfirm')?.dirty && registerForm.get('passwordConfirm')?.hasError('minlength')">
-              Le champ confirmation de mot de passe doit contenir au minimum <strong>8 charactères.</strong>
-            </mat-error>
-            <mat-error *ngIf="registerForm.get('password')?.dirty && registerForm.get('password')?.hasError('regex')">
-              Le mot de passe <strong>est différent !</strong>
             </mat-error>
           </mat-form-field>
         </td>

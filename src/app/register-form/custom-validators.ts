@@ -17,7 +17,9 @@ export class CustomValidators {
   }
 
   static passwordDif(control: AbstractControl): ValidationErrors | null {
-    return control.value == control.get("password")?.value ? null : {
+    console.log(control.get("passwordConfirm")?.value);
+    console.log(control.get("password")?.value);
+    return control.get("passwordConfirm")?.value == control.get("password")?.value ? null : {
       diff: true
     }
   }

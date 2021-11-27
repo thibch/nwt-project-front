@@ -30,14 +30,13 @@ export class RegisterFormComponent implements OnInit, OnChanges {
       firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       pseudo: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-
       password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.password])),
-      passwordConfirm: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.passwordDif])),
+      passwordConfirm: new FormControl('', Validators.compose([Validators.required])),
       birthdate: new FormControl(),
       email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
-
       photo: new FormControl()
-    });
+    },{validators: CustomValidators.passwordDif});
+
   }
 
   ngOnInit(): void {
