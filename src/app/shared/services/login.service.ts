@@ -32,6 +32,10 @@ export class LoginService {
     return this._http.post(this._backendURL.login, user,this._options());
   }
 
+  getFullUser(id: string): Observable<User>{
+    return this._http.get<User>(this._backendURL.getById.replace(':id',id));
+  }
+
   test(): Observable<string>{
     return this._http.get<string>(this._backendURL.test);
   }

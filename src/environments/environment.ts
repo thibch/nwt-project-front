@@ -10,7 +10,8 @@ export const environment = {
     port: '3000',
     endpoints: {
       login: '/auth/login',
-      test: '/auth/test'
+      test: '/auth/test',
+      getById: '/users/:id'
     }
   }
 };

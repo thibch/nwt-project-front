@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
       ).subscribe(
         data => {
           this._storageService.saveToken(data.access_token);
+
           this._storageService.saveUser(this._loggedUser);
           this._router.navigate(['/home'])
         },

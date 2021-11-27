@@ -20,6 +20,9 @@ import {MatInputModule} from "@angular/material/input";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/interceptor/auth.interceptor";
 import {JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
+import { AccountComponent } from './account/account.component';
+import {MatCardModule} from "@angular/material/card";
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import {JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt"
     LoginComponent,
     LoginFormComponent,
     RegisterComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    AccountComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,8 @@ import {JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt"
         tokenGetter: tokenGetter,
         allowedDomains: ["localhost"]
       }
-    })
+    }),
+    MatCardModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
