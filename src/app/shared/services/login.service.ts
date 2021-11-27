@@ -39,7 +39,5 @@ export class LoginService {
   private _options(headerList: object = {}): any {
     return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
   }
-
-
 }
 

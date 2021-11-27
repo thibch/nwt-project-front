@@ -25,4 +25,8 @@ export class StorageService {
     return window.sessionStorage.getItem('auth-token');
   }
 
+  logout() {
+    window.sessionStorage.removeItem('auth-token');
+    window.sessionStorage.removeItem('auth-user');
+  }
 }

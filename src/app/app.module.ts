@@ -19,6 +19,7 @@ import {RegisterFormComponent} from './register-form/register-form.component';
 import {MatInputModule} from "@angular/material/input";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/interceptor/auth.interceptor";
+import {JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
 
 @NgModule({
   declarations: [
@@ -43,10 +44,21 @@ import {AuthInterceptor} from "./shared/interceptor/auth.interceptor";
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost"]
+      }
+    })
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
+
+export function tokenGetter() {
+  return window.localStorage.getItem("access_token");
+}
+

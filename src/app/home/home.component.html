@@ -3,10 +3,19 @@
 
   <span class="flex"></span>
 
-  <span>
+  <span *ngIf="user.username == undefined">
     <a color="secondary" [routerLink]="['/login']">Login</a>
   </span>
+
+  <span *ngIf="user.username !== undefined">
+    <a color="secondary" (click)="logout()">Logout</a>
+  </span>
+
   <span>
     <a color="secondary" [routerLink]="['/register']">Register</a>
   </span>
 </mat-toolbar>
+
+<span *ngIf="user.username !== undefined">
+  Hello {{user.username}} !
+</span>
