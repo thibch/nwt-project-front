@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div align="center">
+<mat-card class="user-card">
+   <mat-card-content>
+     <p>
+       Pseudo: {{user.username}}
+     </p>
+   </mat-card-content>
+  <mat-card-content>
+    <p>
+      Prénom: {{user.firstname}}
+      Nom: {{user.lastname}}
+    </p>
+  </mat-card-content>
+  <mat-card-content>
+    <p>
+      Email: {{user.email}}
+    </p>
+  </mat-card-content>
+  <mat-card-content>
+    <p>
+      Date de naissance: {{user.birthdate | date:'dd/MM/yyyy' }}
+    </p>
+  </mat-card-content>
+</mat-card>
+</div>

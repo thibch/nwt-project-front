@@ -1,0 +1,22 @@
+<mat-toolbar class="extend-toolbar">
+  <span>TadApplication</span>
+
+  <span class="flex"></span>
+
+  <span *ngIf="user.username == undefined">
+    <a color="secondary" [routerLink]="['/login']">Login</a>
+  </span>
+
+  <span *ngIf="user.username == undefined">
+    <a color="secondary" [routerLink]="['/register']">Register</a>
+  </span>
+
+  <span *ngIf="user.username !== undefined">
+    <a color="secondary" (click)="logout()">Logout</a>
+  </span>
+
+  <span *ngIf="user.username !== undefined">
+    <a color="secondary" [routerLink]="['/account']">Account</a>
+  </span>
+
+</mat-toolbar>
