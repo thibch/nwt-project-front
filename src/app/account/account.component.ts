@@ -34,5 +34,4 @@ export class AccountComponent implements OnInit {
   set user(value: User) {
     this._user = value;
   }
-
 }

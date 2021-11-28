@@ -28,6 +28,8 @@ import { CardListComponent } from './card-list/card-list.component';
 import {MatListModule} from "@angular/material/list";
 import { SearchUserComponent } from './search-user/search-user.component';
 import { UserMinimizedComponent } from './user-minimized/user-minimized.component';
+import { DeleteComponent } from './delete/delete.component';
+import { DeleteFormComponent } from './delete-form/delete-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { UserMinimizedComponent } from './user-minimized/user-minimized.componen
     CardComponent,
     CardListComponent,
     SearchUserComponent,
-    UserMinimizedComponent
+    UserMinimizedComponent,
+    DeleteComponent,
+    DeleteFormComponent
   ],
   imports: [
     BrowserModule,

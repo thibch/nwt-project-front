@@ -22,7 +22,16 @@
       Date de naissance: {{user.birthDate | date:'dd/MM/yyyy' }}
     </p>
   </mat-card-content>
+
+<br>
+  <mat-card-content>
+    <button    color="secondary" [routerLink]="['/delete']">Supprimer le compte</button>
+
+  </mat-card-content>
 </mat-card>
+
+
 </div>
+
 
 <app-card-list></app-card-list>

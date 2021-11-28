@@ -49,10 +49,9 @@ export class LoginComponent implements OnInit {
         mergeMap((user: User | undefined)=> this._loginService.auth(user as User)),
       ).subscribe(
       data => {
-        this._storageService.saveUser({username: data.username, email: data.email, lastname: data.lastname, firstname: data.firstname, birthDate: data.birthDate, id: data.i, photo: data.photo, password: ""});
+        this._storageService.saveUser({username: data.username, email: data.email, lastname: data.lastname, firstname: data.firstname, birthDate: data.birthDate, id: data.id, photo: data.photo, password: ""});
         this._storageService.saveToken(data.access_token);
 
-        this._storageService.saveUser(this._loggedUser);
         this._router.navigate(['/home'])
         this._error = false;
       },

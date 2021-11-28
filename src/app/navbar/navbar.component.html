@@ -18,11 +18,12 @@
   </span>
 
   <span *ngIf="user.username !== undefined">
-    <a color="secondary" (click)="logout()">Déconnexion</a>
+    <a color="secondary" [routerLink]="['/user/'+user.username+'/profile']">Compte</a>
   </span>
 
+  
   <span *ngIf="user.username !== undefined">
-    <a color="secondary" [routerLink]="['/user/'+user.username+'/profile']">Compte</a>
+    <a color="secondary" (click)="logout()">Déconnexion</a>
   </span>
 
 </mat-toolbar>
