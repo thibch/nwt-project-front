@@ -1,4 +1,4 @@
-import {AbstractControl, ValidationErrors} from "@angular/forms";
+import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
 export class CustomValidators {
 
@@ -16,10 +16,24 @@ export class CustomValidators {
     }
   }
 
-  static passwordDif(control: AbstractControl): ValidationErrors | null {
-    return control.get("passwordConfirm")?.value == control.get("password")?.value ? null : {
-      diff: true
-    }
+
+
+  static passwordDif(password: string, passwordConfirmed: string): ValidatorFn | null {
+    return (controls: AbstractControl) => {
+      const control = controls.get(password);
+      const checkControl = controls.get(passwordConfirmed);
+
+      if (checkControl?.errors && !checkControl.errors.matchPasswords) {
+        return null;
+      }
+
+      if (control?.value !== checkControl?.value) {
+        controls.get(passwordConfirmed)?.setErrors({ matchPasswords: true });
+        return { matchPasswords: true };
+      } else {
+        return null;
+      }
+    };
   }
 
 }

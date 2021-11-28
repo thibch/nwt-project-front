@@ -89,17 +89,15 @@
 
         </td>
         <td class="align-right">
-          /// TODO FIX, NE FONCTIONNE QU'AVEC SPAN
           <mat-form-field class="full-width"
-                          [class.mgb15]="registerForm.get('passwordConfirm')?.dirty && registerForm.get('passwordConfirm')?.invalid">
+                          [class.mgb15]="registerForm.get('passwordConfirm')?.dirty && registerForm.get('passwordConfirm')?.invalid || registerForm.hasError('diff') ">
 
             <input type="password" matInput placeholder="Confirmation mot de passe" formControlName="passwordConfirm"
                    required name="passwordConfirm"/>
 
 
-
             <mat-error
-              *ngIf="registerForm.hasError('diff')">
+              *ngIf="registerForm.get('passwordConfirm')?.dirty && registerForm.hasError('matchPasswords')">
               Le mot de passe <strong>est différent !</strong>
             </mat-error>
 
