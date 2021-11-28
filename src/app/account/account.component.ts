@@ -70,16 +70,20 @@ export class AccountComponent implements OnInit {
       .pipe(
         filter((user: any) => !!user),
         map((user: any ) => {
-          delete user?.id;
+
           delete user?.passwordConfirm;
 
           if(user?.photo == null){
             delete user?.photo;
           }
 
+          user.password = "password";
+
+
+          this._user = user;
           return user;
         }),
-        mergeMap((user: User | undefined) => this._userService.update(this._user.id as string, user as User))
+        mergeMap((user: User | undefined) => this._userService.update(this._storageService.getUser().id as string, user as User))
       )
       .subscribe(
         data => { this._error=false;

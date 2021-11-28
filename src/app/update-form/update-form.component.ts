@@ -27,8 +27,6 @@ export class UpdateFormComponent implements OnInit {
       firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-      password: new FormControl('', Validators.compose([ Validators.minLength(8), CustomValidators.password])),
-      passwordConfirm: new FormControl(''),
       birthDate: new FormControl('', Validators.compose([Validators.required])),
       email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
       photo: new FormControl()

@@ -39,10 +39,8 @@
     <p>
       <mat-form-field class="full-width"
                       [class.mgb15]="updateForm.get('username')?.dirty && updateForm.get('username')?.invalid">
-        <input matInput placeholder="Pseudo" formControlName="username" [ngModel]="user.username" minlength="2" required name="username"/>
-        <mat-error *ngIf="updateForm.get('username')?.dirty && updateForm.get('username')?.hasError('required')">
-          Le champ pseudo est <strong>requis.</strong>
-        </mat-error>
+        <input matInput placeholder="Pseudo" formControlName="username" [ngModel]="user.username" minlength="2"  name="username"/>
+
         <mat-error *ngIf="updateForm.get('username')?.dirty && updateForm.get('username')?.hasError('minlength')">
           Le champ pseudo doit contenir au minimum <strong>2 charactères.</strong>
         </mat-error>
@@ -51,10 +49,8 @@
     <p>
       <mat-form-field class="full-width"
                       [class.mgb15]="updateForm.get('email')?.dirty && updateForm.get('email')?.invalid">
-        <input type="email" matInput placeholder="Mail" [ngModel]="user.email" formControlName="email" minlength="8" required name="email"/>
-        <mat-error *ngIf="updateForm.get('email')?.dirty && updateForm.get('email')?.hasError('required')">
-          Le champ mail est <strong>requis.</strong>
-        </mat-error>
+        <input type="email" matInput placeholder="Mail" [ngModel]="user.email" formControlName="email" minlength="8"  name="email"/>
+
         <mat-error *ngIf="updateForm.get('email')?.dirty && updateForm.get('email')?.hasError('minlength')">
           Le champ mail doit contenir au minimum <strong>8 charactères.</strong>
         </mat-error>
@@ -63,52 +59,7 @@
         </mat-error>
       </mat-form-field>
     </p>
-    <table class="full-width" cellspacing="0" >
-      <tr>
-        <td>
-          <mat-form-field class="full-width"
-                          [class.mgb15]="updateForm.get('password')?.dirty && updateForm.get('password')?.invalid">
-            <input  [type]="hide?'password':'text'" matInput placeholder="Mot de passe" formControlName="password" minlength="8" required
-                    name="password"/>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
 
-            <mat-error
-              *ngIf="updateForm.get('password')?.dirty && updateForm.get('password')?.hasError('required')">
-              Le champ mot de passe est <strong>requis.</strong>
-            </mat-error>
-            <mat-error
-              *ngIf="updateForm.get('password')?.dirty && updateForm.get('password')?.hasError('minlength')">
-              Le champ mot de passe doit contenir au minimum <strong>8 charactères.</strong>
-            </mat-error>
-            <mat-error *ngIf="updateForm.get('password')?.dirty && updateForm.get('password')?.hasError('regex')">
-              Le champ mot de passe doit contenir au moins<strong> une majuscule, une minuscule et un chiffre.</strong>
-            </mat-error>
-          </mat-form-field>
-
-        </td>
-        <td class="align-right">
-          <mat-form-field class="full-width"
-                          [class.mgb15]="updateForm.get('passwordConfirm')?.dirty && updateForm.get('passwordConfirm')?.invalid || updateForm.hasError('diff') ">
-
-            <input type="password" matInput placeholder="Confirmation mot de passe" formControlName="passwordConfirm"
-                   required name="passwordConfirm"/>
-
-
-            <mat-error
-              *ngIf="updateForm.get('passwordConfirm')?.dirty && updateForm.hasError('matchPasswords')">
-              Le mot de passe <strong>est différent !</strong>
-            </mat-error>
-
-            <mat-error
-              *ngIf="updateForm.get('passwordConfirm')?.dirty && updateForm.get('passwordConfirm')?.hasError('required')">
-              Le champ confirmation de mot de passe est <strong>requis.</strong>
-            </mat-error>
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
     <p>
       <mat-form-field class="full-width"
                       [class.mgb15]="updateForm.get('photo')?.dirty && updateForm.get('photo')?.invalid">
