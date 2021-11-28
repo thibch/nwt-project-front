@@ -12,7 +12,8 @@ export const environment = {
       login: '/auth/login',
       test: '/auth/test',
       getById: '/users/:id',
-      allUser: '/users'
+      allUser: '/users',
+      allCard: '/cards'
     }
   }
 };

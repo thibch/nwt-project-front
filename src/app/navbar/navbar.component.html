@@ -5,6 +5,10 @@
 
   <span class="flex"></span>
 
+  <span *ngIf="user.username !== undefined">
+    <a color="secondary" [routerLink]="['/cards']">Mes Cartes</a>
+  </span>
+
   <span>
     <a color="secondary" [routerLink]="['/search']">Recherche d'utilisateurs</a>
   </span>
@@ -21,7 +25,7 @@
     <a color="secondary" [routerLink]="['/user/'+user.username+'/profile']">Compte</a>
   </span>
 
-  
+
   <span *ngIf="user.username !== undefined">
     <a color="secondary" (click)="logout()">Déconnexion</a>
   </span>

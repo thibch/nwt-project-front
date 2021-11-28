@@ -12,9 +12,9 @@ export class SearchUserComponent implements OnInit {
   private _users: User[];
 
   constructor(private _userService: UserService) {
-    this._users= {} as User[];
+    this._users= [];
     _userService.fetch().subscribe(
-      data => {this._users = data as User[];}
+      data => {this._users = data;}
     );
   }
 

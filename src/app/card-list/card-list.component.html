@@ -1,5 +1,4 @@
-<mat-list>
-  <mat-list-item  *ngFor="let card of cards">
-    <app-card [card]="card"></app-card>
-  </mat-list-item>
-</mat-list>
+<app-navbar></app-navbar>
+<div *ngFor="let card of cards">
+    <app-card  [card]="card"></app-card>
+</div>

@@ -7,6 +7,7 @@ import {AuthGuard} from "./shared/guard/auth.guard";
 import {AccountComponent} from "./account/account.component";
 import {SearchUserComponent} from "./search-user/search-user.component";
 import {DeleteComponent} from "./delete/delete.component";
+import {CardListComponent} from "./card-list/card-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'user/:username/profile', component: AccountComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchUserComponent},
-  {path: 'delete', component: DeleteComponent}
+  {path: 'delete', component: DeleteComponent},
+  {path: 'cards', component: CardListComponent}
 ];
 
 @NgModule({
