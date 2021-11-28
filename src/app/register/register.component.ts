@@ -16,10 +16,12 @@ export class RegisterComponent implements OnInit {
 
   private _registerDialog: MatDialogRef<RegisterFormComponent, User>;
   private _error: boolean;
+  private _user: User;
 
   constructor(private _router: Router, private _dialog: MatDialog, private _userService: UserService) {
-    this._registerDialog = {} as MatDialogRef<RegisterFormComponent, any>;
+    this._registerDialog = {} as MatDialogRef<RegisterFormComponent, User>;
     this._error = false;
+    this._user = {} as User;
   }
 
 
@@ -41,8 +43,9 @@ export class RegisterComponent implements OnInit {
     this._registerDialog = this._dialog.open(RegisterFormComponent, {
       width: '500px',
       disableClose: true,
-      data: this._error
+      data: {error: this._error, user: this._user}
     });
+
 
     // subscribe to afterClosed observable to set dialog status and do process
     this._registerDialog.afterClosed()
@@ -56,14 +59,14 @@ export class RegisterComponent implements OnInit {
             delete user?.photo;
           }
 
+          this._user = user;
           return user;
         }),
         mergeMap((user: User | undefined) => this._add(user as User))
       )
-      .subscribe({
-          error: () => { this._error = true;  this._openDialog();},
-          complete: () => { this._error=false; this._router.navigate(['/home']);}
-        }
+      .subscribe(
+        data => { this._error=false; this._user={username: data.username, email: data.email, lastname: data.lastname, firstname: data.firstname, birthDate: data.birthDate, id: data.id, photo: data.photo, password: ""}; this._router.navigate(['/home']);},
+        error => { this._error = true;  this._openDialog();}
       );
   }
 

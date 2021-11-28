@@ -9,7 +9,7 @@
         <td>
           <mat-form-field class="full-width"
                           [class.mgb15]="registerForm.get('firstname')?.dirty && registerForm.get('firstname')?.invalid">
-            <input matInput placeholder="Prénom" formControlName="firstname" minlength="2" required name="firstname"/>
+            <input matInput placeholder="Prénom" [ngModel]="user.firstname" formControlName="firstname" minlength="2" required name="firstname"/>
             <mat-error
               *ngIf="registerForm.get('firstname')?.dirty && registerForm.get('firstname')?.hasError('required')">
               Le champ prénom est <strong>requis.</strong>
@@ -23,7 +23,7 @@
         <td class="align-right">
           <mat-form-field class="full-width"
                           [class.mgb15]="registerForm.get('lastname')?.dirty && registerForm.get('lastname')?.invalid">
-            <input matInput placeholder="Nom" formControlName="lastname" minlength="2" required name="lastname"/>
+            <input matInput placeholder="Nom" [ngModel]="user.lastname" formControlName="lastname" minlength="2" required name="lastname"/>
             <mat-error
               *ngIf="registerForm.get('lastname')?.dirty && registerForm.get('lastname')?.hasError('required')">
               Le champ nom est <strong>requis.</strong>
@@ -39,7 +39,7 @@
     <p>
       <mat-form-field class="full-width"
                       [class.mgb15]="registerForm.get('username')?.dirty && registerForm.get('username')?.invalid">
-        <input matInput placeholder="Pseudo" formControlName="username" minlength="2" required name="username"/>
+        <input matInput placeholder="Pseudo" formControlName="username" [ngModel]="user.username" minlength="2" required name="username"/>
         <mat-error *ngIf="registerForm.get('username')?.dirty && registerForm.get('username')?.hasError('required')">
           Le champ pseudo est <strong>requis.</strong>
         </mat-error>
@@ -51,7 +51,7 @@
     <p>
       <mat-form-field class="full-width"
                       [class.mgb15]="registerForm.get('email')?.dirty && registerForm.get('email')?.invalid">
-        <input type="email" matInput placeholder="Mail" formControlName="email" minlength="8" required name="email"/>
+        <input type="email" matInput placeholder="Mail" [ngModel]="user.email" formControlName="email" minlength="8" required name="email"/>
         <mat-error *ngIf="registerForm.get('email')?.dirty && registerForm.get('email')?.hasError('required')">
           Le champ mail est <strong>requis.</strong>
         </mat-error>
@@ -114,13 +114,13 @@
     <p>
       <mat-form-field class="full-width"
                       [class.mgb15]="registerForm.get('photo')?.dirty && registerForm.get('photo')?.invalid">
-        <input matInput placeholder="Lien vers un avatar" formControlName="photo" name="photo"/>
+        <input matInput placeholder="Lien vers un avatar" [ngModel]="user.photo" formControlName="photo" name="photo"/>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field class="full-width"
                       [class.mgb15]="registerForm.get('birthDate')?.dirty && registerForm.get('birthDate')?.invalid">
-        <input matInput type="date" placeholder="Date de naissance" formControlName="birthDate" name="birthDate" required/>
+        <input matInput type="date" [ngModel]="user.birthDate" placeholder="Date de naissance" formControlName="birthDate" name="birthDate" required/>
         <mat-error
           *ngIf="registerForm.get('birthDate')?.dirty && registerForm.get('birthDate')?.hasError('required')">
           Le champ date de naissance est <strong>requis.</strong>
