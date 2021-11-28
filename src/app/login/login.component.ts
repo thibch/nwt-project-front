@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this._loginDialog = this._dialog.open(LoginFormComponent, {
       width: '300px',
       disableClose: true,
-      data: this._error
+      data: {error: this._error, user: this._loggedUser}
     });
 
     this._loginDialog.afterClosed()
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
         mergeMap((user: User | undefined)=> this._loginService.auth(user as User)),
       ).subscribe(
       data => {
+        this._storageService.saveUser({username: data.username, email: data.email, lastname: data.lastname, firstname: data.firstname, birthDate: data.birthDate, id: data.i, photo: data.photo, password: ""});
         this._storageService.saveToken(data.access_token);
 
         this._storageService.saveUser(this._loggedUser);

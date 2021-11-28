@@ -34,7 +34,7 @@ export class RegisterFormComponent implements OnInit, OnChanges {
       username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.password])),
       passwordConfirm: new FormControl('', Validators.compose([Validators.required])),
-      birthDate: new FormControl(),
+      birthDate: new FormControl('', Validators.compose([Validators.required])),
       email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
       photo: new FormControl()
     },{validators: CustomValidators.passwordDif});

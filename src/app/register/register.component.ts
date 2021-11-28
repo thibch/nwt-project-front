@@ -52,6 +52,10 @@ export class RegisterComponent implements OnInit {
           delete user?.id;
           delete user?.passwordConfirm;
 
+          if(user?.photo == null){
+            delete user?.photo;
+          }
+
           return user;
         }),
         mergeMap((user: User | undefined) => this._add(user as User))

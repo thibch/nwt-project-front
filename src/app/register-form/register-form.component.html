@@ -120,7 +120,11 @@
     <p>
       <mat-form-field class="full-width"
                       [class.mgb15]="registerForm.get('birthDate')?.dirty && registerForm.get('birthDate')?.invalid">
-        <input matInput type="date" placeholder="Date de naissance" formControlName="birthDate" name="birthDate"/>
+        <input matInput type="date" placeholder="Date de naissance" formControlName="birthDate" name="birthDate" required/>
+        <mat-error
+          *ngIf="registerForm.get('birthDate')?.dirty && registerForm.get('birthDate')?.hasError('required')">
+          Le champ date de naissance est <strong>requis.</strong>
+        </mat-error>
       </mat-form-field>
     </p>
   </form>
