@@ -82,6 +82,7 @@
 
         </td>
         <td class="align-right">
+          /// TODO FIX, NE FONCTIONNE QU'AVEC SPAN
           <mat-form-field class="full-width"
                           [class.mgb15]="registerForm.get('passwordConfirm')?.dirty && registerForm.get('passwordConfirm')?.invalid">
 
@@ -89,7 +90,7 @@
                    required name="passwordConfirm"/>
 
 
-            /// TODO FIX, NE FONCTIONNE QU'AVEC SPAN
+
             <mat-error
               *ngIf="registerForm.hasError('diff')">
               Le mot de passe <strong>est différent !</strong>
@@ -111,8 +112,8 @@
     </p>
     <p>
       <mat-form-field class="full-width"
-                      [class.mgb15]="registerForm.get('birthdate')?.dirty && registerForm.get('birthdate')?.invalid">
-        <input matInput type="date" placeholder="Date de naissance" formControlName="birthdate" name="birthdate"/>
+                      [class.mgb15]="registerForm.get('birthDate')?.dirty && registerForm.get('birthDate')?.invalid">
+        <input matInput type="date" placeholder="Date de naissance" formControlName="birthDate" name="birthDate"/>
       </mat-form-field>
     </p>
   </form>
@@ -120,5 +121,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="redirectBack()">Annuler</button>
-  <button mat-button type="submit" [disabled]="registerForm.invalid">Création du compte</button>
+  <button mat-button type="submit" (click)="create(registerForm.value)" [disabled]="registerForm.invalid">Création du compte</button>
 </mat-dialog-actions>

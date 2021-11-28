@@ -4,6 +4,7 @@ import {User} from "../shared/types/user.type";
 import {MatDialogRef} from "@angular/material/dialog";
 import {LoginComponent} from "../login/login.component";
 import {CustomValidators} from "./custom-validators";
+import {MatDialogActions} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-register-form',
@@ -32,7 +33,7 @@ export class RegisterFormComponent implements OnInit, OnChanges {
       username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.password])),
       passwordConfirm: new FormControl('', Validators.compose([Validators.required])),
-      birthdate: new FormControl(),
+      birthDate: new FormControl(),
       email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
       photo: new FormControl()
     },{validators: CustomValidators.passwordDif});
@@ -50,7 +51,7 @@ export class RegisterFormComponent implements OnInit, OnChanges {
       password: '',
       email: '',
       username: '',
-      birthdate: 'JJ/MM/AAAA'
+      birthDate: 'JJ/MM/AAAA'
     };
 
     this._registerForm.patchValue(this._user);
@@ -58,5 +59,10 @@ export class RegisterFormComponent implements OnInit, OnChanges {
 
   redirectBack() {
     this._dialogRef.close();
+  }
+
+  create(user: User) {
+    console.log(user);
+    this._dialogRef.close(user);
   }
 }

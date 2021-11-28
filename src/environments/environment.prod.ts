@@ -7,7 +7,8 @@ export const environment = {
     endpoints: {
       login: '/auth/login',
       test: '/auth/test',
-      getById: '/users/:id'
+      getById: '/users/:id',
+      allUser: '/users'
     }
   }
 };
