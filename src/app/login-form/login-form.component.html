@@ -5,7 +5,7 @@
   <form novalidate #f="ngForm">
     <p>
       <mat-form-field>
-        <input matInput placeholder="Pseudo" ngModel minlength="2" #username=ngModel required name="username"/>
+        <input matInput placeholder="Pseudo" [ngModel]="user?.username" ngModel minlength="2" #username=ngModel required name="username"/>
         <mat-error *ngIf="username?.dirty && username?.hasError('required')">
           Le pseudo est <strong>requis.</strong>
         </mat-error>

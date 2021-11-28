@@ -24,10 +24,23 @@ export class RegisterFormComponent implements OnInit, OnChanges {
   private _registerForm: FormGroup;
   private _user: User;
   private _hide: boolean;
+  private _error: boolean;
 
-  constructor(private _dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) private _error: boolean) {
-    this._user = {} as User;
+
+  get user(): User {
+    return this._user;
+  }
+
+  set user(value: User) {
+    this._user = value;
+  }
+
+  constructor(private _dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) private _data: {error: boolean, user: User}) {
+    this._user = _data.user;
+    this._error = _data.error;
     this._hide = true;
+
+    console.log(this._user)
     this._registerForm = new FormGroup({
       firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
