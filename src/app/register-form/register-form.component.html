@@ -1,5 +1,8 @@
 <h2 mat-dialog-title>Inscription</h2>
+
 <mat-dialog-content>
+  <p *ngIf="error">Pseudo ou mail déjà utilisé !</p>
+
   <form novalidate [formGroup]="registerForm">
     <table class="full-width" cellspacing="0">
       <tr>
@@ -65,8 +68,12 @@
         <td>
           <mat-form-field class="full-width"
                           [class.mgb15]="registerForm.get('password')?.dirty && registerForm.get('password')?.invalid">
-            <input type="password" matInput placeholder="Mot de passe" formControlName="password" minlength="8" required
+            <input  [type]="hide?'password':'text'" matInput placeholder="Mot de passe" formControlName="password" minlength="8" required
                    name="password"/>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
             <mat-error
               *ngIf="registerForm.get('password')?.dirty && registerForm.get('password')?.hasError('required')">
               Le champ mot de passe est <strong>requis.</strong>

@@ -1,6 +1,7 @@
 <h2 mat-dialog-title>Connexion</h2>
 
 <mat-dialog-content>
+  <p *ngIf="error">Pseudo ou Mot de passe invalide !</p>
   <form novalidate #f="ngForm">
     <p>
       <mat-form-field>
@@ -15,7 +16,10 @@
     </p>
     <p>
       <mat-form-field>
-        <input type="password" matInput placeholder="Mot de passe" ngModel #password=ngModel required name="password"/>
+        <input [type]="hide?'password':'text'" matInput placeholder="Mot de passe" ngModel #password=ngModel required name="password"/>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
         <mat-error *ngIf="password?.dirty && password?.hasError('required')">
           Le mot de passe est <strong>requis !</strong>
         </mat-error>

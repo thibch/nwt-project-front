@@ -15,17 +15,33 @@ import {UserService} from "../shared/services/user.service";
 export class RegisterComponent implements OnInit {
 
   private _registerDialog: MatDialogRef<RegisterFormComponent, User>;
+  private _error: boolean;
 
   constructor(private _router: Router, private _dialog: MatDialog, private _userService: UserService) {
     this._registerDialog = {} as MatDialogRef<RegisterFormComponent, any>;
+    this._error = false;
   }
 
 
+  get error(): boolean {
+    return this._error;
+  }
+
+  set error(value: boolean) {
+    this._error = value;
+  }
+
   ngOnInit(): void {
+    this._error = false;
+    this._openDialog()
+  }
+
+  private _openDialog(){
     // create modal with initial data inside
     this._registerDialog = this._dialog.open(RegisterFormComponent, {
       width: '500px',
       disableClose: true,
+      data: this._error
     });
 
     // subscribe to afterClosed observable to set dialog status and do process
@@ -41,8 +57,8 @@ export class RegisterComponent implements OnInit {
         mergeMap((user: User | undefined) => this._add(user as User))
       )
       .subscribe({
-          error: () => this._router.navigate(['/home']),
-          complete: () => this._router.navigate(['/login'])
+          error: () => { this._error = true;  this._openDialog();},
+          complete: () => { this._error=false; this._router.navigate(['/home']);}
         }
       );
   }

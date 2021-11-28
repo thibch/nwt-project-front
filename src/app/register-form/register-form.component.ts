@@ -1,7 +1,7 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, Inject, OnChanges, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../shared/types/user.type";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {LoginComponent} from "../login/login.component";
 import {CustomValidators} from "./custom-validators";
 import {MatDialogActions} from "@angular/material/dialog";
@@ -23,10 +23,11 @@ export class RegisterFormComponent implements OnInit, OnChanges {
 
   private _registerForm: FormGroup;
   private _user: User;
+  private _hide: boolean;
 
-  constructor(private _dialogRef: MatDialogRef<LoginComponent>) {
+  constructor(private _dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) private _error: boolean) {
     this._user = {} as User;
-
+    this._hide = true;
     this._registerForm = new FormGroup({
       firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
@@ -38,6 +39,23 @@ export class RegisterFormComponent implements OnInit, OnChanges {
       photo: new FormControl()
     },{validators: CustomValidators.passwordDif});
 
+  }
+
+
+  get error():  boolean  {
+    return this._error;
+  }
+
+  set error(error: boolean ) {
+    this._error = error;
+  }
+
+  get hide(): boolean {
+    return this._hide;
+  }
+
+  set hide(value: boolean) {
+    this._hide = value;
   }
 
   ngOnInit(): void {
@@ -62,7 +80,6 @@ export class RegisterFormComponent implements OnInit, OnChanges {
   }
 
   create(user: User) {
-    console.log(user);
     this._dialogRef.close(user);
   }
 }

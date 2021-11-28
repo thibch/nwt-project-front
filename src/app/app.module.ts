@@ -22,6 +22,7 @@ import {JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt"
 import { AccountComponent } from './account/account.component';
 import {MatCardModule} from "@angular/material/card";
 import { NavbarComponent } from './navbar/navbar.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { NavbarComponent } from './navbar/navbar.component';
         allowedDomains: ["localhost"]
       }
     }),
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

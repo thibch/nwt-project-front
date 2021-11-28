@@ -27,9 +27,6 @@ export class NavbarComponent implements OnInit {
     if (_storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
       this._user = this._storageService.getUser();
     }
-
-    console.log("User: " + this.user)
-    console.log("Token: " + _storageService.getToken())
   }
 
   ngOnInit(): void {
