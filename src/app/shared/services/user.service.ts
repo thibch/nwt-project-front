@@ -48,4 +48,9 @@ export class UserService {
   private _options(headerList: object = {}): any {
     return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
   }
+
+  update(id: string, user: User): Observable<any> {
+    return this._http.put<User>(this._backendURL.getById.replace(':id', id), user, this._options());
+  }
+
 }

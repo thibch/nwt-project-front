@@ -6,26 +6,35 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-delete-form',
-  templateUrl: './delete-form.component.html',
-  styleUrls: ['./delete-form.component.css']
+  templateUrl: './auth-form.component.html',
+  styleUrls: ['./auth-form.component.css']
 })
-export class DeleteFormComponent implements OnInit {
+export class AuthFormComponent implements OnInit {
 
   private _hide: boolean;
   private _error: boolean;
   private _user: User;
+  private _operation: string;
 
-  constructor(private _dialogRef: MatDialogRef<LoginComponent>, private _router: Router, @Inject(MAT_DIALOG_DATA) private _data: {error: boolean, user: User}) {
+  constructor(private _dialogRef: MatDialogRef<LoginComponent>, private _router: Router, @Inject(MAT_DIALOG_DATA) private _data: {error: boolean, user: User, operation: string}) {
     this._hide =true;
     this._error = _data.error;
     this._user = _data.user;
-
+    this._operation = _data.operation;
   }
 
   ngOnInit(): void {
 
   }
 
+
+  get operation(): string {
+    return this._operation;
+  }
+
+  set operation(value: string) {
+    this._operation = value;
+  }
 
   get hide(): boolean {
     return this._hide;
@@ -49,7 +58,7 @@ export class DeleteFormComponent implements OnInit {
     this._router.navigate(['/home'])
   }
 
-  delete(user: User) {
+  auth(user: User) {
     user.username = this._user.username;
 
     this._dialogRef.close(user);

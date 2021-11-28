@@ -62,15 +62,11 @@ export class RegisterComponent implements OnInit {
           this._user = user;
           return user;
         }),
-        mergeMap((user: User | undefined) => this._add(user as User))
+        mergeMap((user: User | undefined) => this._userService.create(user as User))
       )
       .subscribe(
         data => { this._error=false; this._user={username: data.username, email: data.email, lastname: data.lastname, firstname: data.firstname, birthDate: data.birthDate, id: data.id, photo: data.photo, password: ""}; this._router.navigate(['/home']);},
         error => { this._error = true;  this._openDialog();}
       );
-  }
-
-  private _add(user: User | undefined): Observable<User> {
-    return this._userService.create(user as User);
   }
 }

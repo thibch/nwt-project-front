@@ -17,7 +17,7 @@ import {RegisterComponent} from './register/register.component';
 import {RegisterFormComponent} from './register-form/register-form.component';
 import {MatInputModule} from "@angular/material/input";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
-import {AuthInterceptor} from "./shared/interceptor/auth.interceptor";
+import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
 import {JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
 import { AccountComponent } from './account/account.component';
 import {MatCardModule} from "@angular/material/card";
@@ -29,7 +29,10 @@ import {MatListModule} from "@angular/material/list";
 import { SearchUserComponent } from './search-user/search-user.component';
 import { UserMinimizedComponent } from './user-minimized/user-minimized.component';
 import { DeleteComponent } from './delete/delete.component';
-import { DeleteFormComponent } from './delete-form/delete-form.component';
+import { AuthFormComponent } from './auth-form/auth-form.component';
+import {MatGridListModule} from "@angular/material/grid-list";
+import { UpdateFormComponent } from './update-form/update-form.component';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { DeleteFormComponent } from './delete-form/delete-form.component';
     SearchUserComponent,
     UserMinimizedComponent,
     DeleteComponent,
-    DeleteFormComponent
+    AuthFormComponent,
+    UpdateFormComponent
   ],
   imports: [
     BrowserModule,
@@ -70,11 +74,13 @@ import { DeleteFormComponent } from './delete-form/delete-form.component';
     }),
     MatCardModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
 

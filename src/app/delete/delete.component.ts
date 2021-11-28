@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import {LoginService} from "../shared/services/login.service";
 import {StorageService} from "../shared/services/storage.service";
 import {filter, map, mergeMap} from "rxjs/operators";
-import {DeleteFormComponent} from "../delete-form/delete-form.component";
+import {AuthFormComponent} from "../auth-form/auth-form.component";
 import {UserService} from "../shared/services/user.service";
 
 @Component({
@@ -16,12 +16,12 @@ import {UserService} from "../shared/services/user.service";
 })
 export class DeleteComponent implements OnInit {
 
-  private _deleteDialog: MatDialogRef<DeleteFormComponent, User>;
+  private _deleteDialog: MatDialogRef<AuthFormComponent, User>;
   private _loggedUser: User | undefined;
   private _error: boolean;
 
   constructor(private _router: Router, private _dialog: MatDialog, private _errorDialog: MatDialog, private _loginService: LoginService, private _storageService: StorageService, private _userService: UserService) {
-    this._deleteDialog = {} as MatDialogRef<DeleteFormComponent, User>;
+    this._deleteDialog = {} as MatDialogRef<AuthFormComponent, User>;
     this._loggedUser = _storageService.getUser();
     this._error =false;
   }
@@ -34,10 +34,10 @@ export class DeleteComponent implements OnInit {
 
   private _openDialog(){
 
-    this._deleteDialog = this._dialog.open(DeleteFormComponent, {
+    this._deleteDialog = this._dialog.open(AuthFormComponent, {
       width: '400px',
       disableClose: true,
-      data: {error: this._error, user: this._loggedUser}
+      data: {error: this._error, user: this._loggedUser, operation: "suppression"}
     });
 
     console.log(this._loggedUser)
