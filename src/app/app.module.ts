@@ -23,6 +23,11 @@ import { AccountComponent } from './account/account.component';
 import {MatCardModule} from "@angular/material/card";
 import { NavbarComponent } from './navbar/navbar.component';
 import {MatIconModule} from "@angular/material/icon";
+import { CardComponent } from './card/card.component';
+import { CardListComponent } from './card-list/card-list.component';
+import {MatListModule} from "@angular/material/list";
+import { SearchUserComponent } from './search-user/search-user.component';
+import { UserMinimizedComponent } from './user-minimized/user-minimized.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,11 @@ import {MatIconModule} from "@angular/material/icon";
     RegisterComponent,
     RegisterFormComponent,
     AccountComponent,
-    NavbarComponent
+    NavbarComponent,
+    CardComponent,
+    CardListComponent,
+    SearchUserComponent,
+    UserMinimizedComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +65,8 @@ import {MatIconModule} from "@angular/material/icon";
       }
     }),
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

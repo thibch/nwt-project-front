@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {User} from "../types/user.type";
 import {Observable} from "rxjs";
+import {defaultIfEmpty, filter} from "rxjs/operators";
+import {declarationFunctions} from "@angular/compiler-cli/linker/src/file_linker/partial_linkers/partial_linker_selector";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,13 @@ export class UserService {
    */
   create(user: User): Observable<any> {
     return this._http.post<User>(this._backendURL.allUser, user, this._options());
+  }
+
+  /**
+   * Function to fetch all users
+   */
+  fetch(): Observable<User[]> {
+    return this._http.get<User[]>(this._backendURL.allUser);
   }
 
   private _options(headerList: object = {}): any {

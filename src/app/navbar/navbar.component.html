@@ -1,22 +1,28 @@
 <mat-toolbar class="extend-toolbar">
-  <span>TadApplication</span>
+  <span>
+    <a  [routerLink]="['/home']">TadaCard</a>
+  </span>
 
   <span class="flex"></span>
 
-  <span *ngIf="user.username == undefined">
-    <a color="secondary" [routerLink]="['/login']">Login</a>
+  <span>
+    <a color="secondary" [routerLink]="['/search']">Recherche d'utilisateurs</a>
   </span>
 
   <span *ngIf="user.username == undefined">
-    <a color="secondary" [routerLink]="['/register']">Register</a>
+    <a color="secondary" [routerLink]="['/login']">Connexion</a>
+  </span>
+
+  <span *ngIf="user.username == undefined">
+    <a color="secondary" [routerLink]="['/register']">Inscription</a>
   </span>
 
   <span *ngIf="user.username !== undefined">
-    <a color="secondary" (click)="logout()">Logout</a>
+    <a color="secondary" (click)="logout()">Déconnexion</a>
   </span>
 
   <span *ngIf="user.username !== undefined">
-    <a color="secondary" [routerLink]="['/account']">Account</a>
+    <a color="secondary" [routerLink]="['/user/'+user.username+'/profile']">Compte</a>
   </span>
 
 </mat-toolbar>
