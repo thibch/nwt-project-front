@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../shared/types/user.type";
 import {LoginService} from "../shared/services/login.service";
 import {StorageService} from "../shared/services/storage.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {RegisterFormComponent} from "../register-form/register-form.component";
 import {filter, map, mergeMap} from "rxjs/operators";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 import {UserService} from "../shared/services/user.service";
 import {Router} from "@angular/router";
 import {UpdateFormComponent} from "../update-form/update-form.component";
+import {UpdatePasswordFormComponent} from "../update-password-form/update-password-form.component";
 
 @Component({
   selector: 'app-account',
@@ -22,11 +22,13 @@ export class AccountComponent implements OnInit {
   private _error: boolean;
 
   private _updateDialog: MatDialogRef<UpdateFormComponent, User>;
+  private _updatePasswordDialog: MatDialogRef<UpdatePasswordFormComponent, User>;
 
   constructor(private _loginService: LoginService, private _dialog: MatDialog, private _storageService: StorageService,private _userService: UserService, private _router: Router, private _jwtHelper: JwtHelperService) {
     this._user = {} as User;
     this._error = false;
     this._updateDialog = {} as MatDialogRef<UpdateFormComponent, User>;
+    this._updatePasswordDialog = {} as MatDialogRef<UpdatePasswordFormComponent, User>;
 
 
     if (_storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
@@ -52,11 +54,17 @@ export class AccountComponent implements OnInit {
     this._openUpdateDialog();
   }
 
-  private _openUpdateDialog(){
+  private _openUpdateDialog() {
     this._openDialog();
   }
 
-  private _openDialog(){
+
+  changePassword() {
+    this._openPasswordDialog()
+  }
+
+
+  private _openDialog() {
     // create modal with initial data inside
     this._updateDialog = this._dialog.open(UpdateFormComponent, {
       width: '500px',
@@ -69,27 +77,69 @@ export class AccountComponent implements OnInit {
     this._updateDialog.afterClosed()
       .pipe(
         filter((user: any) => !!user),
-        map((user: any ) => {
+        map((user: any) => {
 
           delete user?.passwordConfirm;
 
-          if(user?.photo == null){
+          if (user?.photo == null) {
             delete user?.photo;
           }
 
-          user.password = "password";
+          this._user = user;
+
+          return user;
+        }),
+        mergeMap((user: User | undefined) => this._userService.patch(this._storageService.getUser().id as string, user as User))
+      )
+      .subscribe(
+        data => {
+          this._error = false;
+          this._user.id = this._storageService.getUser().id;
+          this._storageService.saveUser(this.user);
+          this._router.navigate(['/home']);
+        },
+        error => {
+          this._error = true;
+          this._openDialog();
+        }
+      );
+  }
 
 
+  private _openPasswordDialog() {
+    // create modal with initial data inside
+    this._updatePasswordDialog = this._dialog.open(UpdatePasswordFormComponent, {
+      width: '500px',
+      disableClose: true,
+      data: {error: this._error, user: this._user}
+    });
+
+
+    // subscribe to afterClosed observable to set dialog status and do process
+    this._updatePasswordDialog.afterClosed()
+      .pipe(
+        filter((user: any) => !!user),
+        map((user: any) => {
+
+          console.log(user);
+
+          delete user.id;
           this._user = user;
           return user;
         }),
-        mergeMap((user: User | undefined) => this._userService.update(this._storageService.getUser().id as string, user as User))
+        mergeMap((user: User | undefined) => this._userService.patch(this._storageService.getUser().id as string, user as User))
       )
       .subscribe(
-        data => { this._error=false;
+        data => {
+          this._error = false;
+          console.log(this._user)
           this._storageService.saveUser(this.user);
-          this._router.navigate(['/home']);},
-          error => { this._error = true;  this._openDialog();}
+          this._router.navigate(['/home']);
+        },
+        error => {
+          this._error = true;
+          this._openPasswordDialog();
+        }
       );
   }
 }

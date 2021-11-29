@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {RegisterFormComponent} from "../register-form/register-form.component";
 import {User} from "../shared/types/user.type";
 import {filter, map, mergeMap} from "rxjs/operators";
-import {Observable} from "rxjs";
 import {UserService} from "../shared/services/user.service";
 
 @Component({
@@ -52,21 +51,37 @@ export class RegisterComponent implements OnInit {
       .pipe(
         filter((user: any) => !!user),
         map((user: any ) => {
-          delete user?.id;
+
           delete user?.passwordConfirm;
 
           if(user?.photo == null){
             delete user?.photo;
           }
 
+          user.id = this._user.id;
           this._user = user;
           return user;
         }),
         mergeMap((user: User | undefined) => this._userService.create(user as User))
       )
       .subscribe(
-        data => { this._error=false; this._user={username: data.username, email: data.email, lastname: data.lastname, firstname: data.firstname, birthDate: data.birthDate, id: data.id, photo: data.photo, password: ""}; this._router.navigate(['/home']);},
-        error => { this._error = true;  this._openDialog();}
+        data => {
+          this._error = false;
+          this._user = {
+            username: data.username,
+            email: data.email,
+            lastname: data.lastname,
+            firstname: data.firstname,
+            birthDate: data.birthDate,
+            photo: data.photo,
+            password: ""
+          };
+          this._router.navigate(['/home']);
+        },
+        error => {
+          this._error = true;
+          this._openDialog();
+        }
       );
   }
 }

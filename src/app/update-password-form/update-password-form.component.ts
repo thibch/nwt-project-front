@@ -3,6 +3,8 @@ import {User} from "../shared/types/user.type";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {LoginComponent} from "../login/login.component";
 import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {CustomValidators} from "../shared/validators/custom-validators";
 
 @Component({
   selector: 'app-update-password-form',
@@ -16,12 +18,28 @@ export class UpdatePasswordFormComponent implements OnInit {
   private _user: User;
 
   constructor(private _dialogRef: MatDialogRef<LoginComponent>, private _router: Router, @Inject(MAT_DIALOG_DATA) private _data: {error: boolean, user: User}) {
-    this._hide =true;
+    this._hide = true;
     this._error = _data.error;
     this._user = _data.user;
+
+    this._updatePasswordForm = new FormGroup({
+      password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.password])),
+      passwordConfirm: new FormControl('', Validators.compose([Validators.required])),
+
+    }, {validators: CustomValidators.passwordDif("password", "passwordConfirm")});
   }
 
+  private _updatePasswordForm: FormGroup;
+
   ngOnInit(): void {
+  }
+
+  get updatePasswordForm(): FormGroup {
+    return this._updatePasswordForm;
+  }
+
+  set updatePasswordForm(value: FormGroup) {
+    this._updatePasswordForm = value;
   }
 
   redirectBack() {
@@ -29,8 +47,10 @@ export class UpdatePasswordFormComponent implements OnInit {
     this._router.navigate(['/home'])
   }
 
-  auth(user: User) {
-    this._dialogRef.close(user);
+
+  changePass(user: User) {
+    this._user.password = user.password;
+    this._dialogRef.close(this._user);
   }
 
 

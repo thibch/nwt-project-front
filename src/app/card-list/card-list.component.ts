@@ -43,7 +43,7 @@ export class CardListComponent implements OnInit {
       from(this._collections).pipe(
         filter((collection: Collection) => !!collection),
         mergeMap((collection: Collection) => {
-          this._cardAmount.push(Number(collection.amount));
+          this._cardAmount.push(collection.amount);
           return this._cardsService.fetchById(collection.idCard).pipe((card: Observable<Card>) => {
             return card;
           })

@@ -40,16 +40,16 @@ export class UserService {
     return this._http.get<User[]>(this._backendURL.allUser);
   }
 
-  delete(id : string): Observable<string> {
-    return this._http.delete(this._backendURL.getById.replace(":id",id)).pipe(map(()=> id));
+  delete(id: string): Observable<string> {
+    return this._http.delete(this._backendURL.getById.replace(":id", id)).pipe(map(() => id));
   }
 
   private _options(headerList: object = {}): any {
     return {headers: new HttpHeaders(Object.assign({'Content-Type': 'application/json'}, headerList))};
   }
 
-  update(id: string, user: User): Observable<any> {
-    return this._http.put<User>(this._backendURL.getById.replace(':id', id), user, this._options());
+  patch(id: string, user: User): Observable<any> {
+    return this._http.patch<User>(this._backendURL.getById.replace(':id', id), user, this._options());
   }
 
   fetchOne(id: string): Observable<User> {
