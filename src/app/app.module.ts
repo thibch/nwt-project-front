@@ -34,6 +34,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {UpdateFormComponent} from './update-form/update-form.component';
 import {UpdatePasswordFormComponent} from "./update-password-form/update-password-form.component";
 import {PublicProfileComponent} from './public-profile/public-profile.component';
+import {MyCardsComponent} from './my-cards/my-cards.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import {PublicProfileComponent} from './public-profile/public-profile.component'
     UpdateFormComponent,
     UpdatePasswordFormComponent,
     PublicProfileComponent,
+    MyCardsComponent,
   ],
   imports: [
     BrowserModule,
