@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+
+
+<section align="center">
+  <mat-card class="user-card">
+
+    <img src="{{ user.photo }}">
+    <mat-card-content>
+      <p>
+        Pseudo: {{user.username}}
+      </p>
+    </mat-card-content>
+    <mat-card-content>
+      <p>
+        Prénom: {{user.firstname}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</section>
+<br>
+<br>
+<section align="center">
+  <h1>Liste des cartes de l'utilisateur</h1>
+
+  <app-card-list [collections]="collections"></app-card-list>
+</section>
+
+

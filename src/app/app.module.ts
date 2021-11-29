@@ -16,22 +16,24 @@ import {LoginFormComponent} from './login-form/login-form.component';
 import {RegisterComponent} from './register/register.component';
 import {RegisterFormComponent} from './register-form/register-form.component';
 import {MatInputModule} from "@angular/material/input";
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
-import {JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
-import { AccountComponent } from './account/account.component';
+import {JwtModule} from "@auth0/angular-jwt";
+import {AccountComponent} from './account/account.component';
 import {MatCardModule} from "@angular/material/card";
-import { NavbarComponent } from './navbar/navbar.component';
+import {NavbarComponent} from './navbar/navbar.component';
 import {MatIconModule} from "@angular/material/icon";
-import { CardComponent } from './card/card.component';
-import { CardListComponent } from './card-list/card-list.component';
+import {CardComponent} from './card/card.component';
+import {CardListComponent} from './card-list/card-list.component';
 import {MatListModule} from "@angular/material/list";
-import { SearchUserComponent } from './search-user/search-user.component';
-import { UserMinimizedComponent } from './user-minimized/user-minimized.component';
-import { DeleteComponent } from './delete/delete.component';
-import { AuthFormComponent } from './auth-form/auth-form.component';
+import {SearchUserComponent} from './search-user/search-user.component';
+import {UserMinimizedComponent} from './user-minimized/user-minimized.component';
+import {DeleteComponent} from './delete/delete.component';
+import {AuthFormComponent} from './auth-form/auth-form.component';
 import {MatGridListModule} from "@angular/material/grid-list";
-import { UpdateFormComponent } from './update-form/update-form.component';
+import {UpdateFormComponent} from './update-form/update-form.component';
+import {UpdatePasswordFormComponent} from "./update-password-form/update-password-form.component";
+import {PublicProfileComponent} from './public-profile/public-profile.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { UpdateFormComponent } from './update-form/update-form.component';
     UserMinimizedComponent,
     DeleteComponent,
     AuthFormComponent,
-    UpdateFormComponent
+    UpdateFormComponent,
+    UpdatePasswordFormComponent,
+    PublicProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,15 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
-import {Card} from "../types/card.type";
+import {User} from "../types/user.type";
+import {Collection} from "../types/collection.type";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CardService {
+export class CollectionService {
 
   private readonly _backendURL: any;
 
@@ -24,14 +25,13 @@ export class CardService {
 
     // build all backend urls
     // @ts-ignore
-    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
+    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
   }
 
-  fetch(): Observable<Card[]> {
-    return this._http.get<Card[]>(this._backendURL.allCard);
-  }
-
-  fetchById(idCard: string): Observable<Card> {
-    return this._http.get<Card>(this._backendURL.getCardById.replace(":id", idCard));
+  /**
+   * Function to fetch all users
+   */
+  getAllCollectionById(id : string): Observable<Collection[]> {
+    return this._http.get<Collection[]>(this._backendURL.allCollectionByUserId.replace(":id",id));
   }
 }

@@ -8,16 +8,19 @@ import {AccountComponent} from "./account/account.component";
 import {SearchUserComponent} from "./search-user/search-user.component";
 import {DeleteComponent} from "./delete/delete.component";
 import {CardListComponent} from "./card-list/card-list.component";
+import {PublicProfileComponent} from "./public-profile/public-profile.component";
+
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/:username/profile', component: AccountComponent, canActivate: [AuthGuard]},
+  {path: 'user/:id/profile', component: PublicProfileComponent},
+  {path: 'profile', component: AccountComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchUserComponent},
-  {path: 'delete', component: DeleteComponent},
-  {path: 'cards', component: CardListComponent}
+  {path: 'delete', component: DeleteComponent, canActivate: [AuthGuard]},
+  {path: 'cards', component: CardListComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

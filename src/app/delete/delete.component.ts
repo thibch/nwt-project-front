@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {LoginFormComponent} from "../login-form/login-form.component";
 import {User} from "../shared/types/user.type";
 import {Router} from "@angular/router";
 import {LoginService} from "../shared/services/login.service";
@@ -40,7 +39,6 @@ export class DeleteComponent implements OnInit {
       data: {error: this._error, user: this._loggedUser, operation: "suppression"}
     });
 
-    console.log(this._loggedUser)
 
     this._deleteDialog.afterClosed()
       .pipe(

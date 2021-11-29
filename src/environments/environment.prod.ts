@@ -9,7 +9,9 @@ export const environment = {
       test: '/auth/test',
       getById: '/users/:id',
       allUser: '/users',
-      allCard: '/cards'
+      allCard: '/cards',
+      getCardById: '/cards/:id',
+      allCollectionByUserId: '/collections/users/:id'
     }
   }
 };

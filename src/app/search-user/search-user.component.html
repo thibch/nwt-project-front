@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
 
 <section *ngFor="let user of users" >
-  <app-user-minimized [user]="user"></app-user-minimized>
+  <app-user-minimized (click)="openProfile(user)" [user]="user"></app-user-minimized>
 </section>
