@@ -60,6 +60,7 @@ import {NotificationComponent} from './notification/notification.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatFormFieldModule,

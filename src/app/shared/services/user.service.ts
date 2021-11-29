@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {User} from "../types/user.type";
 import {Observable} from "rxjs";
-import {defaultIfEmpty, filter, map} from "rxjs/operators";
-import {declarationFunctions} from "@angular/compiler-cli/linker/src/file_linker/partial_linkers/partial_linker_selector";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +41,7 @@ export class UserService {
   }
 
   delete(id : string): Observable<string> {
-    return this._http.delete(this._backendURL.getById.replace(":id",id)).pipe(map(()=> id));
+    return this._http.delete(this._backendURL.getById.replace(":id", id)).pipe(map(() => id), this._options());
   }
 
   private _options(headerList: object = {}): any {

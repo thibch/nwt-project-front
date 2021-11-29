@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
   notifications() {
     // create modal with initial data inside
     this._notificationDialog = this._dialog.open(NotificationsViewComponent, {
-      width: '300px',
+      width: '600px',
       disableClose: true
     });
   }

@@ -1,5 +1,8 @@
 <mat-card>
   <mat-card-content>
-    {{notification.content}}
+    {{notification.creationTime | date:'M/d, h:mm a' }} | {{notification.content}}
+    <button (click)="delete()" mat-mini-fab>
+      <mat-icon>delete_outline</mat-icon>
+    </button>
   </mat-card-content>
 </mat-card>

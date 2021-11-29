@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Notification} from "../shared/types/notification.type";
+import {NotificationsService} from "../shared/services/notifications.service";
 
 @Component({
   selector: 'app-notification',
@@ -9,7 +10,7 @@ import {Notification} from "../shared/types/notification.type";
 export class NotificationComponent implements OnInit {
   private _notification: Notification;
 
-  constructor() {
+  constructor(private _notificationService: NotificationsService) {
     this._notification = {} as Notification;
   }
 
@@ -24,5 +25,10 @@ export class NotificationComponent implements OnInit {
   @Input("notification")
   set notification(value: Notification) {
     this._notification = value;
+  }
+
+  delete() {
+    this._notificationService.delete(this.notification.id as string).subscribe();
+    this.notification = {} as Notification;
   }
 }

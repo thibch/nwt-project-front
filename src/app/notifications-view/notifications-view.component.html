@@ -5,6 +5,9 @@
 </mat-dialog-content>
 
 
+<div *ngIf="notifications == null || notifications.length  == 0">Vous n'avez aucune notifications</div>
+
+
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="close()">Fermer</button>
 </mat-dialog-actions>
