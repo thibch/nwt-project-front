@@ -16,20 +16,22 @@ import {LoginFormComponent} from './login-form/login-form.component';
 import {RegisterComponent} from './register/register.component';
 import {RegisterFormComponent} from './register-form/register-form.component';
 import {MatInputModule} from "@angular/material/input";
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/interceptor/auth.interceptor";
-import {JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
-import { AccountComponent } from './account/account.component';
+import {JwtModule} from "@auth0/angular-jwt";
+import {AccountComponent} from './account/account.component';
 import {MatCardModule} from "@angular/material/card";
-import { NavbarComponent } from './navbar/navbar.component';
+import {NavbarComponent} from './navbar/navbar.component';
 import {MatIconModule} from "@angular/material/icon";
-import { CardComponent } from './card/card.component';
-import { CardListComponent } from './card-list/card-list.component';
+import {CardComponent} from './card/card.component';
+import {CardListComponent} from './card-list/card-list.component';
 import {MatListModule} from "@angular/material/list";
-import { SearchUserComponent } from './search-user/search-user.component';
-import { UserMinimizedComponent } from './user-minimized/user-minimized.component';
-import { DeleteComponent } from './delete/delete.component';
-import { DeleteFormComponent } from './delete-form/delete-form.component';
+import {SearchUserComponent} from './search-user/search-user.component';
+import {UserMinimizedComponent} from './user-minimized/user-minimized.component';
+import {DeleteComponent} from './delete/delete.component';
+import {DeleteFormComponent} from './delete-form/delete-form.component';
+import {NotificationsViewComponent} from './notifications-view/notifications-view.component';
+import {NotificationComponent} from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { DeleteFormComponent } from './delete-form/delete-form.component';
     SearchUserComponent,
     UserMinimizedComponent,
     DeleteComponent,
-    DeleteFormComponent
+    DeleteFormComponent,
+    NotificationsViewComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
