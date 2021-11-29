@@ -1,13 +1,22 @@
 
 <div align="center">
   <mat-card class="user-card">
+    <section>
+      <ng-container *ngFor="let i of [].constructor(card.level)">⭐</ng-container>
+    </section>
     <img src="{{ card.image }}" width="200">
 
+    <br>
     <mat-card-title>
       {{card.name}}
     </mat-card-title>
+    <br>
     <mat-card-content>
       {{card.description}}
+    </mat-card-content>
+
+    <mat-card-content *ngIf="amount>1">
+      {{amount}} exemplaires
     </mat-card-content>
   </mat-card>
 </div>

@@ -12,17 +12,28 @@ export class CardComponent implements OnInit {
 
   constructor() {
     this._card = {} as Card;
+    this._amount = 1;
   }
+
+  private _amount: number;
 
   ngOnInit(): void {
   }
 
+  get amount(): number {
+    return this._amount;
+  }
+
+  @Input('amount')
+  set amount(value: number) {
+    this._amount = value;
+  }
 
   get card(): Card {
     return this._card;
   }
 
-  @Input()
+  @Input('card')
   set card(value: Card) {
     this._card = value;
   }
