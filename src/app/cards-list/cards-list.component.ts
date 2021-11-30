@@ -7,11 +7,11 @@ import {filter, mergeMap} from "rxjs/operators";
 
 
 @Component({
-  selector: 'app-card-list',
-  templateUrl: './card-list.component.html',
-  styleUrls: ['./card-list.component.css']
+  selector: 'app-cards-list',
+  templateUrl: './cards-list.component.html',
+  styleUrls: ['./cards-list.component.css']
 })
-export class CardListComponent implements OnInit {
+export class CardsListComponent implements OnInit {
 
   private _cardAmount: number[];
 

@@ -7,7 +7,7 @@ import {AuthGuard} from "./shared/guards/auth.guard";
 import {AccountComponent} from "./account/account.component";
 import {SearchUserComponent} from "./search-user/search-user.component";
 import {DeleteComponent} from "./delete/delete.component";
-import {CardListComponent} from "./card-list/card-list.component";
+import {CardsListComponent} from "./cards-list/cards-list.component";
 import {PublicProfileComponent} from "./public-profile/public-profile.component";
 import {UserCardsComponent} from "./user-cards/user-cards.component";
 import {TradesComponent} from "./trades/trades.component";
@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'profile', component: AccountComponent, canActivate: [AuthGuard]},
   {path: 'search', component: SearchUserComponent},
   {path: 'delete', component: DeleteComponent, canActivate: [AuthGuard]},
-  {path: 'cards', component: CardListComponent, canActivate: [AuthGuard]},
+  {path: 'cards', component: CardsListComponent, canActivate: [AuthGuard]},
   {path: 'mycards', component: UserCardsComponent, canActivate: [AuthGuard]},
   {path: 'trades', component: TradesComponent, canActivate: [AuthGuard]}
 ];

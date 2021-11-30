@@ -23,7 +23,7 @@ import {MatCardModule} from "@angular/material/card";
 import {NavbarComponent} from './navbar/navbar.component';
 import {MatIconModule} from "@angular/material/icon";
 import {CardComponent} from './card/card.component';
-import {CardListComponent} from './card-list/card-list.component';
+import {CardsListComponent} from './cards-list/cards-list.component';
 import {MatListModule} from "@angular/material/list";
 import {SearchUserComponent} from './search-user/search-user.component';
 import {UserMinimizedComponent} from './user-minimized/user-minimized.component';
@@ -53,7 +53,7 @@ import {TradeComponent} from './trade/trade.component';
     AccountComponent,
     NavbarComponent,
     CardComponent,
-    CardListComponent,
+    CardsListComponent,
     SearchUserComponent,
     UserMinimizedComponent,
     DeleteComponent,

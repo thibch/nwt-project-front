@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
   constructor() {
     this._card = {} as Card;
     this._amount = 1;
-    this._cardOwner = true;
+    this._cardOwner = false;
   }
 
   private _cardOwner: boolean;
@@ -48,5 +48,9 @@ export class CardComponent implements OnInit {
   @Input('card')
   set card(value: Card) {
     this._card = value;
+  }
+
+  trade() {
+
   }
 }

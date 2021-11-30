@@ -18,5 +18,9 @@
     <mat-card-content *ngIf="amount>1">
       {{amount}} exemplaires
     </mat-card-content>
+
+    <button (click)="trade()" *ngIf="!cardOwner" mat-mini-fab>
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
   </mat-card>
 </div>
