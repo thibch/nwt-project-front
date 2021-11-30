@@ -20,7 +20,12 @@ export const environment = {
       getNotificationById: '/notifications/:id',
       allTradeByWaitingId: '/trades/users/waiting/:id',
       allTradeBySecondId: '/trades/users/second/:id',
-      allCollectionTradableByUserId: '/collections/users/tradable/:id'
+      trades: '/trades',
+      notifications: '/notifications',
+      allCollectionTradableByUserId: '/collections/users/tradable/:id',
+      collectionByUserIdByCardId: '/collections/:idUser/:idCard',
+      tradeDecline: '/trades/decline/:id',
+      tradeAccept: '/trades/accept/:id'
     }
   }
 };

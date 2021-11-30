@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
-import {Notification} from "../types/notification.type";
 import {Trade} from "../types/trade.type";
 
 @Injectable({
@@ -41,4 +40,31 @@ export class TradeService {
   getAllTradeBySecondId(id: string): Observable<Trade[]> {
     return this._http.get<Trade[]>(this._backendURL.allTradeBySecondId.replace(":id", id));
   }
+
+  /**
+   * Function to create a new trade
+   */
+  create(trade: Trade): Observable<any> {
+    return this._http.post<Trade>(this._backendURL.trades, trade, this._options());
+  }
+
+  /**
+   * Function to accept a  trade
+   */
+  accept(trade: Trade): Observable<any> {
+    return this._http.post<Trade>(this._backendURL.tradeAccept.replace(":id", trade.id), trade, this._options());
+  }
+
+  /**
+   * Function to decline a trade
+   */
+  decline(trade: Trade): Observable<any> {
+    return this._http.post<Trade>(this._backendURL.tradeDecline.replace(":id", trade.id), trade, this._options());
+  }
+
+  private _options(headerList: object = {}): any {
+    return {headers: new HttpHeaders(Object.assign({'Content-Type': 'application/json'}, headerList))};
+  }
+
+
 }

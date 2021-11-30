@@ -1,5 +1,5 @@
 <section *ngFor="let trade of tradesOffers" >
-  <app-trade [trade]="trade" [tradeOwner]=true></app-trade>
+  <app-trade [tradeOwner]=false [trade]="trade"></app-trade>
 </section>
 <section *ngIf="tradesOffers==null">
   Vous n'avez pas d'offres d'échange en cours.

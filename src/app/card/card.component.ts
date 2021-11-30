@@ -8,6 +8,10 @@ import {User} from "../shared/types/user.type";
 import {Trade} from "../shared/types/trade.type";
 import {StorageService} from "../shared/services/storage.service";
 import {TradeSummaryComponent} from "../trade-summary/trade-summary.component";
+import {TradeService} from "../shared/services/trade.service";
+import {NotificationsService} from "../shared/services/notifications.service";
+import {Notification} from "../shared/types/notification.type";
+import {CollectionService} from "../shared/services/collection.service";
 
 @Component({
   selector: 'app-card',
@@ -21,7 +25,7 @@ export class CardComponent implements OnInit {
   private _tradeSummaryDialog: MatDialogRef<TradeSummaryComponent, Trade>;
   private readonly _tradeOffer$: EventEmitter<Card>;
 
-  constructor(private _dialog: MatDialog, private _storageService: StorageService) {
+  constructor(private _dialog: MatDialog, private _collectionService: CollectionService, private _storageService: StorageService, private _notificationService: NotificationsService, private _tradeService: TradeService) {
     this._card = {} as Card;
     this._tradeDialog = {} as MatDialogRef<CardsTradeComponent, Card>;
     this._tradeSummaryDialog = {} as MatDialogRef<TradeSummaryComponent, Trade>;
@@ -127,7 +131,9 @@ export class CardComponent implements OnInit {
           idCard: data.id,
           idCardWanted: this.card.id,
           idUserWaiting: this._storageService.getUser().id,
-          idUser: this.cardOwner.id
+          idUser: this.cardOwner.id,
+          accepted: false,
+          creationTime: "2021-11-30T17:20:41.000+0100"
         } as Trade;
 
         this.buildTradeSummaryDialog(trade);
@@ -135,6 +141,7 @@ export class CardComponent implements OnInit {
   }
 
   buildTradeSummaryDialog(trade: Trade) {
+
     // create modal with initial data inside
     this._tradeSummaryDialog = this._dialog.open(TradeSummaryComponent, {
       width: '900px',
@@ -150,7 +157,28 @@ export class CardComponent implements OnInit {
         })
       ).subscribe(
       data => {
-        console.log("CONFIRMATION");
+
+        let notification: Notification = {
+          read: false,
+          accepted: false,
+          creationTime: "2021-11-30T17:20:41.000+0100",
+          content: "Vous avez une nouvelle proposition d'échange !",
+          type: "trade",
+          idUser: trade.idUser
+        } as Notification;
+
+
+        this._notificationService.create(notification).subscribe(
+          data => {
+            this._tradeService.create(trade).subscribe(
+              data => {
+              },
+              error => {
+              }
+            );
+          },
+          error => {
+          });
       });
   }
 

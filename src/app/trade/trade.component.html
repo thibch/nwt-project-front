@@ -15,5 +15,10 @@
     <app-card [cardOwner]="userWaiting" [card]="card" [tradingOperation]="true"></app-card>
     contre la carte
     <app-card [cardOwner]="secondUser" [card]="cardWanted" [tradingOperation]="true"></app-card>
+
+    <mat-dialog-actions>
+      <button (click)="refuse()" mat-button type="button">Refuser</button>
+      <button (click)="accept()" mat-button type="button">Accepter</button>
+    </mat-dialog-actions>
   </mat-card-content>
 </mat-card>

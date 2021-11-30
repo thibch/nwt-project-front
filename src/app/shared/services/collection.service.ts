@@ -41,4 +41,11 @@ export class CollectionService {
     return this._http.get<Collection[]>(this._backendURL.allCollectionTradableByUserId.replace(":id", id));
   }
 
+  /**
+   * Function to fetch all users
+   */
+  getAllCollectionByUserIdByCardId(idCard: string, idUser: string): Observable<Collection[]> {
+    return this._http.get<Collection[]>(this._backendURL.collectionByUserIdByCardId.replace(":idUser", idUser).replace(":idCard", idCard));
+  }
+
 }
