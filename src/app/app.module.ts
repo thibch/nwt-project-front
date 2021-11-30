@@ -17,7 +17,7 @@ import {RegisterComponent} from './register/register.component';
 import {RegisterFormComponent} from './register-form/register-form.component';
 import {MatInputModule} from "@angular/material/input";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
+import {AuthInterceptor} from "./shared/interceptor/auth.interceptor";
 import {JwtModule} from "@auth0/angular-jwt";
 import {AccountComponent} from './account/account.component';
 import {MatCardModule} from "@angular/material/card";
@@ -35,7 +35,9 @@ import {UpdateFormComponent} from './update-form/update-form.component';
 import {UpdatePasswordFormComponent} from "./update-password-form/update-password-form.component";
 import {PublicProfileComponent} from './public-profile/public-profile.component';
 import {MyCardsComponent} from './my-cards/my-cards.component';
-
+import {DeleteFormComponent} from './delete-form/delete-form.component';
+import {NotificationsViewComponent} from './notifications-view/notifications-view.component';
+import {NotificationComponent} from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,9 @@ import {MyCardsComponent} from './my-cards/my-cards.component';
     SearchUserComponent,
     UserMinimizedComponent,
     DeleteComponent,
+    DeleteFormComponent,
+    NotificationsViewComponent,
+    NotificationComponent
     AuthFormComponent,
     UpdateFormComponent,
     UpdatePasswordFormComponent,
@@ -66,6 +71,7 @@ import {MyCardsComponent} from './my-cards/my-cards.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -86,7 +92,6 @@ import {MyCardsComponent} from './my-cards/my-cards.component';
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
-
 export class AppModule {
 }
 

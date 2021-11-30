@@ -15,7 +15,9 @@ export const environment = {
       allUser: '/users',
       allCard: '/cards',
       getCardById: '/cards/:id',
-      allCollectionByUserId: '/collections/users/:id'
+      allCollectionByUserId: '/collections/users/:id',
+      allNotificationsById: '/notifications/users/:id',
+      getNotificationById: '/notifications/:id'
     }
   }
 };

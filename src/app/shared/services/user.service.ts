@@ -40,8 +40,8 @@ export class UserService {
     return this._http.get<User[]>(this._backendURL.allUser);
   }
 
-  delete(id: string): Observable<string> {
-    return this._http.delete(this._backendURL.getById.replace(":id", id)).pipe(map(() => id));
+  delete(id : string): Observable<string> {
+    return this._http.delete(this._backendURL.getById.replace(":id", id)).pipe(map(() => id), this._options());
   }
 
   private _options(headerList: object = {}): any {
