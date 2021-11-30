@@ -12,6 +12,13 @@ export class NotificationComponent implements OnInit {
 
   constructor(private _notificationService: NotificationsService) {
     this._notification = {} as Notification;
+    this._exists = true;
+  }
+
+  private _exists: boolean;
+
+  get exists(): boolean {
+    return this._exists;
   }
 
   ngOnInit(): void {
@@ -30,5 +37,6 @@ export class NotificationComponent implements OnInit {
   delete() {
     this._notificationService.delete(this.notification.id as string).subscribe();
     this.notification = {} as Notification;
+    this._exists = false;
   }
 }

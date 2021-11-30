@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {LoginComponent} from "../login/login.component";
 import {NavbarComponent} from "../navbar/navbar.component";
 import {Notification} from "../shared/types/notification.type";
 import {NotificationsService} from "../shared/services/notifications.service";
-import {User} from "../shared/types/user.type";
 import {StorageService} from "../shared/services/storage.service";
 
 @Component({
@@ -18,7 +16,9 @@ export class NotificationsViewComponent implements OnInit {
   constructor(private _dialogRef: MatDialogRef<NavbarComponent>, private _notificationService: NotificationsService, private _storageService: StorageService) {
     this._notifications = [];
     _notificationService.getAllNotificationsById(_storageService.getUser().id as string).subscribe(
-      data => {this._notifications=  data}
+      data => {
+        this._notifications = data
+      }
     );
   }
 
@@ -26,8 +26,6 @@ export class NotificationsViewComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
-
 
 
   get notifications(): Notification[] {
@@ -42,3 +40,4 @@ export class NotificationsViewComponent implements OnInit {
     this._dialogRef.close();
   }
 }
+

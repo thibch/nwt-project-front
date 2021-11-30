@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="exists">
   <mat-card-content>
     {{notification.creationTime | date:'M/d, h:mm a' }} | {{notification.content}}
     <button (click)="delete()" mat-mini-fab>
