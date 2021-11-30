@@ -15,8 +15,13 @@
       {{card.description}}
     </mat-card-content>
 
-    <mat-card-content *ngIf="amount>1">
-      {{amount}} exemplaires
+
+    <mat-card-content *ngIf="collection.amount>1 && collection.waiting == 0">
+      {{collection.amount}} exemplaires
+    </mat-card-content>
+
+    <mat-card-content *ngIf="collection.waiting>0">
+      {{collection.amount}} exemplaire(s) | {{collection.waiting}} exemplaire(s) en attente d'échange
     </mat-card-content>
 
     <button (click)="trade()" *ngIf="!cardOwner" mat-mini-fab>

@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Card} from "../shared/types/card.type";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {CardsTradeComponent} from "../cards-trade/cards-trade.component";
+import {Collection} from "../shared/types/collection.type";
 
 @Component({
   selector: 'app-card',
@@ -10,11 +13,16 @@ export class CardComponent implements OnInit {
 
   private _card: Card;
 
-  constructor() {
+  private _tradeDialog: MatDialogRef<CardsTradeComponent, Collection>;
+
+  constructor(private _dialog: MatDialog) {
     this._card = {} as Card;
-    this._amount = 1;
+    this._tradeDialog = {} as MatDialogRef<CardsTradeComponent, Collection>;
     this._cardOwner = false;
+    this._collection = {} as Collection;
   }
+
+  private _collection: Collection;
 
   private _cardOwner: boolean;
 
@@ -22,23 +30,22 @@ export class CardComponent implements OnInit {
     return this._cardOwner;
   }
 
+  get collection(): Collection {
+    return this._collection;
+  }
+
+  @Input("collection")
+  set collection(value: Collection) {
+    this._collection = value;
+  }
+
   @Input("cardOwner")
   set cardOwner(value: boolean) {
     this._cardOwner = value;
   }
 
-  private _amount: number;
 
   ngOnInit(): void {
-  }
-
-  get amount(): number {
-    return this._amount;
-  }
-
-  @Input('amount')
-  set amount(value: number) {
-    this._amount = value;
   }
 
   get card(): Card {
@@ -51,6 +58,12 @@ export class CardComponent implements OnInit {
   }
 
   trade() {
+    // create modal with initial data inside
+    this._tradeDialog = this._dialog.open(CardsTradeComponent, {
+      width: '900px',
+      disableClose: true
+    });
+
 
   }
 }

@@ -13,13 +13,11 @@ import {filter, mergeMap} from "rxjs/operators";
 })
 export class CardsListComponent implements OnInit {
 
-  private _cardAmount: number[];
 
   constructor(private _cardsService: CardService) {
     this._cards = [];
     this._cardOwner = false;
     this._collections = [];
-    this._cardAmount = [];
   }
 
   private _cardOwner: boolean;
@@ -33,7 +31,7 @@ export class CardsListComponent implements OnInit {
     this._cardOwner = value;
   }
 
-  private _cards: { card: Card, amount: number }[];
+  private _cards: { card: Card; collection: Collection }[];
 
   private _collections: Collection[];
 
@@ -41,7 +39,7 @@ export class CardsListComponent implements OnInit {
     return this._collections;
   }
 
-  get cards(): { card: Card; amount: number }[] {
+  get cards(): { card: Card; collection: Collection }[] {
     return this._cards;
   }
 
@@ -55,16 +53,17 @@ export class CardsListComponent implements OnInit {
       from(this._collections).pipe(
         filter((collection: Collection) => !!collection),
         mergeMap((collection: Collection) => {
-          this._cardAmount.push(collection.amount);
           return this._cardsService.fetchById(collection.idCard).pipe((card: Observable<Card>) => {
             return card;
           })
         }),
       ).subscribe({
         next: (card: Card) => {
-          this._cards.push({card: card, amount: this._cardAmount[i++]})
+          this._cards.push({card: card, collection: this.collections[i++]})
         }
       })
+
+    console.log(this.collections)
   }
 
   ngOnInit(): void {

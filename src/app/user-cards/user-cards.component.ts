@@ -14,11 +14,6 @@ export class UserCardsComponent implements OnInit {
   constructor(private _storageService: StorageService, private _collectionService: CollectionService, private _cardService: CardService) {
     this._user = _storageService.getUser() as User;
     this._collections = [];
-
-
-    this._collectionService.getAllCollectionById(this.user.id as string).subscribe({
-      next: (collection: Collection[]) => this._collections = collection
-    });
   }
 
   private _user: User;
@@ -34,6 +29,9 @@ export class UserCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._collectionService.getAllCollectionById(this.user.id as string).subscribe({
+      next: (collection: Collection[]) => this._collections = collection
+    });
   }
 
 }

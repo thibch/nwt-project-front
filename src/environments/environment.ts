@@ -19,7 +19,8 @@ export const environment = {
       allNotificationsById: '/notifications/users/:id',
       getNotificationById: '/notifications/:id',
       allTradeByWaitingId: '/trades/users/waiting/:id',
-      allTradeBySecondId: '/trades/users/second/:id'
+      allTradeBySecondId: '/trades/users/second/:id',
+      allCollectionTradableByUserId: '/collections/users/tradable/:id'
     }
   }
 };

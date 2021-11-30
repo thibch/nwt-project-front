@@ -1,5 +1,5 @@
 <section
   *ngFor="let card of cards">
-  <app-card [amount]="card.amount" [cardOwner]=cardOwner [card]="card.card"></app-card>
+  <app-card [cardOwner]="cardOwner" [card]="card.card" [collection]="card.collection"></app-card>
 </section>
 

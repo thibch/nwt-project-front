@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Liste de vos cartes échangables</h2>
+
+<mat-dialog-content>
+  <app-cards-list [cardOwner]="true" [collections]="collectionsTradable"></app-cards-list>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button (click)="redirectBack()" mat-button type="button">Annuler</button>
+</mat-dialog-actions>

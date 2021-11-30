@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
-import {User} from "../types/user.type";
 import {Collection} from "../types/collection.type";
 
 @Injectable({
@@ -25,13 +24,21 @@ export class CollectionService {
 
     // build all backend urls
     // @ts-ignore
-    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
+    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
   }
 
   /**
    * Function to fetch all users
    */
-  getAllCollectionById(id : string): Observable<Collection[]> {
-    return this._http.get<Collection[]>(this._backendURL.allCollectionByUserId.replace(":id",id));
+  getAllCollectionById(id: string): Observable<Collection[]> {
+    return this._http.get<Collection[]>(this._backendURL.allCollectionByUserId.replace(":id", id));
   }
+
+  /**
+   * Function to fetch all users
+   */
+  getAllCollectionTradableById(id: string): Observable<Collection[]> {
+    return this._http.get<Collection[]>(this._backendURL.allCollectionTradableByUserId.replace(":id", id));
+  }
+
 }
