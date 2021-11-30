@@ -7,10 +7,10 @@ import {StorageService} from "../shared/services/storage.service";
 
 @Component({
   selector: 'app-my-cards',
-  templateUrl: './my-cards.component.html',
-  styleUrls: ['./my-cards.component.css']
+  templateUrl: './user-cards.component.html',
+  styleUrls: ['./user-cards.component.css']
 })
-export class MyCardsComponent implements OnInit {
+export class UserCardsComponent implements OnInit {
   constructor(private _storageService: StorageService, private _collectionService: CollectionService, private _cardService: CardService) {
     this._user = _storageService.getUser() as User;
     this._collections = [];

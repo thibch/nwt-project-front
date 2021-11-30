@@ -33,10 +33,14 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {UpdateFormComponent} from './update-form/update-form.component';
 import {UpdatePasswordFormComponent} from "./update-password-form/update-password-form.component";
 import {PublicProfileComponent} from './public-profile/public-profile.component';
-import {MyCardsComponent} from './my-cards/my-cards.component';
+import {UserCardsComponent} from './user-cards/user-cards.component';
 import {NotificationsViewComponent} from './notifications-view/notifications-view.component';
 import {NotificationComponent} from './notification/notification.component';
 import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
+import {TradesComponent} from './trades/trades.component';
+import {TradesOffersComponent} from './trades-offers/trades-offers.component';
+import {UserTradesOffersComponent} from './user-trades-offers/user-trades-offers.component';
+import {TradeComponent} from './trade/trade.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +63,11 @@ import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
     UpdateFormComponent,
     UpdatePasswordFormComponent,
     PublicProfileComponent,
-    MyCardsComponent,
+    UserCardsComponent,
+    TradesComponent,
+    TradesOffersComponent,
+    UserTradesOffersComponent,
+    TradeComponent,
   ],
   imports: [
     BrowserModule,

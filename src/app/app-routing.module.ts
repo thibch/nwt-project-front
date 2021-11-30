@@ -9,7 +9,8 @@ import {SearchUserComponent} from "./search-user/search-user.component";
 import {DeleteComponent} from "./delete/delete.component";
 import {CardListComponent} from "./card-list/card-list.component";
 import {PublicProfileComponent} from "./public-profile/public-profile.component";
-import {MyCardsComponent} from "./my-cards/my-cards.component";
+import {UserCardsComponent} from "./user-cards/user-cards.component";
+import {TradesComponent} from "./trades/trades.component";
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'search', component: SearchUserComponent},
   {path: 'delete', component: DeleteComponent, canActivate: [AuthGuard]},
   {path: 'cards', component: CardListComponent, canActivate: [AuthGuard]},
-  {path: 'mycards', component: MyCardsComponent, canActivate: [AuthGuard]}
+  {path: 'mycards', component: UserCardsComponent, canActivate: [AuthGuard]},
+  {path: 'trades', component: TradesComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

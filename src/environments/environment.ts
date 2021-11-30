@@ -17,7 +17,9 @@ export const environment = {
       getCardById: '/cards/:id',
       allCollectionByUserId: '/collections/users/:id',
       allNotificationsById: '/notifications/users/:id',
-      getNotificationById: '/notifications/:id'
+      getNotificationById: '/notifications/:id',
+      allTradeByWaitingId: '/trades/users/waiting/:id',
+      allTradeBySecondId: '/trades/users/second/:id'
     }
   }
 };

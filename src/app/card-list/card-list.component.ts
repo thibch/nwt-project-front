@@ -17,8 +17,20 @@ export class CardListComponent implements OnInit {
 
   constructor(private _cardsService: CardService) {
     this._cards = [];
+    this._cardOwner = false;
     this._collections = [];
     this._cardAmount = [];
+  }
+
+  private _cardOwner: boolean;
+
+  get cardOwner(): boolean {
+    return this._cardOwner;
+  }
+
+  @Input("cardOwner")
+  set cardOwner(value: boolean) {
+    this._cardOwner = value;
   }
 
   private _cards: { card: Card, amount: number }[];

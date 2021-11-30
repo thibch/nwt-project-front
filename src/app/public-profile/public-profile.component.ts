@@ -1,12 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../shared/types/user.type";
-import {from, merge, of, pipe} from "rxjs";
+import {merge} from "rxjs";
 import {UserService} from "../shared/services/user.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {filter, mergeMap, tap} from "rxjs/operators";
+import {ActivatedRoute} from "@angular/router";
+import {filter, mergeMap} from "rxjs/operators";
 import {CollectionService} from "../shared/services/collection.service";
 import {Collection} from "../shared/types/collection.type";
 import {CardService} from "../shared/services/card.service";
+import {StorageService} from "../shared/services/storage.service";
 
 @Component({
   selector: 'app-public-profile',
@@ -17,9 +18,13 @@ export class PublicProfileComponent implements OnInit {
   private _user: User;
   private _collections: Collection[];
 
-  constructor(private _route: ActivatedRoute, private _userService: UserService, private _collectionService: CollectionService, private _cardService: CardService) {
+  constructor(private _route: ActivatedRoute, private _storageService: StorageService, private _userService: UserService, private _collectionService: CollectionService, private _cardService: CardService) {
     this._user = {} as User;
     this._collections = [];
+  }
+
+  public isMyAccount() {
+    return this._user.id == this._storageService.getUser().id;
   }
 
   ngOnInit(): void {

@@ -1,12 +1,16 @@
 <mat-toolbar class="extend-toolbar">
   <span>
-    <a  [routerLink]="['/home']">TadaCard</a>
+    <a [routerLink]="['/home']">TadaCard</a>
   </span>
 
   <span class="flex"></span>
 
   <span *ngIf="user.username !== undefined">
     <a [routerLink]="['/mycards']" color="secondary">Mes Cartes</a>
+  </span>
+
+  <span *ngIf="user.username !== undefined">
+    <a [routerLink]="['/trades']" color="secondary">Echange</a>
   </span>
 
   <span>

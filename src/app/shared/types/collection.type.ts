@@ -3,4 +3,5 @@ export type Collection = {
   idUser: string;
   idCard: string;
   amount: number;
+  waiting: number;
 };

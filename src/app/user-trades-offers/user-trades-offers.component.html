@@ -1,0 +1,6 @@
+<section *ngFor="let trade of tradesOffers" >
+  <app-trade [trade]="trade" [tradeOwner]=true></app-trade>
+</section>
+<section *ngIf="tradesOffers==null">
+  Vous n'avez pas fait d'offres d'échange. Vous pouvez faire des offres d'échange depuis la page de profil d'un autre utilisateur.
+</section>

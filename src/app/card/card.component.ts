@@ -13,6 +13,18 @@ export class CardComponent implements OnInit {
   constructor() {
     this._card = {} as Card;
     this._amount = 1;
+    this._cardOwner = true;
+  }
+
+  private _cardOwner: boolean;
+
+  get cardOwner(): boolean {
+    return this._cardOwner;
+  }
+
+  @Input("cardOwner")
+  set cardOwner(value: boolean) {
+    this._cardOwner = value;
   }
 
   private _amount: number;

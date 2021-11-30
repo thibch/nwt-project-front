@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-content *ngIf="tradeOwner">
+    Vous proposez à
+    <app-user-minimized [user]="secondUser"></app-user-minimized>
+    votre carte
+    <app-card [card]="card"></app-card>
+    contre sa carte
+    <app-card [card]="cardWanted"></app-card>
+  </mat-card-content>
+
+  <mat-card-content *ngIf="!tradeOwner">
+    {{trade.creationTime | date:'M/d, h:mm a' }}
+    <app-user-minimized [user]="userWaiting"></app-user-minimized> vous propose
+    <app-card [card]="card"></app-card> contre la carte
+    <app-card [card]="cardWanted"></app-card>
+  </mat-card-content>
+</mat-card>
