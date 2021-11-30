@@ -42,6 +42,7 @@ import {TradesOffersComponent} from './trades-offers/trades-offers.component';
 import {UserTradesOffersComponent} from './user-trades-offers/user-trades-offers.component';
 import {TradeComponent} from './trade/trade.component';
 import {CardsTradeComponent} from './cards-trade/cards-trade.component';
+import {TradeSummaryComponent} from './trade-summary/trade-summary.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {CardsTradeComponent} from './cards-trade/cards-trade.component';
     UserTradesOffersComponent,
     TradeComponent,
     CardsTradeComponent,
+    TradeSummaryComponent,
   ],
   imports: [
     BrowserModule,

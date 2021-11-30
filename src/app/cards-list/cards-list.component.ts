@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Card} from "../shared/types/card.type";
 import {CardService} from "../shared/services/card.service";
 import {Collection} from "../shared/types/collection.type";
 import {from, Observable} from "rxjs";
 import {filter, mergeMap} from "rxjs/operators";
+import {User} from "../shared/types/user.type";
 
 
 @Component({
@@ -13,21 +14,35 @@ import {filter, mergeMap} from "rxjs/operators";
 })
 export class CardsListComponent implements OnInit {
 
+  private readonly _tradeOffer$: EventEmitter<Card>;
 
   constructor(private _cardsService: CardService) {
     this._cards = [];
-    this._cardOwner = false;
+    this._tradable = false;
+    this._cardOwner = {} as User;
     this._collections = [];
+    this._tradeOffer$ = new EventEmitter<Card>();
   }
 
-  private _cardOwner: boolean;
+  private _tradable: boolean;
 
-  get cardOwner(): boolean {
+  get tradable(): boolean {
+    return this._tradable;
+  }
+
+  @Input("tradable")
+  set tradable(value: boolean) {
+    this._tradable = value;
+  }
+
+  private _cardOwner: User;
+
+  get cardOwner(): User {
     return this._cardOwner;
   }
 
   @Input("cardOwner")
-  set cardOwner(value: boolean) {
+  set cardOwner(value: User) {
     this._cardOwner = value;
   }
 
@@ -63,11 +78,21 @@ export class CardsListComponent implements OnInit {
         }
       })
 
-    console.log(this.collections)
+  }
+
+  /**
+   * Returns private property _tradeOffer$
+   */
+  @Output('tradeOffer') get tradeOffer$(): EventEmitter<Card> {
+    return this._tradeOffer$;
   }
 
   ngOnInit(): void {
 
+  }
+
+  tradeOffer(card: Card) {
+    this._tradeOffer$.emit(card);
   }
 }
 

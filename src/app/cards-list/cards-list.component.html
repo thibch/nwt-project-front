@@ -1,5 +1,6 @@
 <section
   *ngFor="let card of cards">
-  <app-card [cardOwner]="cardOwner" [card]="card.card" [collection]="card.collection"></app-card>
+  <app-card (tradeOffer)="tradeOffer($event)" [cardOwner]=cardOwner [card]="card.card" [collection]="card.collection"
+            [tradable]="tradable"></app-card>
 </section>
 

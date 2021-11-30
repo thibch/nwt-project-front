@@ -4,6 +4,7 @@ import {User} from "../shared/types/user.type";
 import {Card} from "../shared/types/card.type";
 import {CardService} from "../shared/services/card.service";
 import {UserService} from "../shared/services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-trade',
@@ -21,8 +22,8 @@ export class TradeComponent implements OnInit {
   private _cardWanted: Card;
   private _card: Card;
 
-  constructor(private _cardService: CardService, private _userService: UserService) {
-    this._trade ={} as Trade;
+  constructor(private _router: Router, private _cardService: CardService, private _userService: UserService) {
+    this._trade = {} as Trade;
     this._card = {} as Card;
     this._tradeOwner = false;
     this._cardWanted = {} as Card;
@@ -50,14 +51,22 @@ export class TradeComponent implements OnInit {
     );
 
     this._userService.fetchOne(this._trade.idUser as string).subscribe(
-      (data: User) => {this._secondUser = data;}
+      (data: User) => {
+        this._secondUser = data;
+      }
     );
 
     this._userService.fetchOne(this._trade.idUserWaiting as string).subscribe(
-      (data: User) => {this._userWaiting = data;}
+      (data: User) => {
+        this._userWaiting = data;
+      }
     );
   }
 
+
+  openProfile(user: User) {
+    this._router.navigate(['/user/' + user.id + '/profile'])
+  }
 
   get trade(): Trade {
     return this._trade;

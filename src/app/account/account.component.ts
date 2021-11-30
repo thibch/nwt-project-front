@@ -121,7 +121,6 @@ export class AccountComponent implements OnInit {
         filter((user: any) => !!user),
         map((user: any) => {
 
-          console.log(user);
 
           delete user.id;
           this._user = user;
@@ -132,7 +131,6 @@ export class AccountComponent implements OnInit {
       .subscribe(
         data => {
           this._error = false;
-          console.log(this._user)
           this._storageService.saveUser(this.user);
           this._router.navigate(['/home']);
         },

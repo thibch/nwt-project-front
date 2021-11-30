@@ -4,6 +4,7 @@ import {CollectionService} from "../shared/services/collection.service";
 import {StorageService} from "../shared/services/storage.service";
 import {MatDialogRef} from "@angular/material/dialog";
 import {CardComponent} from "../card/card.component";
+import {Card} from "../shared/types/card.type";
 
 @Component({
   selector: 'app-cards-trade',
@@ -11,6 +12,7 @@ import {CardComponent} from "../card/card.component";
   styleUrls: ['./cards-trade.component.css']
 })
 export class CardsTradeComponent implements OnInit {
+
   constructor(private _dialogRef: MatDialogRef<CardComponent>, private _collectionsService: CollectionService, private _storageService: StorageService) {
     this._collectionsTradable = [];
   }
@@ -32,5 +34,13 @@ export class CardsTradeComponent implements OnInit {
 
   redirectBack() {
     this._dialogRef.close();
+  }
+
+  createTrade($event: Card) {
+    this._dialogRef.close($event);
+  }
+
+  getUser() {
+    return this._storageService.getUser();
   }
 }
