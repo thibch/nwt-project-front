@@ -1,5 +1,5 @@
 
-<div align="center">
+<div *ngIf="collection.amount!=0" align="center">
   <mat-card *ngIf="!tradable" class="user-card">
     <section>
       <ng-container *ngFor="let i of [].constructor(card.level)">⭐</ng-container>
