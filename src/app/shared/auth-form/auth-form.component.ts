@@ -87,4 +87,13 @@ export class AuthFormComponent implements OnInit {
     user.username = this._user.username;
     this._dialogRef.close(user);
   }
+
+  /**
+   * Get the operation type
+   *
+   * @return {string}
+   */
+  get operation(): string {
+    return this._operation;
+  }
 }
