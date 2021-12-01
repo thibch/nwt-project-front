@@ -16,24 +16,6 @@ import {NotificationsService} from "../services/notifications.service";
 })
 export class TradeComponent implements OnInit {
 
-  /// Trade to display
-  private _trade: Trade;
-
-  /// Boolean to explain if the user wich is watching the displayed component is the owner of the trade or not
-  private _tradeOwner: boolean;
-
-  /// User wich is waiting for the other user to accept or decline the trade
-  private _userWaiting: User;
-
-  /// Second user of the trade wich need to accept or decline the trade
-  private _secondUser: User;
-
-  /// Card wanted by the trade owner
-  private _cardWanted: Card;
-
-  /// Card gived by the trade owner in exchange
-  private _card: Card;
-
   /**
    * Constructor of the trade component
    *
@@ -51,6 +33,9 @@ export class TradeComponent implements OnInit {
     this._userWaiting = {} as User;
     this._secondUser = {} as User;
   }
+
+  /// Trade to display
+  private _trade: Trade;
 
   /**
    * Getter of the displayed trade
@@ -71,6 +56,9 @@ export class TradeComponent implements OnInit {
     this._trade = value;
   }
 
+  /// Boolean to explain if the user wich is watching the displayed component is the owner of the trade or not
+  private _tradeOwner: boolean;
+
   /**
    * Getter of the tradeOwner boolean
    *
@@ -90,6 +78,9 @@ export class TradeComponent implements OnInit {
     this._tradeOwner = value;
   }
 
+  /// User wich is waiting for the other user to accept or decline the trade
+  private _userWaiting: User;
+
   /**
    * Getter of the waiting user
    *
@@ -98,6 +89,9 @@ export class TradeComponent implements OnInit {
   get userWaiting(): User {
     return this._userWaiting;
   }
+
+  /// Second user of the trade wich need to accept or decline the trade
+  private _secondUser: User;
 
   /**
    * Getter of the second user
@@ -108,6 +102,9 @@ export class TradeComponent implements OnInit {
     return this._secondUser;
   }
 
+  /// Card wanted by the trade owner
+  private _cardWanted: Card;
+
   /**
    * Getter of the wanted card
    *
@@ -116,6 +113,9 @@ export class TradeComponent implements OnInit {
   get cardWanted(): Card {
     return this._cardWanted;
   }
+
+  /// Card gived by the trade owner in exchange
+  private _card: Card;
 
   /**
    * Getter of the card gived by the trade owner

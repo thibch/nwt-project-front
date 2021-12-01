@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Router} from "@angular/router";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
@@ -18,7 +17,7 @@ export class NotificationsService {
    *
    * @param _http {HttpClient} where request will be made
    */
-  constructor( private _http: HttpClient) {
+  constructor(private _http: HttpClient) {
 
     this._backendURL = {};
 

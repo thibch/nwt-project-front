@@ -7,15 +7,15 @@ import {Subject} from "rxjs";
 })
 export class StorageService implements OnDestroy {
 
-  /// Logged in user
-  private _subjectUser: Subject<any>;
-
   /**
    * Constructor of the storage service
    */
   constructor() {
     this._subjectUser = new Subject();
   }
+
+  /// Logged in user
+  private _subjectUser: Subject<any>;
 
   /**
    * Getter of the user subject

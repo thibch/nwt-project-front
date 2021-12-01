@@ -19,13 +19,8 @@ export class AccountComponent implements OnInit {
 
   /// Boolean, true if last form was not valid, false either
   private _error: boolean;
-
-  /// User currently connected
-  private _user: User;
-
   /// MatDialogRef to an UpdateFormComponent managing User
   private _updateDialog: MatDialogRef<UpdateFormComponent, User>;
-
   /// MatDialogRef to an UpdatePasswordFormComponent managing User
   private _updatePasswordDialog: MatDialogRef<UpdatePasswordFormComponent, User>;
 
@@ -45,6 +40,9 @@ export class AccountComponent implements OnInit {
     this._updateDialog = {} as MatDialogRef<UpdateFormComponent, User>;
     this._updatePasswordDialog = {} as MatDialogRef<UpdatePasswordFormComponent, User>;
   }
+
+  /// User currently connected
+  private _user: User;
 
   /**
    * Getter of an user

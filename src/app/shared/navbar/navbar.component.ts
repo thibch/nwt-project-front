@@ -22,12 +22,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   /// Subscription subscription to the notifications findAll
   private _subscription: Subscription;
 
-  /// User currently logged in
-  private _user: User;
-
-  /// List of the user notifications
-  private _notifications: Notification[];
-
   /**
    * Constructor of the navbar
    *
@@ -44,6 +38,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this._subscription = {} as Subscription;
   }
 
+  /// User currently logged in
+  private _user: User;
+
   /**
    * Getter of the currently logged in user
    *
@@ -52,6 +49,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   get user(): User {
     return this._user;
   }
+
+  /// List of the user notifications
+  private _notifications: Notification[];
 
   /**
    * Getter of the list of notifications of the user

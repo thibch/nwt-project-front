@@ -8,15 +8,15 @@ import {User} from "../types/user.type";
 })
 export class UserMinimizedComponent implements OnInit {
 
-  /// User to display profil in minimized
-  private _user: User;
-
   /**
    * Constructor of the minimized profile component
    */
   constructor() {
     this._user = {} as User;
   }
+
+  /// User to display profil in minimized
+  private _user: User;
 
   /**
    * Getter of the minimized user

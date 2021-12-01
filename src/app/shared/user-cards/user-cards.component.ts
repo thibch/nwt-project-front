@@ -12,12 +12,6 @@ import {StorageService} from "../services/storage.service";
 })
 export class UserCardsComponent implements OnInit {
 
-  /// User owning card to display
-  private _user: User;
-
-  /// List of collection of the user
-  private _collections: Collection[];
-
   /**
    * Constructor of the user cards component
    *
@@ -30,6 +24,9 @@ export class UserCardsComponent implements OnInit {
     this._collections = [];
   }
 
+  /// User owning card to display
+  private _user: User;
+
   /**
    * Getter of the user owning the cards
    *
@@ -38,6 +35,9 @@ export class UserCardsComponent implements OnInit {
   get user(): User {
     return this._user;
   }
+
+  /// List of collection of the user
+  private _collections: Collection[];
 
   /**
    * Getter of the collections of the user

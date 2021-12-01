@@ -15,12 +15,6 @@ export class RollComponent implements OnInit {
   /// User currently logged
   private _user: User;
 
-  /// Boolean to know if the user have already roll today
-  private _hasRolled: boolean;
-
-  /// List of cards winned in the roll
-  private _cards: Card[];
-
   /**
    * Constructor of the roll component
    *
@@ -36,12 +30,18 @@ export class RollComponent implements OnInit {
     this._user = {} as User;
   }
 
+  /// Boolean to know if the user have already roll today
+  private _hasRolled: boolean;
+
   /**
    * Getter of the roll var to know if the user have already roll today
    */
   get hasRolled(): boolean {
     return this._hasRolled;
   }
+
+  /// List of cards winned in the roll
+  private _cards: Card[];
 
   /**
    * Getter of the cards of the roll

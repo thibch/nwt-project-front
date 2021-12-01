@@ -10,9 +10,6 @@ import {Trade} from "../shared/types/trade.type";
 })
 export class TradeSummaryComponent implements OnInit {
 
-  /// Trade to display in the summary component
-  private _trade: Trade;
-
   /**
    * Constructor of the trade summary
    *
@@ -22,6 +19,9 @@ export class TradeSummaryComponent implements OnInit {
   constructor(private _dialogRef: MatDialogRef<CardsTradeComponent>, @Inject(MAT_DIALOG_DATA) private _data: { trade: Trade }) {
     this._trade = _data.trade;
   }
+
+  /// Trade to display in the summary component
+  private _trade: Trade;
 
   /**
    * Getter of the trade

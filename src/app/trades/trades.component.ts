@@ -10,12 +10,6 @@ import {StorageService} from "../shared/services/storage.service";
 })
 export class TradesComponent implements OnInit {
 
-  /// List of all user trades offers
-  private _myTradeOffer: Trade[];
-
-  /// List of all user trades needing him action
-  private _tradeOffer: Trade[];
-
   /**
    * Constructor of a trade
    *
@@ -27,6 +21,9 @@ export class TradesComponent implements OnInit {
     this._tradeOffer = [];
   }
 
+  /// List of all user trades offers
+  private _myTradeOffer: Trade[];
+
   /**
    * Getter of all user trades offers
    *
@@ -35,6 +32,9 @@ export class TradesComponent implements OnInit {
   get myTradeOffer(): Trade[] {
     return this._myTradeOffer;
   }
+
+  /// List of all user trades needing him action
+  private _tradeOffer: Trade[];
 
   /**
    * Getter of all user trades wich need action from him

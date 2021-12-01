@@ -9,12 +9,6 @@ import {NotificationsService} from "../services/notifications.service";
 })
 export class NotificationComponent implements OnInit {
 
-  /// Notification currently displayed
-  private _notification: Notification;
-
-  /// Exists boolean update when the notification is deleted (to update graphical view)
-  private _exists: boolean;
-
   /**
    * Constructor of the notification component
    *
@@ -24,6 +18,9 @@ export class NotificationComponent implements OnInit {
     this._notification = {} as Notification;
     this._exists = true;
   }
+
+  /// Notification currently displayed
+  private _notification: Notification;
 
   /**
    * Getter of the notification currently displayed
@@ -43,6 +40,9 @@ export class NotificationComponent implements OnInit {
   set notification(value: Notification) {
     this._notification = value;
   }
+
+  /// Exists boolean update when the notification is deleted (to update graphical view)
+  private _exists: boolean;
 
   /**
    * Getter of the exists boolean

@@ -19,9 +19,6 @@ export class RegisterComponent implements OnInit {
   /// User currently trying to register (for fill the form if register fail)
   private _user: User;
 
-  /// Boolean to print an error on reopening the form if register fail
-  private _error: boolean;
-
   /**
    * Constructor of the register component, opening a dialog with the register form
    *
@@ -34,6 +31,9 @@ export class RegisterComponent implements OnInit {
     this._error = false;
     this._user = {} as User;
   }
+
+  /// Boolean to print an error on reopening the form if register fail
+  private _error: boolean;
 
   /**
    * Getter to know if there's an error in the register

@@ -4,7 +4,6 @@ import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {Collection} from "../types/collection.type";
 import {defaultIfEmpty, filter} from "rxjs/operators";
-import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'

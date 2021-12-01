@@ -5,7 +5,8 @@
   <form #f="ngForm" novalidate>
     <p>
       <mat-form-field>
-        <input #username=ngModel [ngModel]="user?.username" matInput minlength="2" name="username" ngModel placeholder="Pseudo"
+        <input #username=ngModel [ngModel]="user?.username" matInput minlength="2" name="username" ngModel
+               placeholder="Pseudo"
                required/>
         <mat-error *ngIf="username?.dirty && username?.hasError('required')">
           Le pseudo est <strong>requis.</strong>
@@ -17,7 +18,8 @@
     </p>
     <p>
       <mat-form-field>
-        <input #password=ngModel [type]="hide?'password':'text'" matInput name="password" ngModel placeholder="Mot de passe"
+        <input #password=ngModel [type]="hide?'password':'text'" matInput name="password" ngModel
+               placeholder="Mot de passe"
                required/>
         <button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" mat-icon-button
                 matSuffix>

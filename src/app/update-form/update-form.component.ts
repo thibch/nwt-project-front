@@ -12,18 +12,6 @@ import {CustomValidators} from "../shared/validators/custom-validators";
 })
 export class UpdateFormComponent implements OnInit {
 
-  /// User currently updating him informations
-  private _user: User;
-
-  /// Boolean variable to know if the password need to be hide or not
-  private _hide: boolean;
-
-  /// Boolean variable to know if an error need to be displayed
-  private _error: boolean;
-
-  /// FormGroup used to updates users informations
-  private _updateForm: FormGroup;
-
   /**
    * Constructor of the update form
    *
@@ -37,22 +25,8 @@ export class UpdateFormComponent implements OnInit {
     this._updateForm = this._buildUpdateForm()
   }
 
-  /**
-   * Method to build the form
-   * @private
-   *
-   * @return {FormGroup}
-   */
-  private _buildUpdateForm(): FormGroup{
-    return new FormGroup({
-      firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-      lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-      username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-      birthDate: new FormControl('', Validators.compose([Validators.required])),
-      email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
-      photo: new FormControl()
-    }, {validators: CustomValidators.passwordDif("password", "passwordConfirm")});
-  }
+  /// User currently updating him informations
+  private _user: User;
 
   /**
    * Getter of the user to update
@@ -63,6 +37,9 @@ export class UpdateFormComponent implements OnInit {
     return this._user;
   }
 
+  /// Boolean variable to know if the password need to be hide or not
+  private _hide: boolean;
+
   /**
    * Getter of the hide boolean
    *
@@ -72,6 +49,9 @@ export class UpdateFormComponent implements OnInit {
     return this._hide;
   }
 
+  /// Boolean variable to know if an error need to be displayed
+  private _error: boolean;
+
   /**
    * Getter of the error boolean
    *
@@ -80,6 +60,9 @@ export class UpdateFormComponent implements OnInit {
   get error(): boolean {
     return this._error;
   }
+
+  /// FormGroup used to updates users informations
+  private _updateForm: FormGroup;
 
   /**
    * Getter to get the updateForm
@@ -110,5 +93,22 @@ export class UpdateFormComponent implements OnInit {
    */
   update(user: User) {
     this._dialogRef.close(user);
+  }
+
+  /**
+   * Method to build the form
+   * @private
+   *
+   * @return {FormGroup}
+   */
+  private _buildUpdateForm(): FormGroup {
+    return new FormGroup({
+      firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      birthDate: new FormControl('', Validators.compose([Validators.required])),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
+      photo: new FormControl()
+    }, {validators: CustomValidators.passwordDif("password", "passwordConfirm")});
   }
 }

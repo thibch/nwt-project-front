@@ -8,15 +8,15 @@ import {Trade} from "../shared/types/trade.type";
 })
 export class TradesOffersComponent implements OnInit {
 
-  /// List of all trades offers to display
-  private _tradesOffers: Trade[]
-
   /**
    * Constructor of the trades offer component
    */
   constructor() {
     this._tradesOffers = [];
   }
+
+  /// List of all trades offers to display
+  private _tradesOffers: Trade[]
 
   /**
    * Getter of the trades offers to display

@@ -11,15 +11,6 @@ import {Router} from "@angular/router";
 })
 export class LoginFormComponent implements OnInit {
 
-  /// boolean to know if the password need to be hide
-  private _hide: boolean;
-
-  /// boolean to know if an error need to be printed (last authentification failed)
-  private _error: boolean;
-
-  /// user currently trying to authentifiate (autocompletion when user miss first time authentification)
-  private _user: User;
-
   /**
    * Constructor of a login form
    *
@@ -32,6 +23,9 @@ export class LoginFormComponent implements OnInit {
     this._error = _data.error;
     this._user = _data.user;
   }
+
+  /// boolean to know if the password need to be hide
+  private _hide: boolean;
 
   /**
    * Getter of the hide boolean
@@ -51,6 +45,9 @@ export class LoginFormComponent implements OnInit {
     this._hide = value;
   }
 
+  /// boolean to know if an error need to be printed (last authentification failed)
+  private _error: boolean;
+
   /**
    * Getter of the error boolean
    *
@@ -59,6 +56,9 @@ export class LoginFormComponent implements OnInit {
   get error(): boolean {
     return this._error;
   }
+
+  /// user currently trying to authentifiate (autocompletion when user miss first time authentification)
+  private _user: User;
 
   /**
    * Getter of the user currently log in
