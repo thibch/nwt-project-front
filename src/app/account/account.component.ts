@@ -30,13 +30,13 @@ export class AccountComponent implements OnInit {
   private _updatePasswordDialog: MatDialogRef<UpdatePasswordFormComponent, User>;
 
   /**
-   * Constructo of a Account Component
+   * Constructor of an Account Component
    *
    * @param _loginService {LoginService} service managing Login
    * @param _dialog {MatDialog} matdialog to open forms
    * @param _storageService {StorageService} service managing token and connected user
    * @param _userService {UserService} service managing users
-   * @param _router {Route} router
+   * @param _router {Router} router
    * @param _jwtHelper {JwtHelperService} service managing jwt tokens
    */
   constructor(private _loginService: LoginService, private _dialog: MatDialog, private _storageService: StorageService, private _userService: UserService, private _router: Router, private _jwtHelper: JwtHelperService) {
@@ -47,7 +47,7 @@ export class AccountComponent implements OnInit {
   }
 
   /**
-   * Getter of an user
+   * Getter of a user
    *
    * @return User user connected
    */
@@ -81,7 +81,7 @@ export class AccountComponent implements OnInit {
   }
 
   /**
-   * Open the change passord form
+   * Open the change password form
    * @private
    */
   private _openUpdateFormDialog() {

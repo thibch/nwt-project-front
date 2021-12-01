@@ -6,3 +6,17 @@
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
+
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.custom-card {
+  width: 30%;
+  background-color: #424242;
+  color: white;
+}
+.full-width {
+  width: 100%;
+}

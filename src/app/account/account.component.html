@@ -1,36 +1,31 @@
-<div align="center">
-  <mat-card class="user-card">
-    <mat-card-content>
-      <p>
-        Pseudo: {{user.username}}
-      </p>
-    </mat-card-content>
-    <mat-card-content>
-      <p>
-        Prénom: {{user.firstname}}
-        Nom: {{user.lastname}}
-      </p>
-    </mat-card-content>
-    <mat-card-content>
-      <p>
-        Email: {{user.email}}
-      </p>
-    </mat-card-content>
-    <mat-card-content>
-      <p>
-        Date de naissance: {{user.birthDate | date:'dd/MM/yyyy' }}
-      </p>
-    </mat-card-content>
+<div class="full-width">
+  <div class="center custom-card">
+    <div>
+      <mat-grid-list cols="2" rowHeight="5:1">
+        <mat-grid-tile>Pseudo: </mat-grid-tile>
+        <mat-grid-tile>{{user.username}}</mat-grid-tile>
+        <mat-grid-tile>Nom: </mat-grid-tile>
+        <mat-grid-tile>{{user.firstname}} {{user.lastname}}</mat-grid-tile>
+        <mat-grid-tile>Email: </mat-grid-tile>
+        <mat-grid-tile>{{user.email}}</mat-grid-tile>
+        <mat-grid-tile>Date de naissance: </mat-grid-tile>
+        <mat-grid-tile>{{user.birthDate | date:'dd/MM/yyyy' }}</mat-grid-tile>
+      </mat-grid-list>
+    </div>
 
     <br>
-    <mat-card-content>
-      <button [routerLink]="['/delete']" color="secondary">Supprimer le compte</button>
-      <button (click)="updateUser()" color="secondary">Modifier les informations du compte</button>
-      <button (click)="changePassword()" color="secondary">Modifier le mot de passe du compte</button>
-
-    </mat-card-content>
-  </mat-card>
-
-
+    <mat-divider></mat-divider>
+    <section>
+      <button mat-raised-button (click)="updateUser()" color="secondary">Modifier les informations du compte</button>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+      <button mat-raised-button (click)="changePassword()" color="secondary">Modifier le mot de passe du compte</button>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+      <button mat-raised-button [routerLink]="['/delete']" color="warn">Supprimer le compte</button>
+    </section>
+  </div>
 </div>
 

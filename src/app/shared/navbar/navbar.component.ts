@@ -66,20 +66,35 @@ export class NavbarComponent implements OnInit, OnDestroy {
    * On init implementation
    */
   ngOnInit(): void {
-
+    this.checkToken();
+    this.checkUser();
     // Set user value and notifications
     this._subscription = this._storageService.subjectUser.subscribe(value => {
-      if (this._storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
-        this._user = this._storageService.getUser();
-      }
-      if (this._storageService.getUser().id != undefined) {
-        this._notificationService.getAllNotificationsById(this._storageService.getUser().id as string).subscribe(
-          data => {
-            this._notifications = data
-          }
-        );
-      }
+      this.checkToken();
+      this.checkUser();
     });
+  }
+
+  /**
+   * Check if the token in the storage is available
+   */
+  private checkToken() {
+    if (this._storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
+      this._user = this._storageService.getUser();
+    }
+  }
+
+  /**
+   * Check if the user in the storage is available
+   */
+  checkUser() {
+    if (this._storageService.getUser().id != undefined) {
+      this._notificationService.getAllNotificationsById(this._storageService.getUser().id as string).subscribe(
+        data => {
+          this._notifications = data
+        }
+      );
+    }
   }
 
   /**
