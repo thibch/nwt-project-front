@@ -20,10 +20,42 @@ import {CollectionService} from "../services/collection.service";
 })
 export class CardComponent implements OnInit {
 
+  /// Mat dialog reference to the card trade component to open if the card is going to be trade
   private _tradeDialog: MatDialogRef<CardsTradeComponent, Card>;
+
+  /// Mat dialog reference to the card trade summary component to open if the card is going to be trade
   private _tradeSummaryDialog: MatDialogRef<TradeSummaryComponent, Trade>;
+
+  /// Event emitter when clicked with this component
   private readonly _tradeOffer$: EventEmitter<Card>;
 
+  /// Card actually displayed by the component
+  private _card: Card;
+
+  /// User card owner of this card
+  private _cardOwner: User;
+
+  /// Collection containing this card
+  private _collection: Collection;
+
+  /// Boolean for the displaying of the card, if tradable, a button will appear
+  private _tradable: boolean;
+
+  /// Boolean for the displaying of the card, if the amount is enough, a button will appear
+  private _suffisentAmount: boolean;
+
+  /// Boolean for the displaying, if this card is currently in a trading operation (displayed in a trade summary), the trade button will not appear
+  private _tradingOperation: boolean;
+
+  /**
+   * Constructor of a card component
+   *
+   * @param _dialog {MatDialog} dialog to open the trading form in
+   * @param _collectionService {CollectionService} service managing collections
+   * @param _storageService {StorageService} service managing tokens and users
+   * @param _notificationService {NotificationsService} service managing notifications
+   * @param _tradeService {TradeService} service managing trades
+   */
   constructor(private _dialog: MatDialog, private _collectionService: CollectionService, private _storageService: StorageService, private _notificationService: NotificationsService, private _tradeService: TradeService) {
     this._card = {} as Card;
     this._tradeDialog = {} as MatDialogRef<CardsTradeComponent, Card>;
@@ -36,69 +68,116 @@ export class CardComponent implements OnInit {
     this._tradeOffer$ = new EventEmitter<Card>();
   }
 
-  private _card: Card;
-
+  /**
+   * Getter of the card displayed
+   *
+   * @return {Card}
+   */
   get card(): Card {
     return this._card;
   }
 
+  /**
+   * Setter of the displayed card
+   *
+   * @param value {Card} card
+   */
   @Input('card')
   set card(value: Card) {
     this._card = value;
   }
 
-  private _cardOwner: User;
-
+  /**
+   * Getter of the card owner
+   *
+   * @return {User} card owner
+   */
   get cardOwner(): User {
     return this._cardOwner;
   }
 
+  /**
+   * Setter of the card owner
+   *
+   * @param value {User}
+   */
   @Input("cardOwner")
   set cardOwner(value: User) {
     this._cardOwner = value;
   }
 
-  private _collection: Collection;
-
+  /**
+   * Getter of the collection
+   *
+   * @return {Collection}
+   */
   get collection(): Collection {
     return this._collection;
   }
 
+  /**
+   * Setter of the collection
+   *
+   * @param value {Collection}
+   */
   @Input("collection")
   set collection(value: Collection) {
     this._collection = value;
     this._suffisentAmount = this.collection.amount > this.collection.waiting;
-    console.log(value);
   }
 
-  private _tradable: boolean;
-
+  /**
+   * Getter of the tradable field
+   *
+   * @return {boolean} true if card is tradable, false either
+   */
   get tradable(): boolean {
     return this._tradable;
   }
 
+  /**
+   * Setter of the tradable field
+   *
+   * @param value {boolean} true if tradable, false either
+   */
   @Input("tradable")
   set tradable(value: boolean) {
     this._tradable = value;
   }
 
-  private _suffisentAmount: boolean;
-
+  /**
+   * Getter of the suffisientAmount field
+   *
+   * @return {boolean} true if the amount is enough to be trade, false either
+   */
   get suffisentAmount(): boolean {
     return this._suffisentAmount;
   }
 
-  private _tradingOperation: boolean;
-
+  /**
+   * Getter of the tradig operation field
+   *
+   * @return {boolean} true if the card is currently in a trading operation, false either
+   */
   get tradingOperation(): boolean {
     return this._tradingOperation;
   }
 
+  /**
+   * Setter of TradingOperation field
+   *
+   * @param value {boolean} true if in a tradingoperation, false either
+   */
   @Input("tradingOperation")
   set tradingOperation(value: boolean) {
     this._tradingOperation = value;
   }
 
+  /**
+   * Getter of the card owner
+   *
+   * @return {User}
+   */
   get isCardOwner() {
     return this._cardOwner.id == this._storageService.getUser().id;
   }
@@ -110,13 +189,15 @@ export class CardComponent implements OnInit {
     return this._tradeOffer$;
   }
 
+  /**
+   * On Init implementation
+   */
   ngOnInit(): void {
-    console.log('card :');
-    console.log(this.tradable);
-    console.log(this.tradingOperation);
-    console.log(this.suffisentAmount);
   }
 
+  /**
+   * Method wich build the trade dialog
+   */
   buildTradeDialog() {
     // create modal with initial data inside
     this._tradeDialog = this._dialog.open(CardsTradeComponent, {
@@ -124,6 +205,7 @@ export class CardComponent implements OnInit {
       disableClose: true
     });
 
+    // after closing the dialog
     this._tradeDialog.afterClosed()
       .pipe(
         filter((card: Card | undefined) => !!card),
@@ -132,6 +214,8 @@ export class CardComponent implements OnInit {
         })
       ).subscribe(
       data => {
+        // We create a trade and then we summarise it to the user
+
         let trade: Trade = {
           idCard: data.id,
           idCardWanted: this.card.id,
@@ -145,6 +229,11 @@ export class CardComponent implements OnInit {
       });
   }
 
+  /**
+   * Method wich build a trade summary dialog
+   *
+   * @param trade {Trade} trade to summarise
+   */
   buildTradeSummaryDialog(trade: Trade) {
 
     // create modal with initial data inside
@@ -154,6 +243,7 @@ export class CardComponent implements OnInit {
       data: {trade: trade}
     });
 
+    // when the dialog is close
     this._tradeSummaryDialog.afterClosed()
       .pipe(
         filter((trade: Trade | undefined) => !!trade),
@@ -162,7 +252,7 @@ export class CardComponent implements OnInit {
         })
       ).subscribe(
       data => {
-
+        // if data returned, then we create a notification for the other user
         let notification: Notification = {
           read: false,
           accepted: false,
@@ -172,7 +262,7 @@ export class CardComponent implements OnInit {
           idUser: trade.idUser
         } as Notification;
 
-
+        // then we send the notification and create the trade
         this._notificationService.create(notification).subscribe(
           data => {
             this._tradeService.create(trade).subscribe(
@@ -187,6 +277,11 @@ export class CardComponent implements OnInit {
       });
   }
 
+  /**
+   * On click on the card, emit a trade offer event
+   *
+   * @param card this card
+   */
   tradeOffer(card: Card) {
     this._tradeOffer$.emit(card);
   }
