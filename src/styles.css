@@ -17,5 +17,12 @@ section {
 }
 .center {
   margin: auto;
-  width:10vh;
+}
+.width-min {
+  width: min-content;
+}
+
+.img-fit {
+  max-width: 100%;
+  height: auto;
 }

@@ -21,11 +21,11 @@ export class DeleteComponent implements OnInit {
 
   constructor(private _router: Router, private _dialog: MatDialog, private _errorDialog: MatDialog, private _loginService: LoginService, private _storageService: StorageService, private _userService: UserService) {
     this._deleteDialog = {} as MatDialogRef<AuthFormComponent, User>;
-    this._loggedUser = _storageService.getUser();
-    this._error =false;
+    this._error = false;
   }
 
   ngOnInit(): void {
+    this._loggedUser = this._storageService.getUser();
     this._error = false;
     this._openDialog()
   }
@@ -43,10 +43,8 @@ export class DeleteComponent implements OnInit {
     this._deleteDialog.afterClosed()
       .pipe(
         filter((user: User | undefined) => !!user),
-        map((user: User | undefined) => {
-          return user as User;
-        }),
-        mergeMap((user: User)=> this._loginService.auth( user)),
+        map((user: User | undefined) => (user as User)),
+        mergeMap((user: User)=> this._loginService.auth(user)),
       ).subscribe(
       data => {
 

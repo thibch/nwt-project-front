@@ -163,7 +163,7 @@ export class CardComponent implements OnInit {
         let notification: Notification = {
           read: false,
           accepted: false,
-          creationTime: Date.now().toString(),
+          creationTime: new Date().toISOString(),
           content: "Vous avez une nouvelle proposition d'échange !",
           type: "trade",
           idUser: trade.idUser

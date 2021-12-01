@@ -29,8 +29,8 @@ export class CollectionService {
     Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
   }
 
-  roll() : Observable<Collection[]> { // TODO : GET USER  BEFORE
-    return this._http.put<Collection[]>(this._backendURL.roll.replace(':idUser', '61a515c6b44ed1fbcced040b'), {}).pipe(
+  roll(id: string | undefined) : Observable<Collection[]> {
+    return this._http.put<Collection[]>(this._backendURL.roll.replace(':idUser', id), {}).pipe(
       filter((collections: Collection[]) => !!collections),
       defaultIfEmpty([] as Collection[]),
     );

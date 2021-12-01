@@ -1,7 +1,7 @@
 <section align="center">
   <mat-card class="user-card">
 
-    <img src="{{ user.photo }}">
+    <img class="img-fit" src="{{ user.photo }}">
     <mat-card-content>
       <p>
         Pseudo: {{user.username}}
@@ -22,7 +22,7 @@
 
 
 <section align="center">
-  <app-cards-list [cardOwner]="this.user" [tradable]="!isMyAccount()" [collections]="collections"></app-cards-list>
+  <app-cards-list [cardOwner]="this.user" [collections]="collections"></app-cards-list>
 </section>
 
 

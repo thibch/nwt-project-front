@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../shared/types/user.type";
 import {LoginService} from "../shared/services/login.service";
 import {StorageService} from "../shared/services/storage.service";
@@ -7,26 +7,25 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {NotificationsViewComponent} from "../notifications-view/notifications-view.component";
 import {Notification} from "../shared/types/notification.type";
 import {NotificationsService} from "../shared/services/notifications.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   private _user: User;
 
   private _notificationDialog: MatDialogRef<NotificationsViewComponent, any>;
 
+  private _subscription: Subscription;
+
   constructor(private _loginService: LoginService, private _dialog: MatDialog, private _storageService: StorageService, private _jwtHelper: JwtHelperService, private _notificationService: NotificationsService) {
     this._user = {} as User;
     this._notificationDialog = {} as MatDialogRef<NotificationsViewComponent, any>;
-    if (_storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
-      this._user = this._storageService.getUser();
-    }
-
     this._notifications = [];
-
+    this._subscription = {} as Subscription;
   }
 
   private _notifications: Notification[];
@@ -36,13 +35,22 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this._storageService.getUser().id != undefined) {
-      this._notificationService.getAllNotificationsById(this._storageService.getUser().id as string).subscribe(
-        data => {
-          this._notifications = data
-        }
-      );
-    }
+    this._subscription = this._storageService.subjectUser.subscribe(value => {
+      if (this._storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
+        this._user = this._storageService.getUser();
+      }
+      if (this._storageService.getUser().id != undefined) {
+        this._notificationService.getAllNotificationsById(this._storageService.getUser().id as string).subscribe(
+          data => {
+            this._notifications = data
+          }
+        );
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this._subscription && this._subscription.unsubscribe();
   }
 
   get user(): User {
