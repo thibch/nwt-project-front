@@ -29,10 +29,6 @@ export class RegisterComponent implements OnInit {
     return this._error;
   }
 
-  set error(value: boolean) {
-    this._error = value;
-  }
-
   ngOnInit(): void {
     this._error = false;
     this._openDialog()
@@ -65,8 +61,23 @@ export class RegisterComponent implements OnInit {
         mergeMap((user: User | undefined) => this._add(user as User))
       )
       .subscribe(
-        data => { this._error=false; this._user={username: data.username, email: data.email, lastname: data.lastname, firstname: data.firstname, birthDate: data.birthDate, id: data.id, photo: data.photo, password: ""}; this._router.navigate(['/home']);},
-        error => { this._error = true;  this._openDialog();}
+        data => {
+          this._error=false;
+          this._user={
+            username: data.username,
+            email: data.email,
+            lastname: data.lastname,
+            firstname: data.firstname,
+            birthDate: data.birthDate,
+            id: data.id,
+            photo: data.photo,
+            password: ""
+          };
+          this._router.navigate(['/home']);},
+        error => {
+          this._error = true;
+          this._openDialog();
+        }
       );
   }
 

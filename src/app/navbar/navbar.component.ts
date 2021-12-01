@@ -14,13 +14,12 @@ export class NavbarComponent implements OnInit {
 
   constructor(private _loginService: LoginService, private _storageService: StorageService, private _jwtHelper: JwtHelperService) {
     this._user = {} as User;
-
-    if (_storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
-      this._user = this._storageService.getUser();
-    }
   }
 
   ngOnInit(): void {
+    if (this._storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
+      this._user = this._storageService.getUser();
+    }
   }
 
 

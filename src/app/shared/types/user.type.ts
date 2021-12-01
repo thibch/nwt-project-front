@@ -7,4 +7,5 @@ export type User = {
   birthDate: string;
   photo: string;
   password: string;
+  lastRollDate?: string;
 };

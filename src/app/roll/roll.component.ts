@@ -9,34 +9,41 @@ import {CardService} from "../shared/services/card.service";
   styleUrls: ['./roll.component.css']
 })
 export class RollComponent implements OnInit {
-  private _buttonClicked: boolean;
-  private readonly _cards: Card[];
+  private _hasRolled: boolean;
+  private _cards: Card[];
 
   constructor(private _collectionService: CollectionService, private _cardService: CardService) {
-    this._buttonClicked = false;
+    this._hasRolled = false;
     this._cards = [] as Card[];
   }
 
   ngOnInit(): void {
+    // TODO : ADD NEW ROUTE : CHECK IF THE USER HAS HIS ROLL AVAILABLE
   }
 
-  roll(): void { // TODO : ADD NEW ROUTE : CHECK IF THE USER HAS HIS ROLL AVAILABLE
-    console.log('ROLL')
-    this._collectionService.roll().subscribe(data => {
+  roll(): void {
+    this._collectionService.roll().subscribe({ next: data => {
+      this._cards = [] as Card[];
 
-      data.forEach(collec => {
-        this._cardService.getById(collec.idCard).subscribe( value => {
-          this._cards.push(value);
+      if (data && data.length && data.length > 0) {
+        data.forEach(collec => {
+          this._cardService.getById(collec.idCard).subscribe( value => {
+            this._cards.push(value);
+          });
         });
-        })
-
-      this._buttonClicked = true;
-    })
+        this._hasRolled = true;
+      }
+    },
+    error: () => {
+      this._cards = [] as Card[];
+      this._hasRolled = false;
+    }
+    });
 
   }
 
-  get buttonClicked(): boolean {
-    return this._buttonClicked;
+  get hasRolled(): boolean {
+    return this._hasRolled;
   }
 
   get cards(): Card[] {

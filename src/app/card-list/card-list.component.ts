@@ -13,17 +13,14 @@ export class CardListComponent implements OnInit {
 
 
   constructor(private _cardsService: CardService) {
-    this._cards= [];
-    this._cardsService.fetch().subscribe(
-      data => {console.log(data); this._cards = data }
-    );
-
-
-
-    console.log(this.cards)
+    this._cards= [] as Card[];
   }
 
   ngOnInit(): void {
+    this._cardsService.fetch().subscribe( {
+      next : value => { this._cards = value; },
+      error: err => { this._cards = [] as Card[]; }
+    });
   }
 
   get cards(): Card[] {

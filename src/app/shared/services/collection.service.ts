@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {User} from "../types/user.type";
 import {Collection} from "../types/collection.type";
+import {defaultIfEmpty, filter} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,9 @@ export class CollectionService {
   }
 
   roll() : Observable<Collection[]> { // TODO : GET USER  BEFORE
-    console.log('roll');
-    return this._http.put<Collection[]>(this._backendURL.roll.replace(':idUser', '61a515c6b44ed1fbcced040b'), {});
+    return this._http.put<Collection[]>(this._backendURL.roll.replace(':idUser', '61a515c6b44ed1fbcced040b'), {}).pipe(
+      filter((collections: Collection[]) => !!collections),
+      defaultIfEmpty([] as Collection[]),
+    );
   }
 }
