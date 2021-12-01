@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../shared/types/user.type";
-import {Collection} from "../shared/types/collection.type";
-import {CollectionService} from "../shared/services/collection.service";
-import {CardService} from "../shared/services/card.service";
-import {StorageService} from "../shared/services/storage.service";
+import {User} from "../types/user.type";
+import {Collection} from "../types/collection.type";
+import {CollectionService} from "../services/collection.service";
+import {CardService} from "../services/card.service";
+import {StorageService} from "../services/storage.service";
 
 @Component({
   selector: 'app-my-cards',

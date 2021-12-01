@@ -5,8 +5,8 @@ import {Router} from "@angular/router";
 import {LoginService} from "../shared/services/login.service";
 import {StorageService} from "../shared/services/storage.service";
 import {filter, map, mergeMap} from "rxjs/operators";
-import {AuthFormComponent} from "../auth-form/auth-form.component";
 import {UserService} from "../shared/services/user.service";
+import {AuthFormComponent} from "../shared/auth-form/auth-form.component";
 
 @Component({
   selector: 'app-delete',

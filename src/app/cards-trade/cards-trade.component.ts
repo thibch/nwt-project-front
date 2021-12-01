@@ -3,7 +3,7 @@ import {Collection} from "../shared/types/collection.type";
 import {CollectionService} from "../shared/services/collection.service";
 import {StorageService} from "../shared/services/storage.service";
 import {MatDialogRef} from "@angular/material/dialog";
-import {CardComponent} from "../card/card.component";
+import {CardComponent} from "../shared/card/card.component";
 import {Card} from "../shared/types/card.type";
 
 @Component({

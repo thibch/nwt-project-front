@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {User} from "../shared/types/user.type";
-import {LoginService} from "../shared/services/login.service";
-import {StorageService} from "../shared/services/storage.service";
+import {User} from "../types/user.type";
+import {LoginService} from "../services/login.service";
+import {StorageService} from "../services/storage.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {NotificationsViewComponent} from "../notifications-view/notifications-view.component";
-import {Notification} from "../shared/types/notification.type";
-import {NotificationsService} from "../shared/services/notifications.service";
+import {NotificationsViewComponent} from "../../notifications-view/notifications-view.component";
+import {Notification} from "../types/notification.type";
+import {NotificationsService} from "../services/notifications.service";
 import {Subscription} from "rxjs";
 
 @Component({

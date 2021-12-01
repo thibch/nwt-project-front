@@ -9,7 +9,7 @@ import {SearchUserComponent} from "./search-user/search-user.component";
 import {DeleteComponent} from "./delete/delete.component";
 import {CardsListComponent} from "./cards-list/cards-list.component";
 import {PublicProfileComponent} from "./public-profile/public-profile.component";
-import {UserCardsComponent} from "./user-cards/user-cards.component";
+import {UserCardsComponent} from "./shared/user-cards/user-cards.component";
 import {TradesComponent} from "./trades/trades.component";
 import {RollComponent} from "./roll/roll.component";
 

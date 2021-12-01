@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from "../shared/types/user.type";
+import {User} from "../types/user.type";
 
 @Component({
   selector: 'app-user-minimized',

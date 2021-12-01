@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {NavbarComponent} from "../navbar/navbar.component";
+import {NavbarComponent} from "../shared/navbar/navbar.component";
 import {Notification} from "../shared/types/notification.type";
 import {NotificationsService} from "../shared/services/notifications.service";
 import {StorageService} from "../shared/services/storage.service";

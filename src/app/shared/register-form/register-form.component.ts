@@ -1,9 +1,9 @@
 import {Component, Inject, OnChanges, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {User} from "../shared/types/user.type";
+import {User} from "../types/user.type";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {LoginComponent} from "../login/login.component";
-import {CustomValidators} from "../shared/validators/custom-validators";
+import {LoginComponent} from "../../login/login.component";
+import {CustomValidators} from "../validators/custom-validators";
 import {MatDialogActions} from "@angular/material/dialog";
 
 @Component({

@@ -1,17 +1,17 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Card} from "../shared/types/card.type";
+import {Card} from "../types/card.type";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {CardsTradeComponent} from "../cards-trade/cards-trade.component";
-import {Collection} from "../shared/types/collection.type";
+import {CardsTradeComponent} from "../../cards-trade/cards-trade.component";
+import {Collection} from "../types/collection.type";
 import {filter, map} from "rxjs/operators";
-import {User} from "../shared/types/user.type";
-import {Trade} from "../shared/types/trade.type";
-import {StorageService} from "../shared/services/storage.service";
-import {TradeSummaryComponent} from "../trade-summary/trade-summary.component";
-import {TradeService} from "../shared/services/trade.service";
-import {NotificationsService} from "../shared/services/notifications.service";
-import {Notification} from "../shared/types/notification.type";
-import {CollectionService} from "../shared/services/collection.service";
+import {User} from "../types/user.type";
+import {Trade} from "../types/trade.type";
+import {StorageService} from "../services/storage.service";
+import {TradeSummaryComponent} from "../../trade-summary/trade-summary.component";
+import {TradeService} from "../services/trade.service";
+import {NotificationsService} from "../services/notifications.service";
+import {Notification} from "../types/notification.type";
+import {CollectionService} from "../services/collection.service";
 
 @Component({
   selector: 'app-card',

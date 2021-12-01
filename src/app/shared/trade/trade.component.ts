@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Trade} from "../shared/types/trade.type";
-import {User} from "../shared/types/user.type";
-import {Card} from "../shared/types/card.type";
-import {CardService} from "../shared/services/card.service";
-import {UserService} from "../shared/services/user.service";
+import {Trade} from "../types/trade.type";
+import {User} from "../types/user.type";
+import {Card} from "../types/card.type";
+import {CardService} from "../services/card.service";
+import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
-import {TradeService} from "../shared/services/trade.service";
-import {Notification} from "../shared/types/notification.type";
-import {NotificationsService} from "../shared/services/notifications.service";
+import {TradeService} from "../services/trade.service";
+import {Notification} from "../types/notification.type";
+import {NotificationsService} from "../services/notifications.service";
 
 @Component({
   selector: 'app-trade',

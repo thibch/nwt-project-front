@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {LoginComponent} from "../login/login.component";
-import {User} from "../shared/types/user.type";
+import {LoginComponent} from "../../login/login.component";
+import {User} from "../types/user.type";
 import {Router} from "@angular/router";
 
 @Component({

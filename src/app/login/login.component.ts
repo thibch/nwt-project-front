@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {Router} from "@angular/router";
-import {LoginFormComponent} from "../login-form/login-form.component";
+import {LoginFormComponent} from "../shared/login-form/login-form.component";
 import {User} from "../shared/types/user.type";
 import {filter, map, mergeMap} from "rxjs/operators";
 import {LoginService} from "../shared/services/login.service";
