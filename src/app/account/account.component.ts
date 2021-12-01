@@ -23,6 +23,8 @@ export class AccountComponent implements OnInit {
   private _updateDialog: MatDialogRef<UpdateFormComponent, User>;
   /// MatDialogRef to an UpdatePasswordFormComponent managing User
   private _updatePasswordDialog: MatDialogRef<UpdatePasswordFormComponent, User>;
+  /// User currently connected
+  private _user: User;
 
   /**
    * Constructor of a Account Component
@@ -40,9 +42,6 @@ export class AccountComponent implements OnInit {
     this._updateDialog = {} as MatDialogRef<UpdateFormComponent, User>;
     this._updatePasswordDialog = {} as MatDialogRef<UpdatePasswordFormComponent, User>;
   }
-
-  /// User currently connected
-  private _user: User;
 
   /**
    * Getter of a user

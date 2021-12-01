@@ -23,7 +23,7 @@
       {{collection.amount}} exemplaire(s) | {{collection.waiting}} exemplaire(s) en attente d'échange
     </mat-card-content>
 
-    <button (click)="buildTradeDialog()" *ngIf="!isCardOwner && !tradingOperation && suffisentAmount" mat-mini-fab>
+    <button (click)="buildTradeDialog()" *ngIf="!isCardOwner && !tradingOperation && suffisentAmount  && connected()" mat-mini-fab>
       <mat-icon>swap_horiz</mat-icon>
     </button>
   </mat-card>
@@ -51,7 +51,7 @@
       {{collection.amount}} exemplaire(s) | {{collection.waiting}} exemplaire(s) en attente d'échange
     </mat-card-content>
 
-    <button (click)="buildTradeDialog()" *ngIf="!isCardOwner && !tradingOperation && suffisentAmount" mat-mini-fab>
+    <button (click)="buildTradeDialog()" *ngIf="!isCardOwner && !tradingOperation && suffisentAmount && connected()" mat-mini-fab>
       <mat-icon>swap_horiz</mat-icon>
     </button>
   </mat-card>

@@ -285,4 +285,13 @@ export class CardComponent implements OnInit {
   tradeOffer(card: Card) {
     this._tradeOffer$.emit(card);
   }
+
+  /**
+   * Check if there's an user currently logged in the app
+   *
+   * @return {boolean} true if a user is connected, false either
+   */
+  connected(): boolean {
+    return this._storageService.getUser().username !== undefined;
+  }
 }
