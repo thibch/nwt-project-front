@@ -29,8 +29,12 @@
     <a [routerLink]="['/profile']" color="secondary">Compte</a>
   </span>
 
-  <span *ngIf="user.username !== undefined">
-    <a (click)="notifications()" color="secondary">Notifications</a>
+  <span *ngIf="user.username !== undefined && (notifications!= null && notifications.length!=0)">
+    <a (click)="notificationsView()" color="primary">Notifications ({{notifications.length}})</a>
+  </span>
+
+  <span *ngIf="user.username !== undefined && (notifications== null || notifications.length==0)">
+    <a (click)="notificationsView()" color="secondary">Notifications</a>
   </span>
 
   <span *ngIf="user.username !== undefined">

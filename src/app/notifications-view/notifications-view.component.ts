@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {NavbarComponent} from "../navbar/navbar.component";
 import {Notification} from "../shared/types/notification.type";
 import {NotificationsService} from "../shared/services/notifications.service";
@@ -13,13 +13,8 @@ import {StorageService} from "../shared/services/storage.service";
 export class NotificationsViewComponent implements OnInit {
   private _notifications: Notification[];
 
-  constructor(private _dialogRef: MatDialogRef<NavbarComponent>, private _notificationService: NotificationsService, private _storageService: StorageService) {
-    this._notifications = [];
-    _notificationService.getAllNotificationsById(_storageService.getUser().id as string).subscribe(
-      data => {
-        this._notifications = data
-      }
-    );
+  constructor(private _dialogRef: MatDialogRef<NavbarComponent>, private _notificationService: NotificationsService, private _storageService: StorageService, @Inject(MAT_DIALOG_DATA) private _data: { notifications: Notification[] }) {
+    this._notifications = _data.notifications;
   }
 
 
