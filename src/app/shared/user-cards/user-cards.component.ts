@@ -11,27 +11,50 @@ import {StorageService} from "../services/storage.service";
   styleUrls: ['./user-cards.component.css']
 })
 export class UserCardsComponent implements OnInit {
+
+  /**
+   * Constructor of the user cards component
+   *
+   * @param _storageService {StorageService} service managing tokens and users storage
+   * @param _collectionService {CollectionService} service managing collections
+   * @param _cardService {CardService} service managing cards
+   */
   constructor(private _storageService: StorageService, private _collectionService: CollectionService, private _cardService: CardService) {
     this._user = _storageService.getUser() as User;
     this._collections = [];
   }
 
+  /// User owning card to display
   private _user: User;
 
+  /**
+   * Getter of the user owning the cards
+   *
+   * @return {User}
+   */
   get user(): User {
     return this._user;
   }
 
+  /// List of collection of the user
   private _collections: Collection[];
 
+  /**
+   * Getter of the collections of the user
+   *
+   * @return {Collection[]}
+   */
   get collections(): Collection[] {
     return this._collections;
   }
 
+  /**
+   * On init implementation
+   */
   ngOnInit(): void {
+    // On each init, get all user collections
     this._collectionService.getAllCollectionById(this.user.id as string).subscribe({
       next: (collection: Collection[]) => this._collections = collection
     });
   }
-
 }

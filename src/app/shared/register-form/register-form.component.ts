@@ -12,18 +12,6 @@ import {CustomValidators} from "../validators/custom-validators";
 })
 export class RegisterFormComponent implements OnInit, OnChanges {
 
-  /// Formgroup for registering
-  private _registerForm: FormGroup;
-
-  /// User currently in creation (used for completing the form when there's errors)
-  private _user: User;
-
-  /// Boolean to know if the password need to be hide or not
-  private _hide: boolean;
-
-  /// Boolean to know if an error message need to be displayed
-  private _error: boolean;
-
   /**
    * Constructor of the register form component
    *
@@ -37,24 +25,8 @@ export class RegisterFormComponent implements OnInit, OnChanges {
     this._registerForm = this._buildForm();
   }
 
-  /**
-   * Method wich build the form
-   * @private
-   *
-   * @return {FormGroup}
-   */
-  private _buildForm(): FormGroup{
-    return new FormGroup({
-      firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-      lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-      username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-      password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.password])),
-      passwordConfirm: new FormControl('', Validators.compose([Validators.required])),
-      birthDate: new FormControl('', Validators.compose([Validators.required])),
-      email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
-      photo: new FormControl()
-    }, {validators: CustomValidators.passwordDif("password", "passwordConfirm")});
-  }
+  /// Formgroup for registering
+  private _registerForm: FormGroup;
 
   /**
    * Getter of the registerForm
@@ -65,6 +37,9 @@ export class RegisterFormComponent implements OnInit, OnChanges {
     return this._registerForm;
   }
 
+  /// User currently in creation (used for completing the form when there's errors)
+  private _user: User;
+
   /**
    * Getter of the user currently edited in the form
    *
@@ -73,6 +48,9 @@ export class RegisterFormComponent implements OnInit, OnChanges {
   get user(): User {
     return this._user;
   }
+
+  /// Boolean to know if the password need to be hide or not
+  private _hide: boolean;
 
   /**
    * Getter of the hide boolean
@@ -91,6 +69,9 @@ export class RegisterFormComponent implements OnInit, OnChanges {
   set hide(value: boolean) {
     this._hide = value;
   }
+
+  /// Boolean to know if an error message need to be displayed
+  private _error: boolean;
 
   /**
    * Getter of the error boolean
@@ -140,5 +121,24 @@ export class RegisterFormComponent implements OnInit, OnChanges {
    */
   create(user: User) {
     this._dialogRef.close(user);
+  }
+
+  /**
+   * Method wich build the form
+   * @private
+   *
+   * @return {FormGroup}
+   */
+  private _buildForm(): FormGroup {
+    return new FormGroup({
+      firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      username: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+      password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(8), CustomValidators.password])),
+      passwordConfirm: new FormControl('', Validators.compose([Validators.required])),
+      birthDate: new FormControl('', Validators.compose([Validators.required])),
+      email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
+      photo: new FormControl()
+    }, {validators: CustomValidators.passwordDif("password", "passwordConfirm")});
   }
 }

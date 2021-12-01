@@ -13,9 +13,6 @@ import {Card} from "../shared/types/card.type";
 })
 export class CardsTradeComponent implements OnInit {
 
-  /// List of collections wich can be used in a trade
-  private _collectionsTradable: Collection[];
-
   /**
    * Constructor of a component displaying all connected user tradable cards
    *
@@ -26,6 +23,9 @@ export class CardsTradeComponent implements OnInit {
   constructor(private _dialogRef: MatDialogRef<CardComponent>, private _collectionsService: CollectionService, private _storageService: StorageService) {
     this._collectionsTradable = [];
   }
+
+  /// List of collections wich can be used in a trade
+  private _collectionsTradable: Collection[];
 
   /**
    * Getter of the tradable collections

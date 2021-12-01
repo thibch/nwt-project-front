@@ -16,18 +16,6 @@ export class CardsListComponent implements OnInit {
   /// EventEmitter when card is clicked (for the trade module)
   private readonly _tradeOffer$: EventEmitter<Card>;
 
-  /// Tradable boolean, used to know if the card provided by the list can be trade
-  private _tradable: boolean;
-
-  /// User owner of the card printed (to know if the card can be trade)
-  private _cardOwner: User;
-
-  /// Map of card to get the collection matching the card currently displayed
-  private _cards: Map<Card, Collection>;
-
-  /// Array of collections matching card currently displayed
-  private _collections: Collection[];
-
   /**
    * Constructor of the component card list
    *
@@ -40,6 +28,9 @@ export class CardsListComponent implements OnInit {
     this._collections = [];
     this._tradeOffer$ = new EventEmitter<Card>();
   }
+
+  /// Tradable boolean, used to know if the card provided by the list can be trade
+  private _tradable: boolean;
 
   /**
    * Getter of the tradable field
@@ -60,6 +51,9 @@ export class CardsListComponent implements OnInit {
     this._tradable = value;
   }
 
+  /// User owner of the card printed (to know if the card can be trade)
+  private _cardOwner: User;
+
   /**
    * Getter of the list owner
    */
@@ -77,6 +71,9 @@ export class CardsListComponent implements OnInit {
     this._cardOwner = value;
   }
 
+  /// Map of card to get the collection matching the card currently displayed
+  private _cards: Map<Card, Collection>;
+
   /**
    * Getter of the map of card and collection
    *
@@ -85,6 +82,9 @@ export class CardsListComponent implements OnInit {
   get cards(): Map<Card, Collection> {
     return this._cards;
   }
+
+  /// Array of collections matching card currently displayed
+  private _collections: Collection[];
 
   /**
    * Getter of the collections currently displayed by the card list
@@ -131,13 +131,14 @@ export class CardsListComponent implements OnInit {
   /**
    * On init implementation
    */
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   /**
    * Emit a new trade offer
    *
    * @param card {Card} card selected for the trade
-    */
+   */
   tradeOffer(card: Card) {
     this._tradeOffer$.emit(card);
   }

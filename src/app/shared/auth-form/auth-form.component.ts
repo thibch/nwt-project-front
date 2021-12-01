@@ -14,15 +14,6 @@ export class AuthFormComponent implements OnInit {
   /// User to authentifiate
   private _user: User;
 
-  /// Field to hide or not the password
-  private _hide: boolean;
-
-  /// Display error if the authentification fail
-  private _error: boolean;
-
-  /// Operation type (Delete account, updating account ...) to display in the component
-  private _operation: string;
-
   /**
    * Constructor of the form
    *
@@ -36,6 +27,9 @@ export class AuthFormComponent implements OnInit {
     this._user = _data.user;
     this._operation = _data.operation;
   }
+
+  /// Field to hide or not the password
+  private _hide: boolean;
 
   /**
    * Getter of the hide field
@@ -55,6 +49,9 @@ export class AuthFormComponent implements OnInit {
     this._hide = value;
   }
 
+  /// Display error if the authentification fail
+  private _error: boolean;
+
   /**
    * Getter of the field error
    *
@@ -62,6 +59,18 @@ export class AuthFormComponent implements OnInit {
    */
   get error(): boolean {
     return this._error;
+  }
+
+  /// Operation type (Delete account, updating account ...) to display in the component
+  private _operation: string;
+
+  /**
+   * Get the operation type
+   *
+   * @return {string}
+   */
+  get operation(): string {
+    return this._operation;
   }
 
   /**
@@ -86,14 +95,5 @@ export class AuthFormComponent implements OnInit {
   auth(user: User) {
     user.username = this._user.username;
     this._dialogRef.close(user);
-  }
-
-  /**
-   * Get the operation type
-   *
-   * @return {string}
-   */
-  get operation(): string {
-    return this._operation;
   }
 }

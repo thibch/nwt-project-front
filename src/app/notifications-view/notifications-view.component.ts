@@ -12,9 +12,6 @@ import {StorageService} from "../shared/services/storage.service";
 })
 export class NotificationsViewComponent implements OnInit {
 
-  /// List of all notifications of the user
-  private _notifications: Notification[];
-
   /**
    * Constructor of the notification view
    *
@@ -26,6 +23,9 @@ export class NotificationsViewComponent implements OnInit {
   constructor(private _dialogRef: MatDialogRef<NavbarComponent>, private _notificationService: NotificationsService, private _storageService: StorageService, @Inject(MAT_DIALOG_DATA) private _data: { notifications: Notification[] }) {
     this._notifications = _data.notifications;
   }
+
+  /// List of all notifications of the user
+  private _notifications: Notification[];
 
   /**
    * Getter of the list of all notifications
@@ -48,7 +48,8 @@ export class NotificationsViewComponent implements OnInit {
   /**
    * On init implementation
    */
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   /**
    * Close the dialog

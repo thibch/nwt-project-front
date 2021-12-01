@@ -16,12 +16,6 @@ import {StorageService} from "../shared/services/storage.service";
 })
 export class PublicProfileComponent implements OnInit {
 
-  /// List of all collections of the user
-  private _collections: Collection[];
-
-  /// User matching this profile
-  private _user: User;
-
   /**
    * Constructor of an user profile
    *
@@ -35,6 +29,30 @@ export class PublicProfileComponent implements OnInit {
     this._user = {} as User;
     this._collections = [];
   }
+
+  /// List of all collections of the user
+  private _collections: Collection[];
+
+  /**
+   * Getter of the list of collections
+   *
+   * @return {Collection[]}
+   */
+  get collections(): Collection[] {
+    return this._collections;
+  }
+
+  /**
+   * Setter of the list of collections
+   *
+   * @param value {Collection[]}
+   */
+  set collections(value: Collection[]) {
+    this._collections = value;
+  }
+
+  /// User matching this profile
+  private _user: User;
 
   /**
    * Getter of the user of this profile
@@ -53,24 +71,6 @@ export class PublicProfileComponent implements OnInit {
   @Input('user')
   set user(value: User) {
     this._user = value;
-  }
-
-  /**
-   * Getter of the list of collections
-   *
-   * @return {Collection[]}
-   */
-  get collections(): Collection[] {
-    return this._collections;
-  }
-
-  /**
-   * Setter of the list of collections
-   *
-   * @param value {Collection[]}
-   */
-  set collections(value: Collection[]) {
-    this._collections = value;
   }
 
   /**

@@ -11,9 +11,6 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 })
 export class HomeComponent implements OnInit {
 
-  /// Currently logged used (if present)
-  private _user: User;
-
   /**
    * Constructor of the home component
    *
@@ -27,6 +24,9 @@ export class HomeComponent implements OnInit {
       this._user = this._storageService.getUser();
     }
   }
+
+  /// Currently logged used (if present)
+  private _user: User;
 
   /**
    * Getter of the logged user

@@ -10,9 +10,6 @@ import {Router} from "@angular/router";
 })
 export class SearchUserComponent implements OnInit {
 
-  /// List of all users to display
-  private _users: User[];
-
   /**
    * Constructor of the search user component
    *
@@ -22,6 +19,9 @@ export class SearchUserComponent implements OnInit {
   constructor(private _userService: UserService, private _router: Router) {
     this._users = [];
   }
+
+  /// List of all users to display
+  private _users: User[];
 
   /**
    * Getter of all the users

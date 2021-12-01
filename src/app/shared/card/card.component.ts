@@ -29,24 +29,6 @@ export class CardComponent implements OnInit {
   /// Event emitter when clicked with this component
   private readonly _tradeOffer$: EventEmitter<Card>;
 
-  /// Card actually displayed by the component
-  private _card: Card;
-
-  /// User card owner of this card
-  private _cardOwner: User;
-
-  /// Collection containing this card
-  private _collection: Collection;
-
-  /// Boolean for the displaying of the card, if tradable, a button will appear
-  private _tradable: boolean;
-
-  /// Boolean for the displaying of the card, if the amount is enough, a button will appear
-  private _suffisentAmount: boolean;
-
-  /// Boolean for the displaying, if this card is currently in a trading operation (displayed in a trade summary), the trade button will not appear
-  private _tradingOperation: boolean;
-
   /**
    * Constructor of a card component
    *
@@ -68,6 +50,9 @@ export class CardComponent implements OnInit {
     this._tradeOffer$ = new EventEmitter<Card>();
   }
 
+  /// Card actually displayed by the component
+  private _card: Card;
+
   /**
    * Getter of the card displayed
    *
@@ -87,6 +72,9 @@ export class CardComponent implements OnInit {
     this._card = value;
   }
 
+  /// User card owner of this card
+  private _cardOwner: User;
+
   /**
    * Getter of the card owner
    *
@@ -105,6 +93,9 @@ export class CardComponent implements OnInit {
   set cardOwner(value: User) {
     this._cardOwner = value;
   }
+
+  /// Collection containing this card
+  private _collection: Collection;
 
   /**
    * Getter of the collection
@@ -126,6 +117,9 @@ export class CardComponent implements OnInit {
     this._suffisentAmount = this.collection.amount > this.collection.waiting;
   }
 
+  /// Boolean for the displaying of the card, if tradable, a button will appear
+  private _tradable: boolean;
+
   /**
    * Getter of the tradable field
    *
@@ -145,6 +139,9 @@ export class CardComponent implements OnInit {
     this._tradable = value;
   }
 
+  /// Boolean for the displaying of the card, if the amount is enough, a button will appear
+  private _suffisentAmount: boolean;
+
   /**
    * Getter of the suffisientAmount field
    *
@@ -153,6 +150,9 @@ export class CardComponent implements OnInit {
   get suffisentAmount(): boolean {
     return this._suffisentAmount;
   }
+
+  /// Boolean for the displaying, if this card is currently in a trading operation (displayed in a trade summary), the trade button will not appear
+  private _tradingOperation: boolean;
 
   /**
    * Getter of the tradig operation field

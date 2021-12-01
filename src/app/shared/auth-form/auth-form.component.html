@@ -7,7 +7,8 @@
   <form #f="ngForm" novalidate>
     <p>
       <mat-form-field>
-        <input #password=ngModel [type]="hide?'password':'text'" matInput name="password" ngModel placeholder="Mot de passe"
+        <input #password=ngModel [type]="hide?'password':'text'" matInput name="password" ngModel
+               placeholder="Mot de passe"
                required/>
         <button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" mat-icon-button
                 matSuffix>

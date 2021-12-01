@@ -19,7 +19,7 @@ export class DeleteComponent implements OnInit {
   private _deleteDialog: MatDialogRef<AuthFormComponent, User>;
 
   /// User wich is currently logged
-  private _loggedUser: User ;
+  private _loggedUser: User;
 
   /// Boolean, used to display an error in the auth form if auth failed
   private _error: boolean;
