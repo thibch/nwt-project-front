@@ -11,27 +11,35 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 })
 export class HomeComponent implements OnInit {
 
+  /// Currently logged used (if present)
+  private _user: User;
+
+  /**
+   * Constructor of the home component
+   *
+   * @param _loginService {LoginService} service managing login
+   * @param _storageService {StorageService} service managing token and user storage
+   * @param _jwtHelper {JwtHelperService} service managing jwt tokens
+   */
   constructor(private _loginService: LoginService, private _storageService: StorageService, private _jwtHelper: JwtHelperService) {
     this._user = {} as User;
-
-
     if (_storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
       this._user = this._storageService.getUser();
     }
-
   }
 
-  private _user: User;
-
+  /**
+   * Getter of the logged user
+   *
+   * @return {User}
+   */
   get user(): User {
     return this._user;
   }
 
-  set user(value: User) {
-    this._user = value;
-  }
-
+  /**
+   * On Init implementation
+   */
   ngOnInit(): void {
   }
-
 }
