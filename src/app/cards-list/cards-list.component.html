@@ -1,0 +1,11 @@
+<section>
+  <div *ngFor="let card of cards | keyvalue">
+    <app-card (tradeOffer)="tradeOffer($event)"
+              [cardOwner]="cardOwner"
+              [card]="card.key"
+              [collection]="card.value"
+              [tradable]="tradable">
+    </app-card>
+  </div>
+</section>
+

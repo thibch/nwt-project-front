@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../shared/types/user.type";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {LoginComponent} from "../login/login.component";
-import {CustomValidators} from "./custom-validators";
+import {CustomValidators} from "../shared/validators/custom-validators";
 import {MatDialogActions} from "@angular/material/dialog";
 
 @Component({
@@ -40,7 +40,7 @@ export class RegisterFormComponent implements OnInit, OnChanges {
     this._error = _data.error;
     this._hide = true;
 
-    console.log(this._user)
+
     this._registerForm = new FormGroup({
       firstname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
       lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),

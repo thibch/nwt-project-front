@@ -14,8 +14,19 @@ export const environment = {
       getById: '/users/:id',
       allUser: '/users',
       allCard: '/cards',
-      oneCard: '/cards/:id',
-      roll: '/cards/user/:idUser/roll'
+      getCardById: '/cards/:id',
+      roll: '/cards/user/:idUser/roll',
+      allCollectionByUserId: '/collections/users/:id',
+      allNotificationsById: '/notifications/users/:id',
+      getNotificationById: '/notifications/:id',
+      allTradeByWaitingId: '/trades/users/waiting/:id',
+      allTradeBySecondId: '/trades/users/second/:id',
+      trades: '/trades',
+      notifications: '/notifications',
+      allCollectionTradableByUserId: '/collections/users/tradable/:id',
+      collectionByUserIdByCardId: '/collections/:idUser/:idCard',
+      tradeDecline: '/trades/decline/:id',
+      tradeAccept: '/trades/accept/:id'
     }
   }
 };

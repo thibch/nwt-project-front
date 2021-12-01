@@ -1,15 +1,59 @@
-<div align="center">
-  <mat-card class="user-card">
-    <mat-card-content>
 
-      <img src="{{ card.image }}" width="200">
-      <mat-card-title>
-        {{card.name}}
-      </mat-card-title>
-      <mat-card-subtitle>
-        {{card.description}}
-      </mat-card-subtitle>
+<div *ngIf="collection.amount!=0" align="center">
+  <mat-card *ngIf="!tradable" class="user-card">
+    <section>
+      <ng-container *ngFor="let i of [].constructor(card.level)">⭐</ng-container>
+    </section>
+    <img height="162" src="{{ card.image }}" width="288">
+
+    <br>
+    <mat-card-title>
+      {{card.name}}
+    </mat-card-title>
+    <br>
+    <mat-card-content>
+      {{card.description}}
     </mat-card-content>
+
+
+    <mat-card-content *ngIf="collection.amount>1 && collection.waiting == 0">
+      {{collection.amount}} exemplaires
+    </mat-card-content>
+
+    <mat-card-content *ngIf="collection.waiting>0">
+      {{collection.amount}} exemplaire(s) | {{collection.waiting}} exemplaire(s) en attente d'échange
+    </mat-card-content>
+
+    <button (click)="buildTradeDialog()" *ngIf="!isCardOwner && !tradingOperation && suffisentAmount" mat-mini-fab>
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
+  </mat-card>
+  <mat-card (click)="tradeOffer(card)" *ngIf="tradable" class="user-card">
+    <section>
+      <ng-container *ngFor="let i of [].constructor(card.level)">⭐</ng-container>
+    </section>
+    <img height="162" src="{{ card.image }}" width="288">
+
+    <br>
+    <mat-card-title>
+      {{card.name}}
+    </mat-card-title>
+    <br>
+    <mat-card-content>
+      {{card.description}}
+    </mat-card-content>
+
+
+    <mat-card-content *ngIf="collection.amount>1 && collection.waiting == 0">
+      {{collection.amount}} exemplaires
+    </mat-card-content>
+
+    <mat-card-content *ngIf="collection.waiting>0">
+      {{collection.amount}} exemplaire(s) | {{collection.waiting}} exemplaire(s) en attente d'échange
+    </mat-card-content>
+
+    <button (click)="buildTradeDialog()" *ngIf="!isCardOwner && !tradingOperation && suffisentAmount" mat-mini-fab>
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
   </mat-card>
 </div>
-

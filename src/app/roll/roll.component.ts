@@ -27,7 +27,7 @@ export class RollComponent implements OnInit {
 
       if (data && data.length && data.length > 0) {
         data.forEach(collec => {
-          this._cardService.getById(collec.idCard).subscribe( value => {
+          this._cardService.fetchById(collec.idCard).subscribe( value => {
             this._cards.push(value);
           });
         });

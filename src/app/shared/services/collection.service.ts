@@ -5,14 +5,17 @@ import {Observable} from "rxjs";
 import {User} from "../types/user.type";
 import {Collection} from "../types/collection.type";
 import {defaultIfEmpty, filter} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CollectionService {
+
   private readonly _backendURL: any;
 
-  constructor(private _http: HttpClient) {
+  constructor(private _router: Router, private _http: HttpClient) {
+
     this._backendURL = {};
 
     // build backend base url
@@ -31,5 +34,26 @@ export class CollectionService {
       filter((collections: Collection[]) => !!collections),
       defaultIfEmpty([] as Collection[]),
     );
+  }
+
+  /**
+   * Function to fetch all users
+   */
+  getAllCollectionById(id: string): Observable<Collection[]> {
+    return this._http.get<Collection[]>(this._backendURL.allCollectionByUserId.replace(":id", id));
+  }
+
+  /**
+   * Function to fetch all users
+   */
+  getAllCollectionTradableById(id: string): Observable<Collection[]> {
+    return this._http.get<Collection[]>(this._backendURL.allCollectionTradableByUserId.replace(":id", id));
+  }
+
+  /**
+   * Function to fetch all users
+   */
+  getAllCollectionByUserIdByCardId(idCard: string, idUser: string): Observable<Collection[]> {
+    return this._http.get<Collection[]>(this._backendURL.collectionByUserIdByCardId.replace(":idUser", idUser).replace(":idCard", idCard));
   }
 }

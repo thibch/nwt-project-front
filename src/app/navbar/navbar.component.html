@@ -1,6 +1,6 @@
 <mat-toolbar class="extend-toolbar">
   <span>
-    <a  [routerLink]="['/home']">TadaCard</a>
+    <a [routerLink]="['/home']">TadaCard</a>
   </span>
 
   <span class="flex"></span>
@@ -10,7 +10,11 @@
   </span>
 
   <span *ngIf="user.username !== undefined">
-    <a color="secondary" [routerLink]="['/cards']">Mes Cartes</a>
+    <a [routerLink]="['/mycards']" color="secondary">Mes Cartes</a>
+  </span>
+
+  <span *ngIf="user.username !== undefined">
+    <a [routerLink]="['/trades']" color="secondary">Echange</a>
   </span>
 
   <span>
@@ -26,9 +30,16 @@
   </span>
 
   <span *ngIf="user.username !== undefined">
-    <a color="secondary" [routerLink]="['/user/'+user.username+'/profile']">Compte</a>
+    <a [routerLink]="['/profile']" color="secondary">Compte</a>
   </span>
 
+  <span *ngIf="user.username !== undefined && (notifications!= null && notifications.length!=0)">
+    <a (click)="notificationsView()" color="primary">Notifications ({{notifications.length}})</a>
+  </span>
+
+  <span *ngIf="user.username !== undefined && (notifications== null || notifications.length==0)">
+    <a (click)="notificationsView()" color="secondary">Notifications</a>
+  </span>
 
   <span *ngIf="user.username !== undefined">
     <a color="secondary" (click)="logout()">Déconnexion</a>

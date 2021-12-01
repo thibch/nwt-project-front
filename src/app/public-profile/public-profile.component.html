@@ -1,0 +1,28 @@
+<section align="center">
+  <mat-card class="user-card">
+
+    <img src="{{ user.photo }}">
+    <mat-card-content>
+      <p>
+        Pseudo: {{user.username}}
+      </p>
+    </mat-card-content>
+    <mat-card-content>
+      <p>
+        Prénom: {{user.firstname}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</section>
+<br>
+<br>
+<section align="center">
+  <h1>Liste des cartes de l'utilisateur</h1>
+</section>
+
+
+<section align="center">
+  <app-cards-list [cardOwner]="this.user" [tradable]="!isMyAccount()" [collections]="collections"></app-cards-list>
+</section>
+
+

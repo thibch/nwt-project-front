@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Voulez vous confirmer cette offre ?</h2>
+
+<mat-dialog-content>
+  <app-trade [tradeOwner]=true [trade]="trade"></app-trade>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button (click)="redirectBack()" mat-button type="button">Annuler</button>
+  <button (click)="purpose()" mat-button type="button">Proposer</button>
+</mat-dialog-actions>

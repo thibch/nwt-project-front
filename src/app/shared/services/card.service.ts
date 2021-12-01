@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
-import {User} from "../types/user.type";
 import {Card} from "../types/card.type";
 
 @Injectable({
@@ -25,14 +24,14 @@ export class CardService {
 
     // build all backend urls
     // @ts-ignore
-    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
+    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
   }
 
   fetch(): Observable<Card[]> {
     return this._http.get<Card[]>(this._backendURL.allCard);
   }
 
-  getById(id: string): Observable<Card> {
-    return this._http.get<Card>(this._backendURL.oneCard.replace(':id', id));
+  fetchById(idCard: string): Observable<Card> {
+    return this._http.get<Card>(this._backendURL.getCardById.replace(":id", idCard));
   }
 }

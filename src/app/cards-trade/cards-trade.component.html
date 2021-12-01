@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Liste de vos cartes échangables</h2>
+
+<mat-dialog-content>
+  <app-cards-list (tradeOffer)="createTrade($event)" [cardOwner]="getUser()" [collections]="collectionsTradable"
+                  [tradable]=true></app-cards-list>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button (click)="redirectBack()" mat-button type="button">Annuler</button>
+</mat-dialog-actions>

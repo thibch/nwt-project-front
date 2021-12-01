@@ -16,21 +16,34 @@ import {LoginFormComponent} from './login-form/login-form.component';
 import {RegisterComponent} from './register/register.component';
 import {RegisterFormComponent} from './register-form/register-form.component';
 import {MatInputModule} from "@angular/material/input";
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
-import {AuthInterceptor} from "./shared/interceptor/auth.interceptor";
-import {JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
-import { AccountComponent } from './account/account.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {JwtModule} from "@auth0/angular-jwt";
+import {AccountComponent} from './account/account.component';
 import {MatCardModule} from "@angular/material/card";
-import { NavbarComponent } from './navbar/navbar.component';
+import {NavbarComponent} from './navbar/navbar.component';
 import {MatIconModule} from "@angular/material/icon";
-import { CardComponent } from './card/card.component';
-import { CardListComponent } from './card-list/card-list.component';
+import {CardComponent} from './card/card.component';
+import {CardsListComponent} from './cards-list/cards-list.component';
 import {MatListModule} from "@angular/material/list";
-import { SearchUserComponent } from './search-user/search-user.component';
-import { UserMinimizedComponent } from './user-minimized/user-minimized.component';
-import { DeleteComponent } from './delete/delete.component';
-import { DeleteFormComponent } from './delete-form/delete-form.component';
+import {SearchUserComponent} from './search-user/search-user.component';
+import {UserMinimizedComponent} from './user-minimized/user-minimized.component';
+import {DeleteComponent} from './delete/delete.component';
+import {AuthFormComponent} from './auth-form/auth-form.component';
+import {UpdateFormComponent} from './update-form/update-form.component';
+import {UpdatePasswordFormComponent} from "./update-password-form/update-password-form.component";
+import {PublicProfileComponent} from './public-profile/public-profile.component';
+import {UserCardsComponent} from './user-cards/user-cards.component';
+import {NotificationsViewComponent} from './notifications-view/notifications-view.component';
+import {NotificationComponent} from './notification/notification.component';
+import {AuthInterceptor} from "./shared/interceptors/auth.interceptor";
+import {TradesComponent} from './trades/trades.component';
+import {TradesOffersComponent} from './trades-offers/trades-offers.component';
+import {UserTradesOffersComponent} from './user-trades-offers/user-trades-offers.component';
+import {TradeComponent} from './trade/trade.component';
+import {CardsTradeComponent} from './cards-trade/cards-trade.component';
+import {TradeSummaryComponent} from './trade-summary/trade-summary.component';
 import { RollComponent } from './roll/roll.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -43,12 +56,24 @@ import { RollComponent } from './roll/roll.component';
     AccountComponent,
     NavbarComponent,
     CardComponent,
-    CardListComponent,
+    CardsListComponent,
     SearchUserComponent,
     UserMinimizedComponent,
     DeleteComponent,
-    DeleteFormComponent,
-    RollComponent
+    RollComponent,
+    NotificationsViewComponent,
+    NotificationComponent,
+    AuthFormComponent,
+    UpdateFormComponent,
+    UpdatePasswordFormComponent,
+    PublicProfileComponent,
+    UserCardsComponent,
+    TradesComponent,
+    TradesOffersComponent,
+    UserTradesOffersComponent,
+    TradeComponent,
+    CardsTradeComponent,
+    TradeSummaryComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +83,7 @@ import { RollComponent } from './roll/roll.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -72,7 +98,8 @@ import { RollComponent } from './roll/roll.component';
     }),
     MatCardModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatGridListModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

@@ -1,9 +1,9 @@
-<h2 mat-dialog-title>Suppresion du compte</h2>
+<h2 mat-dialog-title>Attention, {{operation}} du compte !</h2>
 
 <mat-dialog-content>
   <p *ngIf="error">Mot de passe invalide !</p>
 
-  <h5>Pour supprimer votre compte, entrez votre mot de passe:</h5>
+  <h5>Pour la {{operation}} du compte, entrez votre mot de passe:</h5>
   <form novalidate #f="ngForm">
     <p>
       <mat-form-field>
@@ -22,5 +22,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="redirectBack()">Annuler</button>
-  <button mat-button type="submit" (click)="delete(f.value)" [disabled]="f.invalid">Suppression du compte</button>
+  <button mat-button type="submit" (click)="auth(f.value)" [disabled]="f.invalid">Valider</button>
 </mat-dialog-actions>
