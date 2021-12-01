@@ -30,7 +30,7 @@ export class AccountComponent implements OnInit {
   private _updatePasswordDialog: MatDialogRef<UpdatePasswordFormComponent, User>;
 
   /**
-   * Constructo of a Account Component
+   * Constructor of a Account Component
    *
    * @param _loginService {LoginService} service managing Login
    * @param _dialog {MatDialog} matdialog to open forms

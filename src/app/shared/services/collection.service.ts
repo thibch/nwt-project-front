@@ -11,9 +11,15 @@ import {Router} from "@angular/router";
 })
 export class CollectionService {
 
+  /// BackendURL with all urls of the backend to make request
   private readonly _backendURL: any;
 
-  constructor(private _router: Router, private _http: HttpClient) {
+  /**
+   * Constructor of the Collection service
+   *
+   * @param _http {HttpClient} where request will be made
+   */
+  constructor(private _http: HttpClient) {
 
     this._backendURL = {};
 
@@ -28,6 +34,12 @@ export class CollectionService {
     Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
   }
 
+  /**
+   * Method used to roll 10 card and add it to the collection of the gived id user
+   *
+   * @param id {string|undefined} id of the user to add rolled card
+   * @return {Observable<Collection[]>} list of collections updated
+   */
   roll(id: string | undefined): Observable<Collection[]> {
     return this._http.put<Collection[]>(this._backendURL.roll.replace(':idUser', id), {}).pipe(
       filter((collections: Collection[]) => !!collections),
@@ -36,23 +48,22 @@ export class CollectionService {
   }
 
   /**
-   * Function to fetch all users
+   * Function to fetch all collections for a user
+   *
+   * @param id {string} id of the user
+   * @return {Observable<Collection[]>} list of collections of the user
    */
   getAllCollectionById(id: string): Observable<Collection[]> {
     return this._http.get<Collection[]>(this._backendURL.allCollectionByUserId.replace(":id", id));
   }
 
   /**
-   * Function to fetch all users
+   * Function to fetch all collection wich can be trade (amoun>waiting for trade amount) for a user
+   *
+   * @param id {string} id of the user
+   * @return {Observable<Collection[]>} list of collections tradable of the user
    */
   getAllCollectionTradableById(id: string): Observable<Collection[]> {
     return this._http.get<Collection[]>(this._backendURL.allCollectionTradableByUserId.replace(":id", id));
-  }
-
-  /**
-   * Function to fetch all users
-   */
-  getAllCollectionByUserIdByCardId(idCard: string, idUser: string): Observable<Collection[]> {
-    return this._http.get<Collection[]>(this._backendURL.collectionByUserIdByCardId.replace(":idUser", idUser).replace(":idCard", idCard));
   }
 }
