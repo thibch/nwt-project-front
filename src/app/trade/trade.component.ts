@@ -6,6 +6,8 @@ import {CardService} from "../shared/services/card.service";
 import {UserService} from "../shared/services/user.service";
 import {Router} from "@angular/router";
 import {TradeService} from "../shared/services/trade.service";
+import {Notification} from "../shared/types/notification.type";
+import {NotificationsService} from "../shared/services/notifications.service";
 
 @Component({
   selector: 'app-trade',
@@ -23,7 +25,7 @@ export class TradeComponent implements OnInit {
   private _cardWanted: Card;
   private _card: Card;
 
-  constructor(private _router: Router, private _cardService: CardService, private _userService: UserService, private _tradeService: TradeService) {
+  constructor(private _router: Router, private _cardService: CardService, private _notificationsService: NotificationsService, private _userService: UserService, private _tradeService: TradeService) {
     this._trade = {} as Trade;
     this._card = {} as Card;
     this._tradeOwner = false;
@@ -112,16 +114,43 @@ export class TradeComponent implements OnInit {
   }
 
   accept() {
-    console.log(this.trade)
     this._tradeService.accept(this.trade).subscribe(data => {
-      this._router.navigate(['/mycards'])
+      let notification: Notification = {
+        read: false,
+        accepted: false,
+        creationTime: "2021-11-30T17:20:41.000+0100",
+        content: "Votre proposition d'échange avec " + this._secondUser.username + " pour la carte " + this.cardWanted.name + " a été acceptée !",
+        type: "tradeAccept",
+        idUser: this._trade.idUserWaiting
+      } as Notification;
+
+
+      this._notificationsService.create(notification).subscribe(
+        data => {
+          this._router.navigate(['/mycards'])
+        });
+
     });
   }
 
   refuse() {
-    console.log(this.trade)
     this._tradeService.decline(this.trade).subscribe(data => {
-      this._router.navigate(['/mycards'])
+      let notification: Notification = {
+        read: false,
+        accepted: false,
+        creationTime: "2021-11-30T17:20:41.000+0100",
+        content: "Votre proposition d'échange avec " + this._secondUser.username + " pour la carte " + this.cardWanted.name + " a été refusée !",
+        type: "tradeDecline",
+        idUser: this._trade.idUserWaiting
+      } as Notification;
+
+
+      this._notificationsService.create(notification).subscribe(
+        data => {
+          this._router.navigate(['/mycards'])
+        });
     });
+
+
   }
 }
