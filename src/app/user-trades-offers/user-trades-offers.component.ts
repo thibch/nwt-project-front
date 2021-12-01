@@ -8,16 +8,11 @@ import {Trade} from "../shared/types/trade.type";
 })
 export class UserTradesOffersComponent implements OnInit {
 
-  private _tradesOffers : Trade[]
-
   constructor() {
     this._tradesOffers = [];
   }
 
-
-  ngOnInit(): void {
-  }
-
+  private _tradesOffers: Trade[]
 
   get tradesOffers(): Trade[] {
     return this._tradesOffers;
@@ -26,5 +21,8 @@ export class UserTradesOffersComponent implements OnInit {
   @Input("tradesOffers")
   set tradesOffers(value: Trade[]) {
     this._tradesOffers = value;
+  }
+
+  ngOnInit(): void {
   }
 }

@@ -12,12 +12,7 @@ import {CustomValidators} from "../shared/validators/custom-validators";
 })
 export class UpdateFormComponent implements OnInit {
 
-  private _user: User;
-  private _hide: boolean;
-  private _error: boolean;
-  private _updateForm: FormGroup;
-
-  constructor(private _dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) private _data: {error: boolean, user: User}) {
+  constructor(private _dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) private _data: { error: boolean, user: User }) {
     this._user = _data.user;
     this._error = _data.error;
     this._hide = true;
@@ -30,11 +25,10 @@ export class UpdateFormComponent implements OnInit {
       birthDate: new FormControl('', Validators.compose([Validators.required])),
       email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
       photo: new FormControl()
-    },{validators: CustomValidators.passwordDif("password", "passwordConfirm")});
+    }, {validators: CustomValidators.passwordDif("password", "passwordConfirm")});
   }
 
-  ngOnInit(): void {
-  }
+  private _user: User;
 
   get user(): User {
     return this._user;
@@ -44,10 +38,27 @@ export class UpdateFormComponent implements OnInit {
     this._user = value;
   }
 
-  get error():  boolean  {
+  private _hide: boolean;
+
+  get hide(): boolean {
+    return this._hide;
+  }
+
+  set hide(value: boolean) {
+    this._hide = value;
+  }
+
+  private _error: boolean;
+
+  get error(): boolean {
     return this._error;
   }
 
+  set error(error: boolean) {
+    this._error = error;
+  }
+
+  private _updateForm: FormGroup;
 
   get updateForm(): FormGroup {
     return this._updateForm;
@@ -57,16 +68,7 @@ export class UpdateFormComponent implements OnInit {
     this._updateForm = value;
   }
 
-  set error(error: boolean ) {
-    this._error = error;
-  }
-
-  get hide(): boolean {
-    return this._hide;
-  }
-
-  set hide(value: boolean) {
-    this._hide = value;
+  ngOnInit(): void {
   }
 
   redirectBack() {

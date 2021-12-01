@@ -11,21 +11,17 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 })
 export class HomeComponent implements OnInit {
 
-  private _user: User;
-
   constructor(private _loginService: LoginService, private _storageService: StorageService, private _jwtHelper: JwtHelperService) {
     this._user = {} as User;
 
 
-    if(_storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)){
+    if (_storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
       this._user = this._storageService.getUser();
     }
 
   }
 
-  ngOnInit(): void {
-  }
-
+  private _user: User;
 
   get user(): User {
     return this._user;
@@ -33,6 +29,9 @@ export class HomeComponent implements OnInit {
 
   set user(value: User) {
     this._user = value;
+  }
+
+  ngOnInit(): void {
   }
 
 }

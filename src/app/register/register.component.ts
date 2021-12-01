@@ -14,7 +14,6 @@ import {UserService} from "../shared/services/user.service";
 export class RegisterComponent implements OnInit {
 
   private _registerDialog: MatDialogRef<RegisterFormComponent, User>;
-  private _error: boolean;
   private _user: User;
 
   constructor(private _router: Router, private _dialog: MatDialog, private _userService: UserService) {
@@ -23,6 +22,7 @@ export class RegisterComponent implements OnInit {
     this._user = {} as User;
   }
 
+  private _error: boolean;
 
   get error(): boolean {
     return this._error;
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     this._openDialog()
   }
 
-  private _openDialog(){
+  private _openDialog() {
     // create modal with initial data inside
     this._registerDialog = this._dialog.open(RegisterFormComponent, {
       width: '500px',
@@ -46,11 +46,11 @@ export class RegisterComponent implements OnInit {
     this._registerDialog.afterClosed()
       .pipe(
         filter((user: any) => !!user),
-        map((user: any ) => {
+        map((user: any) => {
 
           delete user?.passwordConfirm;
 
-          if(user?.photo == null){
+          if (user?.photo == null) {
             delete user?.photo;
           }
 

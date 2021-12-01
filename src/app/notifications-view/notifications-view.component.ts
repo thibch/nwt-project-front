@@ -11,17 +11,11 @@ import {StorageService} from "../shared/services/storage.service";
   styleUrls: ['./notifications-view.component.css']
 })
 export class NotificationsViewComponent implements OnInit {
-  private _notifications: Notification[];
-
   constructor(private _dialogRef: MatDialogRef<NavbarComponent>, private _notificationService: NotificationsService, private _storageService: StorageService, @Inject(MAT_DIALOG_DATA) private _data: { notifications: Notification[] }) {
     this._notifications = _data.notifications;
   }
 
-
-  ngOnInit(): void {
-
-  }
-
+  private _notifications: Notification[];
 
   get notifications(): Notification[] {
     return this._notifications;
@@ -29,6 +23,10 @@ export class NotificationsViewComponent implements OnInit {
 
   set notifications(value: Notification[]) {
     this._notifications = value;
+  }
+
+  ngOnInit(): void {
+
   }
 
   close() {

@@ -42,7 +42,7 @@ import {UserTradesOffersComponent} from './user-trades-offers/user-trades-offers
 import {TradeComponent} from './shared/trade/trade.component';
 import {CardsTradeComponent} from './cards-trade/cards-trade.component';
 import {TradeSummaryComponent} from './trade-summary/trade-summary.component';
-import { RollComponent } from './roll/roll.component';
+import {RollComponent} from './roll/roll.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
@@ -101,7 +101,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatListModule,
     MatGridListModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

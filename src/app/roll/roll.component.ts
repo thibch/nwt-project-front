@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Card} from "../shared/types/card.type";
 import {CollectionService} from "../shared/services/collection.service";
 import {CardService} from "../shared/services/card.service";
@@ -11,8 +11,6 @@ import {User} from "../shared/types/user.type";
   styleUrls: ['./roll.component.css']
 })
 export class RollComponent implements OnInit {
-  private _hasRolled: boolean;
-  private _cards: Card[];
   private _user: User;
 
   constructor(private _collectionService: CollectionService,
@@ -23,6 +21,18 @@ export class RollComponent implements OnInit {
     this._user = {} as User;
   }
 
+  private _hasRolled: boolean;
+
+  get hasRolled(): boolean {
+    return this._hasRolled;
+  }
+
+  private _cards: Card[];
+
+  get cards(): Card[] {
+    return this._cards;
+  }
+
   ngOnInit(): void {
 
     this._user = this._storageService.getUser()
@@ -30,34 +40,27 @@ export class RollComponent implements OnInit {
   }
 
   roll(): void {
-    this._collectionService.roll(this._user.id).subscribe({ next: data => {
-      this._cards = [] as Card[];
+    this._collectionService.roll(this._user.id).subscribe({
+      next: data => {
+        this._cards = [] as Card[];
 
-      let i = 1;
+        let i = 1;
 
-      if (data && data.length && data.length > 0) {
-        data.forEach( async collec => {
-          this._cardService.fetchById(collec.idCard).subscribe(async value => {
-            this._cards.push(value);
+        if (data && data.length && data.length > 0) {
+          data.forEach(async collec => {
+            this._cardService.fetchById(collec.idCard).subscribe(async value => {
+              this._cards.push(value);
+            });
           });
-        });
-        this._hasRolled = true;
+          this._hasRolled = true;
+        }
+      },
+      error: () => {
+        this._cards = [] as Card[];
+        this._hasRolled = false;
       }
-    },
-    error: () => {
-      this._cards = [] as Card[];
-      this._hasRolled = false;
-    }
     });
 
-  }
-
-  get hasRolled(): boolean {
-    return this._hasRolled;
-  }
-
-  get cards(): Card[] {
-    return this._cards;
   }
 
 }

@@ -2,7 +2,7 @@ mat-toolbar.extend-toolbar {
   background-repeat: no-repeat;
   background-position: right;
   top: 0px;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
   width: 100%;
   z-index: 1;
   color: white;
@@ -36,6 +36,7 @@ mat-toolbar a img {
 mat-toolbar-row:nth-child(1) {
   margin-bottom: 66px;
 }
+
 mat-toolbar-row:nth-child(2) {
   padding-left: 30px;
   text-align: center;

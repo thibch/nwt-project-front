@@ -31,7 +31,7 @@ export class DeleteComponent implements OnInit {
   }
 
 
-  private _openDialog(){
+  private _openDialog() {
 
     this._deleteDialog = this._dialog.open(AuthFormComponent, {
       width: '400px',
@@ -44,7 +44,7 @@ export class DeleteComponent implements OnInit {
       .pipe(
         filter((user: User | undefined) => !!user),
         map((user: User | undefined) => (user as User)),
-        mergeMap((user: User)=> this._loginService.auth(user)),
+        mergeMap((user: User) => this._loginService.auth(user)),
       ).subscribe(
       data => {
 
@@ -58,7 +58,7 @@ export class DeleteComponent implements OnInit {
             this._error = true;
             this._openDialog();
           });
-          },
+      },
       error => {
         this._error = true;
         this._openDialog();

@@ -17,7 +17,6 @@ export class CustomValidators {
   }
 
 
-
   static passwordDif(password: string, passwordConfirmed: string): ValidatorFn | null {
     return (controls: AbstractControl) => {
       const control = controls.get(password);
@@ -28,8 +27,8 @@ export class CustomValidators {
       }
 
       if (control?.value !== checkControl?.value) {
-        controls.get(passwordConfirmed)?.setErrors({ matchPasswords: true });
-        return { matchPasswords: true };
+        controls.get(passwordConfirmed)?.setErrors({matchPasswords: true});
+        return {matchPasswords: true};
       } else {
         return null;
       }

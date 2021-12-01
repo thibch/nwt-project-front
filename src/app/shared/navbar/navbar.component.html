@@ -6,7 +6,7 @@
   <span class="flex"></span>
 
   <span *ngIf="user.username !== undefined">
-    <a color="secondary" [routerLink]="['/roll']">Cartes gratuites</a>
+    <a [routerLink]="['/roll']" color="secondary">Cartes gratuites</a>
   </span>
 
   <span *ngIf="user.username !== undefined">
@@ -18,15 +18,15 @@
   </span>
 
   <span>
-    <a color="secondary" [routerLink]="['/search']">Recherche d'utilisateurs</a>
+    <a [routerLink]="['/search']" color="secondary">Recherche d'utilisateurs</a>
   </span>
 
   <span *ngIf="user.username == undefined">
-    <a color="secondary" [routerLink]="['/login']">Connexion</a>
+    <a [routerLink]="['/login']" color="secondary">Connexion</a>
   </span>
 
   <span *ngIf="user.username == undefined">
-    <a color="secondary" [routerLink]="['/register']">Inscription</a>
+    <a [routerLink]="['/register']" color="secondary">Inscription</a>
   </span>
 
   <span *ngIf="user.username !== undefined">
@@ -42,7 +42,7 @@
   </span>
 
   <span *ngIf="user.username !== undefined">
-    <a color="secondary" (click)="logout()">Déconnexion</a>
+    <a (click)="logout()" color="secondary">Déconnexion</a>
   </span>
 
 </mat-toolbar>

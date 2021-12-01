@@ -15,9 +15,11 @@ section {
   align-items: center;
   justify-content: center;
 }
+
 .center {
   margin: auto;
 }
+
 .width-min {
   width: min-content;
 }

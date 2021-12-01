@@ -15,12 +15,30 @@ import {StorageService} from "../shared/services/storage.service";
   styleUrls: ['./public-profile.component.css']
 })
 export class PublicProfileComponent implements OnInit {
-  private _user: User;
-  private _collections: Collection[];
-
   constructor(private _route: ActivatedRoute, private _storageService: StorageService, private _userService: UserService, private _collectionService: CollectionService, private _cardService: CardService) {
     this._user = {} as User;
     this._collections = [];
+  }
+
+  private _user: User;
+
+  get user(): User {
+    return this._user;
+  }
+
+  @Input('user')
+  set user(value: User) {
+    this._user = value;
+  }
+
+  private _collections: Collection[];
+
+  get collections(): Collection[] {
+    return this._collections;
+  }
+
+  set collections(value: Collection[]) {
+    this._collections = value;
   }
 
   public isMyAccount() {
@@ -47,24 +65,7 @@ export class PublicProfileComponent implements OnInit {
         mergeMap((params: any) => this._collectionService.getAllCollectionById(params.id as string)),
       )
     ).subscribe({
-      next: (collection: Collection[]) => this._collections=collection
+      next: (collection: Collection[]) => this._collections = collection
     });
-  }
-
-  get user(): User {
-    return this._user;
-  }
-
-  @Input('user')
-  set user(value: User) {
-    this._user = value;
-  }
-
-  get collections(): Collection[] {
-    return this._collections;
-  }
-
-  set collections(value: Collection[]) {
-    this._collections = value;
   }
 }

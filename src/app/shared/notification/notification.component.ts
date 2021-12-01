@@ -8,11 +8,20 @@ import {NotificationsService} from "../services/notifications.service";
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent implements OnInit {
-  private _notification: Notification;
-
   constructor(private _notificationService: NotificationsService) {
     this._notification = {} as Notification;
     this._exists = true;
+  }
+
+  private _notification: Notification;
+
+  get notification(): Notification {
+    return this._notification;
+  }
+
+  @Input("notification")
+  set notification(value: Notification) {
+    this._notification = value;
   }
 
   private _exists: boolean;
@@ -22,16 +31,6 @@ export class NotificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-
-  get notification(): Notification {
-    return this._notification;
-  }
-
-  @Input("notification")
-  set notification(value: Notification) {
-    this._notification = value;
   }
 
   delete() {

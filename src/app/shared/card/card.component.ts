@@ -20,16 +20,9 @@ import {CollectionService} from "../services/collection.service";
 })
 export class CardComponent implements OnInit {
 
-  private _card: Card;
   private _tradeDialog: MatDialogRef<CardsTradeComponent, Card>;
   private _tradeSummaryDialog: MatDialogRef<TradeSummaryComponent, Trade>;
   private readonly _tradeOffer$: EventEmitter<Card>;
-
-  private _cardOwner: User;
-  private _collection: Collection;
-  private _tradable: boolean;
-  private _suffisentAmount: boolean;
-  private _tradingOperation: boolean;
 
   constructor(private _dialog: MatDialog, private _collectionService: CollectionService, private _storageService: StorageService, private _notificationService: NotificationsService, private _tradeService: TradeService) {
     this._card = {} as Card;
@@ -43,53 +36,7 @@ export class CardComponent implements OnInit {
     this._tradeOffer$ = new EventEmitter<Card>();
   }
 
-  ngOnInit(): void {
-    console.log('card :');
-    console.log(this.tradable);
-    console.log(this.tradingOperation);
-    console.log(this.suffisentAmount);
-  }
-
-  get suffisentAmount(): boolean {
-    return this._suffisentAmount;
-  }
-
-  get tradingOperation(): boolean {
-    return this._tradingOperation;
-  }
-
-  @Input("tradingOperation")
-  set tradingOperation(value: boolean) {
-    this._tradingOperation = value;
-  }
-
-  get tradable(): boolean {
-    return this._tradable;
-  }
-
-  @Input("tradable")
-  set tradable(value: boolean) {
-    this._tradable = value;
-  }
-
-
-  get cardOwner(): User {
-    return this._cardOwner;
-  }
-
-  get collection(): Collection {
-    return this._collection;
-  }
-
-  @Input("cardOwner")
-  set cardOwner(value: User) {
-    this._cardOwner = value;
-  }
-
-  get isCardOwner() {
-    return this._cardOwner.id == this._storageService.getUser().id;
-  }
-
+  private _card: Card;
 
   get card(): Card {
     return this._card;
@@ -100,6 +47,23 @@ export class CardComponent implements OnInit {
     this._card = value;
   }
 
+  private _cardOwner: User;
+
+  get cardOwner(): User {
+    return this._cardOwner;
+  }
+
+  @Input("cardOwner")
+  set cardOwner(value: User) {
+    this._cardOwner = value;
+  }
+
+  private _collection: Collection;
+
+  get collection(): Collection {
+    return this._collection;
+  }
+
   @Input("collection")
   set collection(value: Collection) {
     this._collection = value;
@@ -107,11 +71,50 @@ export class CardComponent implements OnInit {
     console.log(value);
   }
 
+  private _tradable: boolean;
+
+  get tradable(): boolean {
+    return this._tradable;
+  }
+
+  @Input("tradable")
+  set tradable(value: boolean) {
+    this._tradable = value;
+  }
+
+  private _suffisentAmount: boolean;
+
+  get suffisentAmount(): boolean {
+    return this._suffisentAmount;
+  }
+
+  private _tradingOperation: boolean;
+
+  get tradingOperation(): boolean {
+    return this._tradingOperation;
+  }
+
+  @Input("tradingOperation")
+  set tradingOperation(value: boolean) {
+    this._tradingOperation = value;
+  }
+
+  get isCardOwner() {
+    return this._cardOwner.id == this._storageService.getUser().id;
+  }
+
   /**
    * Returns private property _tradeOffer$
    */
   @Output('tradeOffer') get tradeOffer$(): EventEmitter<Card> {
     return this._tradeOffer$;
+  }
+
+  ngOnInit(): void {
+    console.log('card :');
+    console.log(this.tradable);
+    console.log(this.tradingOperation);
+    console.log(this.suffisentAmount);
   }
 
   buildTradeDialog() {

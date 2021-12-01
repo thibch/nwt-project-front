@@ -16,15 +16,6 @@ import {NotificationsService} from "../services/notifications.service";
 })
 export class TradeComponent implements OnInit {
 
-  private _trade: Trade;
-
-  private _tradeOwner: boolean;
-
-  private _userWaiting: User;
-  private _secondUser: User;
-  private _cardWanted: Card;
-  private _card: Card;
-
   constructor(private _router: Router, private _cardService: CardService, private _notificationsService: NotificationsService, private _userService: UserService, private _tradeService: TradeService) {
     this._trade = {} as Trade;
     this._card = {} as Card;
@@ -34,6 +25,18 @@ export class TradeComponent implements OnInit {
     this._secondUser = {} as User;
   }
 
+  private _trade: Trade;
+
+  get trade(): Trade {
+    return this._trade;
+  }
+
+  @Input("trade")
+  set trade(value: Trade) {
+    this._trade = value;
+  }
+
+  private _tradeOwner: boolean;
 
   get tradeOwner(): boolean {
     return this._tradeOwner;
@@ -44,13 +47,57 @@ export class TradeComponent implements OnInit {
     this._tradeOwner = value;
   }
 
+  private _userWaiting: User;
+
+  get userWaiting(): User {
+    return this._userWaiting;
+  }
+
+  set userWaiting(value: User) {
+    this._userWaiting = value;
+  }
+
+  private _secondUser: User;
+
+  get secondUser(): User {
+    return this._secondUser;
+  }
+
+  set secondUser(value: User) {
+    this._secondUser = value;
+  }
+
+  private _cardWanted: Card;
+
+  get cardWanted(): Card {
+    return this._cardWanted;
+  }
+
+  set cardWanted(value: Card) {
+    this._cardWanted = value;
+  }
+
+  private _card: Card;
+
+  get card(): Card {
+    return this._card;
+  }
+
+  set card(value: Card) {
+    this._card = value;
+  }
+
   ngOnInit(): void {
     this._cardService.fetchById(this._trade.idCard as string).subscribe(
-      (data: Card) => {this._card = data;}
+      (data: Card) => {
+        this._card = data;
+      }
     );
 
     this._cardService.fetchById(this._trade.idCardWanted as string).subscribe(
-      (data: Card) => {this._cardWanted = data;}
+      (data: Card) => {
+        this._cardWanted = data;
+      }
     );
 
     this._userService.fetchOne(this._trade.idUser as string).subscribe(
@@ -66,51 +113,8 @@ export class TradeComponent implements OnInit {
     );
   }
 
-
   openProfile(user: User) {
     this._router.navigate(['/user/' + user.id + '/profile'])
-  }
-
-  get trade(): Trade {
-    return this._trade;
-  }
-
-  @Input("trade")
-  set trade(value: Trade) {
-    this._trade = value;
-  }
-
-
-  get userWaiting(): User {
-    return this._userWaiting;
-  }
-
-  set userWaiting(value: User) {
-    this._userWaiting = value;
-  }
-
-  get secondUser(): User {
-    return this._secondUser;
-  }
-
-  set secondUser(value: User) {
-    this._secondUser = value;
-  }
-
-  get cardWanted(): Card {
-    return this._cardWanted;
-  }
-
-  set cardWanted(value: Card) {
-    this._cardWanted = value;
-  }
-
-  get card(): Card {
-    return this._card;
-  }
-
-  set card(value: Card) {
-    this._card = value;
   }
 
   accept() {

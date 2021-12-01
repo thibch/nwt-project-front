@@ -1,4 +1,4 @@
-<section *ngFor="let trade of tradesOffers" >
+<section *ngFor="let trade of tradesOffers">
   <app-trade [tradeOwner]=false [trade]="trade"></app-trade>
 </section>
 <section *ngIf="tradesOffers==null">

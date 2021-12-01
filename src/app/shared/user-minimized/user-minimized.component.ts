@@ -8,15 +8,11 @@ import {User} from "../types/user.type";
 })
 export class UserMinimizedComponent implements OnInit {
 
-  private _user: User;
-
   constructor() {
-    this._user= {} as User;
+    this._user = {} as User;
   }
 
-  ngOnInit(): void {
-  }
-
+  private _user: User;
 
   get user(): User {
     return this._user;
@@ -25,5 +21,8 @@ export class UserMinimizedComponent implements OnInit {
   @Input('user')
   set user(value: User) {
     this._user = value;
+  }
+
+  ngOnInit(): void {
   }
 }

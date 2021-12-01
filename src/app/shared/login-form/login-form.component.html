@@ -2,10 +2,11 @@
 
 <mat-dialog-content>
   <p *ngIf="error">Pseudo ou Mot de passe invalide !</p>
-  <form novalidate #f="ngForm">
+  <form #f="ngForm" novalidate>
     <p>
       <mat-form-field>
-        <input matInput placeholder="Pseudo" [ngModel]="user?.username" ngModel minlength="2" #username=ngModel required name="username"/>
+        <input #username=ngModel [ngModel]="user?.username" matInput minlength="2" name="username" ngModel placeholder="Pseudo"
+               required/>
         <mat-error *ngIf="username?.dirty && username?.hasError('required')">
           Le pseudo est <strong>requis.</strong>
         </mat-error>
@@ -16,8 +17,10 @@
     </p>
     <p>
       <mat-form-field>
-        <input [type]="hide?'password':'text'" matInput placeholder="Mot de passe" ngModel #password=ngModel required name="password"/>
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <input #password=ngModel [type]="hide?'password':'text'" matInput name="password" ngModel placeholder="Mot de passe"
+               required/>
+        <button (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" mat-icon-button
+                matSuffix>
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         <mat-error *ngIf="password?.dirty && password?.hasError('required')">
@@ -30,6 +33,6 @@
 
 
 <mat-dialog-actions align="end">
-  <button mat-button type="button" (click)="redirectBack()">Annuler</button>
-  <button mat-button type="submit" (click)="login(f.value)" [disabled]="f.invalid">Connexion</button>
+  <button (click)="redirectBack()" mat-button type="button">Annuler</button>
+  <button (click)="login(f.value)" [disabled]="f.invalid" mat-button type="submit">Connexion</button>
 </mat-dialog-actions>

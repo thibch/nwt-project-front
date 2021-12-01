@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {LoginComponent} from "../../login/login.component";
 import {User} from "../types/user.type";
@@ -10,17 +10,34 @@ import {Router} from "@angular/router";
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-  private _hide: boolean;
-  private _error: boolean;
-  private _user : User;
-
   constructor(private _dialogRef: MatDialogRef<LoginComponent>, private _router: Router, @Inject(MAT_DIALOG_DATA) private _data: { error: boolean, user: User }) {
-    this._hide =true;
+    this._hide = true;
     this._error = _data.error;
     this._user = _data.user;
 
   }
 
+  private _hide: boolean;
+
+  get hide(): boolean {
+    return this._hide;
+  }
+
+  set hide(value: boolean) {
+    this._hide = value;
+  }
+
+  private _error: boolean;
+
+  get error(): boolean {
+    return this._error;
+  }
+
+  set error(value: boolean) {
+    this._error = value;
+  }
+
+  private _user: User;
 
   get user(): User {
     return this._user;
@@ -31,23 +48,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-
-  get error(): boolean {
-    return this._error;
-  }
-
-  set error(value: boolean) {
-    this._error = value;
-  }
-
-  get hide(): boolean {
-    return this._hide;
-  }
-
-  set hide(value: boolean) {
-    this._hide = value;
   }
 
   redirectBack() {

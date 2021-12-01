@@ -5,8 +5,8 @@ section {
   justify-content: center;
 }
 
-app-user-minimized{
-  color: rgba(0,0,0,0.87);
+app-user-minimized {
+  color: rgba(0, 0, 0, 0.87);
   font-size: 14px;
   display: block;
   padding: 10px;

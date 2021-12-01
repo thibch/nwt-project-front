@@ -4,7 +4,6 @@ import {User} from "../types/user.type";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {LoginComponent} from "../../login/login.component";
 import {CustomValidators} from "../validators/custom-validators";
-import {MatDialogActions} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-register-form',
@@ -13,29 +12,7 @@ import {MatDialogActions} from "@angular/material/dialog";
 })
 export class RegisterFormComponent implements OnInit, OnChanges {
 
-  get registerForm(): FormGroup {
-    return this._registerForm;
-  }
-
-  set registerForm(value: FormGroup) {
-    this._registerForm = value;
-  }
-
-  private _registerForm: FormGroup;
-  private _user: User;
-  private _hide: boolean;
-  private _error: boolean;
-
-
-  get user(): User {
-    return this._user;
-  }
-
-  set user(value: User) {
-    this._user = value;
-  }
-
-  constructor(private _dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) private _data: {error: boolean, user: User}) {
+  constructor(private _dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) private _data: { error: boolean, user: User }) {
     this._user = _data.user;
     this._error = _data.error;
     this._hide = true;
@@ -50,18 +27,30 @@ export class RegisterFormComponent implements OnInit, OnChanges {
       birthDate: new FormControl('', Validators.compose([Validators.required])),
       email: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), CustomValidators.email])),
       photo: new FormControl()
-    },{validators: CustomValidators.passwordDif("password", "passwordConfirm")});
+    }, {validators: CustomValidators.passwordDif("password", "passwordConfirm")});
   }
 
+  private _registerForm: FormGroup;
 
-
-  get error():  boolean  {
-    return this._error;
+  get registerForm(): FormGroup {
+    return this._registerForm;
   }
 
-  set error(error: boolean ) {
-    this._error = error;
+  set registerForm(value: FormGroup) {
+    this._registerForm = value;
   }
+
+  private _user: User;
+
+  get user(): User {
+    return this._user;
+  }
+
+  set user(value: User) {
+    this._user = value;
+  }
+
+  private _hide: boolean;
 
   get hide(): boolean {
     return this._hide;
@@ -69,6 +58,16 @@ export class RegisterFormComponent implements OnInit, OnChanges {
 
   set hide(value: boolean) {
     this._hide = value;
+  }
+
+  private _error: boolean;
+
+  get error(): boolean {
+    return this._error;
+  }
+
+  set error(error: boolean) {
+    this._error = error;
   }
 
   ngOnInit(): void {

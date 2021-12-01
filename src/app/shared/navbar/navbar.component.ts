@@ -15,10 +15,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  private _user: User;
-
   private _notificationDialog: MatDialogRef<NotificationsViewComponent, any>;
-
   private _subscription: Subscription;
 
   constructor(private _loginService: LoginService, private _dialog: MatDialog, private _storageService: StorageService, private _jwtHelper: JwtHelperService, private _notificationService: NotificationsService) {
@@ -26,6 +23,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this._notificationDialog = {} as MatDialogRef<NotificationsViewComponent, any>;
     this._notifications = [];
     this._subscription = {} as Subscription;
+  }
+
+  private _user: User;
+
+  get user(): User {
+    return this._user;
+  }
+
+  set user(value: User) {
+    this._user = value;
   }
 
   private _notifications: Notification[];
@@ -51,14 +58,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._subscription && this._subscription.unsubscribe();
-  }
-
-  get user(): User {
-    return this._user;
-  }
-
-  set user(value: User) {
-    this._user = value;
   }
 
   logout() {

@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Trade} from "../shared/types/trade.type";
 import {TradeService} from "../shared/services/trade.service";
 import {StorageService} from "../shared/services/storage.service";
-import {pipe} from "rxjs";
-import {defaultIfEmpty, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-trades',
@@ -12,18 +10,18 @@ import {defaultIfEmpty, map} from "rxjs/operators";
 })
 export class TradesComponent implements OnInit {
 
-  private _myTradeOffer : Trade[];
-  private _tradeOffer: Trade[];
-
   constructor(private _tradeService: TradeService, private _storageService: StorageService) {
     this._myTradeOffer = [];
     this._tradeOffer = [];
   }
 
+  private _myTradeOffer: Trade[];
 
   get myTradeOffer(): Trade[] {
     return this._myTradeOffer;
   }
+
+  private _tradeOffer: Trade[];
 
   get tradeOffer(): Trade[] {
     return this._tradeOffer;
@@ -31,11 +29,15 @@ export class TradesComponent implements OnInit {
 
   ngOnInit(): void {
     this._tradeService.getAllTradeBySecondId(this._storageService.getUser().id as string).subscribe(
-      (data: Trade[]) => {this._tradeOffer = data;}
+      (data: Trade[]) => {
+        this._tradeOffer = data;
+      }
     );
 
     this._tradeService.getAllTradeByWaitingId(this._storageService.getUser().id as string).subscribe(
-      (data: Trade[]) =>  {this._myTradeOffer = data;}
+      (data: Trade[]) => {
+        this._myTradeOffer = data;
+      }
     );
   }
 

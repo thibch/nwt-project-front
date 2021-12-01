@@ -11,30 +11,16 @@ import {Router} from "@angular/router";
 })
 export class AuthFormComponent implements OnInit {
 
-  private _hide: boolean;
-  private _error: boolean;
   private _user: User;
-  private _operation: string;
 
-  constructor(private _dialogRef: MatDialogRef<LoginComponent>, private _router: Router, @Inject(MAT_DIALOG_DATA) private _data: {error: boolean, user: User, operation: string}) {
-    this._hide =true;
+  constructor(private _dialogRef: MatDialogRef<LoginComponent>, private _router: Router, @Inject(MAT_DIALOG_DATA) private _data: { error: boolean, user: User, operation: string }) {
+    this._hide = true;
     this._error = _data.error;
     this._user = _data.user;
     this._operation = _data.operation;
   }
 
-  ngOnInit(): void {
-
-  }
-
-
-  get operation(): string {
-    return this._operation;
-  }
-
-  set operation(value: string) {
-    this._operation = value;
-  }
+  private _hide: boolean;
 
   get hide(): boolean {
     return this._hide;
@@ -44,6 +30,8 @@ export class AuthFormComponent implements OnInit {
     this._hide = value;
   }
 
+  private _error: boolean;
+
   get error(): boolean {
     return this._error;
   }
@@ -52,6 +40,19 @@ export class AuthFormComponent implements OnInit {
     this._error = value;
   }
 
+  private _operation: string;
+
+  get operation(): string {
+    return this._operation;
+  }
+
+  set operation(value: string) {
+    this._operation = value;
+  }
+
+  ngOnInit(): void {
+
+  }
 
   redirectBack() {
     this._dialogRef.close();

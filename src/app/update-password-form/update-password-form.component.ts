@@ -13,11 +13,7 @@ import {CustomValidators} from "../shared/validators/custom-validators";
 })
 export class UpdatePasswordFormComponent implements OnInit {
 
-  private _hide: boolean;
-  private _error: boolean;
-  private _user: User;
-
-  constructor(private _dialogRef: MatDialogRef<LoginComponent>, private _router: Router, @Inject(MAT_DIALOG_DATA) private _data: {error: boolean, user: User}) {
+  constructor(private _dialogRef: MatDialogRef<LoginComponent>, private _router: Router, @Inject(MAT_DIALOG_DATA) private _data: { error: boolean, user: User }) {
     this._hide = true;
     this._error = _data.error;
     this._user = _data.user;
@@ -29,30 +25,7 @@ export class UpdatePasswordFormComponent implements OnInit {
     }, {validators: CustomValidators.passwordDif("password", "passwordConfirm")});
   }
 
-  private _updatePasswordForm: FormGroup;
-
-  ngOnInit(): void {
-  }
-
-  get updatePasswordForm(): FormGroup {
-    return this._updatePasswordForm;
-  }
-
-  set updatePasswordForm(value: FormGroup) {
-    this._updatePasswordForm = value;
-  }
-
-  redirectBack() {
-    this._dialogRef.close();
-    this._router.navigate(['/home'])
-  }
-
-
-  changePass(user: User) {
-    this._user.password = user.password;
-    this._dialogRef.close(this._user);
-  }
-
+  private _hide: boolean;
 
   get hide(): boolean {
     return this._hide;
@@ -62,6 +35,8 @@ export class UpdatePasswordFormComponent implements OnInit {
     this._hide = value;
   }
 
+  private _error: boolean;
+
   get error(): boolean {
     return this._error;
   }
@@ -70,11 +45,36 @@ export class UpdatePasswordFormComponent implements OnInit {
     this._error = value;
   }
 
+  private _user: User;
+
   get user(): User {
     return this._user;
   }
 
   set user(value: User) {
     this._user = value;
+  }
+
+  private _updatePasswordForm: FormGroup;
+
+  get updatePasswordForm(): FormGroup {
+    return this._updatePasswordForm;
+  }
+
+  set updatePasswordForm(value: FormGroup) {
+    this._updatePasswordForm = value;
+  }
+
+  ngOnInit(): void {
+  }
+
+  redirectBack() {
+    this._dialogRef.close();
+    this._router.navigate(['/home'])
+  }
+
+  changePass(user: User) {
+    this._user.password = user.password;
+    this._dialogRef.close(this._user);
   }
 }

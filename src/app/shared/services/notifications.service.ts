@@ -38,15 +38,15 @@ export class NotificationsService {
     return this._http.delete(this._backendURL.getNotificationById.replace(":id", id), this._options());
   }
 
-  private _options(headerList: object = {}): any {
-    return {headers: new HttpHeaders(Object.assign({'Content-Type': 'application/json'}, headerList))};
-  }
-
   /**
    * Function to create a new notification
    */
   create(notification: Notification): Observable<any> {
     return this._http.post<Notification>(this._backendURL.notifications, notification, this._options());
+  }
+
+  private _options(headerList: object = {}): any {
+    return {headers: new HttpHeaders(Object.assign({'Content-Type': 'application/json'}, headerList))};
   }
 
 }

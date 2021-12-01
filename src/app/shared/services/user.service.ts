@@ -37,10 +37,6 @@ export class UserService {
     return this._http.patch<User>(this._backendURL.getById.replace(':id', id), user, this._options());
   }
 
-  private _options(headerList: object = {}): any {
-    return {headers: new HttpHeaders(Object.assign({'Content-Type': 'application/json'}, headerList))};
-  }
-
   /**
    * Function to fetch all users
    */
@@ -52,8 +48,11 @@ export class UserService {
     return this._http.delete(this._backendURL.getById.replace(":id", id)).pipe(map(() => id), this._options());
   }
 
-
   fetchOne(id: string): Observable<User> {
     return this._http.get<User>(this._backendURL.getById.replace(':id', id));
+  }
+
+  private _options(headerList: object = {}): any {
+    return {headers: new HttpHeaders(Object.assign({'Content-Type': 'application/json'}, headerList))};
   }
 }

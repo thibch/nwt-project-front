@@ -10,8 +10,6 @@ import {Router} from "@angular/router";
 })
 export class SearchUserComponent implements OnInit {
 
-  private _users: User[];
-
   constructor(private _userService: UserService, private _router: Router) {
     this._users = [];
     _userService.fetch().subscribe(
@@ -21,9 +19,7 @@ export class SearchUserComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-  }
-
+  private _users: User[];
 
   get users(): User[] {
     return this._users;
@@ -31,6 +27,9 @@ export class SearchUserComponent implements OnInit {
 
   set users(value: User[]) {
     this._users = value;
+  }
+
+  ngOnInit(): void {
   }
 
   openProfile(user: User) {

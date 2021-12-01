@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Card} from "../shared/types/card.type";
 import {CardService} from "../shared/services/card.service";
 import {Collection} from "../shared/types/collection.type";
-import {from, Observable} from "rxjs";
+import {from} from "rxjs";
 import {filter, mergeMap} from "rxjs/operators";
 import {User} from "../shared/types/user.type";
 
@@ -14,11 +14,6 @@ import {User} from "../shared/types/user.type";
 export class CardsListComponent implements OnInit {
 
   private readonly _tradeOffer$: EventEmitter<Card>;
-  private _tradable: boolean;
-  private _cardOwner: User;
-
-  private _cards: Map<Card, Collection>;
-  private _collections: Collection[];
 
   constructor(private _cardsService: CardService) {
     this._cards = new Map();
@@ -28,24 +23,7 @@ export class CardsListComponent implements OnInit {
     this._tradeOffer$ = new EventEmitter<Card>();
   }
 
-  @Input("collections")
-  set collections(value: Collection[]) {
-    this._collections = value;
-
-    let i: number = 0;
-
-    if (this._collections != null){
-      from(this._collections).pipe(
-        filter((collection: Collection) => !!collection),
-        mergeMap((collection: Collection) => this._cardsService.fetchById(collection.idCard)),
-      ).subscribe({
-        next: (card: Card) => {
-          this._cards.set(card, this.collections[i++]);
-        }
-      });
-    }
-  }
-
+  private _tradable: boolean;
 
   get tradable(): boolean {
     return this._tradable;
@@ -56,6 +34,8 @@ export class CardsListComponent implements OnInit {
     this._tradable = value;
   }
 
+  private _cardOwner: User;
+
   get cardOwner(): User {
     return this._cardOwner;
   }
@@ -65,12 +45,34 @@ export class CardsListComponent implements OnInit {
     this._cardOwner = value;
   }
 
+  private _cards: Map<Card, Collection>;
+
+  get cards(): Map<Card, Collection> {
+    return this._cards;
+  }
+
+  private _collections: Collection[];
+
   get collections(): Collection[] {
     return this._collections;
   }
 
-  get cards(): Map<Card, Collection> {
-    return this._cards;
+  @Input("collections")
+  set collections(value: Collection[]) {
+    this._collections = value;
+
+    let i: number = 0;
+
+    if (this._collections != null) {
+      from(this._collections).pipe(
+        filter((collection: Collection) => !!collection),
+        mergeMap((collection: Collection) => this._cardsService.fetchById(collection.idCard)),
+      ).subscribe({
+        next: (card: Card) => {
+          this._cards.set(card, this.collections[i++]);
+        }
+      });
+    }
   }
 
   /**

@@ -3,13 +3,14 @@
 <mat-dialog-content>
   <p *ngIf="error">Pseudo ou mail déjà utilisé !</p>
 
-  <form novalidate [formGroup]="updateForm">
-    <table class="full-width" cellspacing="0">
+  <form [formGroup]="updateForm" novalidate>
+    <table cellspacing="0" class="full-width">
       <tr>
         <td>
-          <mat-form-field class="full-width"
-                          [class.mgb15]="updateForm.get('firstname')?.dirty && updateForm.get('firstname')?.invalid">
-            <input matInput placeholder="Prénom" [ngModel]="user.firstname" formControlName="firstname" minlength="2" required name="firstname"/>
+          <mat-form-field [class.mgb15]="updateForm.get('firstname')?.dirty && updateForm.get('firstname')?.invalid"
+                          class="full-width">
+            <input [ngModel]="user.firstname" formControlName="firstname" matInput minlength="2" name="firstname"
+                   placeholder="Prénom" required/>
             <mat-error
               *ngIf="updateForm.get('firstname')?.dirty && updateForm.get('firstname')?.hasError('required')">
               Le champ prénom est <strong>requis.</strong>
@@ -21,9 +22,10 @@
           </mat-form-field>
         </td>
         <td class="align-right">
-          <mat-form-field class="full-width"
-                          [class.mgb15]="updateForm.get('lastname')?.dirty && updateForm.get('lastname')?.invalid">
-            <input matInput placeholder="Nom" [ngModel]="user.lastname" formControlName="lastname" minlength="2" required name="lastname"/>
+          <mat-form-field [class.mgb15]="updateForm.get('lastname')?.dirty && updateForm.get('lastname')?.invalid"
+                          class="full-width">
+            <input [ngModel]="user.lastname" formControlName="lastname" matInput minlength="2" name="lastname"
+                   placeholder="Nom" required/>
             <mat-error
               *ngIf="updateForm.get('lastname')?.dirty && updateForm.get('lastname')?.hasError('required')">
               Le champ nom est <strong>requis.</strong>
@@ -37,9 +39,10 @@
       </tr>
     </table>
     <p>
-      <mat-form-field class="full-width"
-                      [class.mgb15]="updateForm.get('username')?.dirty && updateForm.get('username')?.invalid">
-        <input matInput placeholder="Pseudo" formControlName="username" [ngModel]="user.username" minlength="2"  name="username"/>
+      <mat-form-field [class.mgb15]="updateForm.get('username')?.dirty && updateForm.get('username')?.invalid"
+                      class="full-width">
+        <input [ngModel]="user.username" formControlName="username" matInput minlength="2" name="username"
+               placeholder="Pseudo"/>
 
         <mat-error *ngIf="updateForm.get('username')?.dirty && updateForm.get('username')?.hasError('minlength')">
           Le champ pseudo doit contenir au minimum <strong>2 charactères.</strong>
@@ -47,9 +50,10 @@
       </mat-form-field>
     </p>
     <p>
-      <mat-form-field class="full-width"
-                      [class.mgb15]="updateForm.get('email')?.dirty && updateForm.get('email')?.invalid">
-        <input type="email" matInput placeholder="Mail" [ngModel]="user.email" formControlName="email" minlength="8"  name="email"/>
+      <mat-form-field [class.mgb15]="updateForm.get('email')?.dirty && updateForm.get('email')?.invalid"
+                      class="full-width">
+        <input [ngModel]="user.email" formControlName="email" matInput minlength="8" name="email" placeholder="Mail"
+               type="email"/>
 
         <mat-error *ngIf="updateForm.get('email')?.dirty && updateForm.get('email')?.hasError('minlength')">
           Le champ mail doit contenir au minimum <strong>8 charactères.</strong>
@@ -61,15 +65,16 @@
     </p>
 
     <p>
-      <mat-form-field class="full-width"
-                      [class.mgb15]="updateForm.get('photo')?.dirty && updateForm.get('photo')?.invalid">
-        <input matInput placeholder="Lien vers un avatar" [ngModel]="user.photo" formControlName="photo" name="photo"/>
+      <mat-form-field [class.mgb15]="updateForm.get('photo')?.dirty && updateForm.get('photo')?.invalid"
+                      class="full-width">
+        <input [ngModel]="user.photo" formControlName="photo" matInput name="photo" placeholder="Lien vers un avatar"/>
       </mat-form-field>
     </p>
     <p>
-      <mat-form-field class="full-width"
-                      [class.mgb15]="updateForm.get('birthDate')?.dirty && updateForm.get('birthDate')?.invalid">
-        <input matInput type="date" [ngModel]="user.birthDate" placeholder="Date de naissance" formControlName="birthDate" name="birthDate" required/>
+      <mat-form-field [class.mgb15]="updateForm.get('birthDate')?.dirty && updateForm.get('birthDate')?.invalid"
+                      class="full-width">
+        <input [ngModel]="user.birthDate" formControlName="birthDate" matInput name="birthDate"
+               placeholder="Date de naissance" required type="date"/>
         <mat-error
           *ngIf="updateForm.get('birthDate')?.dirty && updateForm.get('birthDate')?.hasError('required')">
           Le champ date de naissance est <strong>requis.</strong>
@@ -80,6 +85,8 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button type="button" (click)="redirectBack()">Annuler</button>
-  <button mat-button type="submit" (click)="update(updateForm.value)" [disabled]="updateForm.invalid">Mise à jour du compte</button>
+  <button (click)="redirectBack()" mat-button type="button">Annuler</button>
+  <button (click)="update(updateForm.value)" [disabled]="updateForm.invalid" mat-button type="submit">Mise à jour du
+    compte
+  </button>
 </mat-dialog-actions>

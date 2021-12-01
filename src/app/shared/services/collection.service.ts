@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
-import {User} from "../types/user.type";
 import {Collection} from "../types/collection.type";
 import {defaultIfEmpty, filter} from "rxjs/operators";
 import {Router} from "@angular/router";
@@ -26,10 +25,10 @@ export class CollectionService {
 
     // build all backend urls
     // @ts-ignore
-    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
+    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
   }
 
-  roll(id: string | undefined) : Observable<Collection[]> {
+  roll(id: string | undefined): Observable<Collection[]> {
     return this._http.put<Collection[]>(this._backendURL.roll.replace(':idUser', id), {}).pipe(
       filter((collections: Collection[]) => !!collections),
       defaultIfEmpty([] as Collection[]),

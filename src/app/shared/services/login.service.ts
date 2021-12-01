@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {HttpClient, HttpEvent, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {User} from "../types/user.type";
-import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 
 @Injectable({
@@ -25,23 +24,23 @@ export class LoginService {
 
     // build all backend urls
     // @ts-ignore
-    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
+    Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[k] = `${baseUrl}${environment.backend.endpoints[k]}`);
   }
 
-  auth(user: User): Observable<any>{
-    return this._http.post(this._backendURL.login, user,this._options());
+  auth(user: User): Observable<any> {
+    return this._http.post(this._backendURL.login, user, this._options());
   }
 
-  getFullUser(id: string): Observable<User>{
-    return this._http.get<User>(this._backendURL.getById.replace(':id',id));
+  getFullUser(id: string): Observable<User> {
+    return this._http.get<User>(this._backendURL.getById.replace(':id', id));
   }
 
-  test(): Observable<string>{
+  test(): Observable<string> {
     return this._http.get<string>(this._backendURL.test);
   }
 
   private _options(headerList: object = {}): any {
-    return { headers: new HttpHeaders(Object.assign({ 'Content-Type': 'application/json' }, headerList)) };
+    return {headers: new HttpHeaders(Object.assign({'Content-Type': 'application/json'}, headerList))};
   }
 }
 
