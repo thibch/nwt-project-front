@@ -15,9 +15,28 @@ import {Subscription} from "rxjs";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+
+  /// Mat dialog ref to the notification view component
   private _notificationDialog: MatDialogRef<NotificationsViewComponent, any>;
+
+  /// Subscription subscription to the notifications findAll
   private _subscription: Subscription;
 
+  /// User currently logged in
+  private _user: User;
+
+  /// List of the user notifications
+  private _notifications: Notification[];
+
+  /**
+   * Constructor of the navbar
+   *
+   * @param _loginService {LoginService} service wich managee login
+   * @param _dialog {MatDialog} dialog to open notification view
+   * @param _storageService {StorageService} service managing tokens and users storage
+   * @param _jwtHelper {JwtHelperService} service managing jwt tokens
+   * @param _notificationService {NotificationsService} service managing notifications
+   */
   constructor(private _loginService: LoginService, private _dialog: MatDialog, private _storageService: StorageService, private _jwtHelper: JwtHelperService, private _notificationService: NotificationsService) {
     this._user = {} as User;
     this._notificationDialog = {} as MatDialogRef<NotificationsViewComponent, any>;
@@ -25,23 +44,30 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this._subscription = {} as Subscription;
   }
 
-  private _user: User;
-
+  /**
+   * Getter of the currently logged in user
+   *
+   * @return {User}
+   */
   get user(): User {
     return this._user;
   }
 
-  set user(value: User) {
-    this._user = value;
-  }
-
-  private _notifications: Notification[];
-
+  /**
+   * Getter of the list of notifications of the user
+   *
+   * @return {Notification[]}
+   */
   get notifications(): Notification[] {
     return this._notifications;
   }
 
+  /**
+   * On init implementation
+   */
   ngOnInit(): void {
+
+    // Set user value and notifications
     this._subscription = this._storageService.subjectUser.subscribe(value => {
       if (this._storageService.getToken() && !this._jwtHelper.isTokenExpired(this._storageService.getToken() as string)) {
         this._user = this._storageService.getUser();
@@ -56,15 +82,25 @@ export class NavbarComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * On Destroy implementation
+   */
   ngOnDestroy(): void {
     this._subscription && this._subscription.unsubscribe();
   }
 
+  /**
+   * Method used when the user log out
+   */
   logout() {
+    // Log out the user and reload the page
     this._storageService.logout();
     location.reload()
   }
 
+  /**
+   * Method wich build and open the notification view dialog
+   */
   notificationsView() {
     // create modal with initial data inside
     this._notificationDialog = this._dialog.open(NotificationsViewComponent, {
