@@ -6,6 +6,10 @@
   <span class="flex"></span>
 
   <span *ngIf="user.username !== undefined">
+    <a color="secondary" [routerLink]="['/roll']">Cartes gratuites</a>
+  </span>
+
+  <span *ngIf="user.username !== undefined">
     <a color="secondary" [routerLink]="['/cards']">Mes Cartes</a>
   </span>
 

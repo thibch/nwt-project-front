@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
-import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {User} from "../types/user.type";
-import {Card} from "../types/card.type";
+import {Collection} from "../types/collection.type";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CardService {
-
+export class CollectionService {
   private readonly _backendURL: any;
 
-  constructor(private _router: Router, private _http: HttpClient) {
-
+  constructor(private _http: HttpClient) {
     this._backendURL = {};
 
     // build backend base url
@@ -28,11 +25,8 @@ export class CardService {
     Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
   }
 
-  fetch(): Observable<Card[]> {
-    return this._http.get<Card[]>(this._backendURL.allCard);
-  }
-
-  getById(id: string): Observable<Card> {
-    return this._http.get<Card>(this._backendURL.oneCard.replace(':id', id));
+  roll() : Observable<Collection[]> { // TODO : GET USER  BEFORE
+    console.log('roll');
+    return this._http.put<Collection[]>(this._backendURL.roll.replace(':idUser', '61a515c6b44ed1fbcced040b'), {});
   }
 }

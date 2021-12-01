@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+
+<button mat-stroked-button (click)="roll()" >Basic</button>
+
+<section *ngIf="buttonClicked">
+  <div *ngFor="let card in cards">
+    <app-card [card]="card"></app-card>
+  </div>
+</section>
+
+<!--
+{"level":30,"time":1638318387012,"pid":29276,"hostname":"thib-Machine","reqId":"req-14","res":{"statusCode":200},"responseTime":10.40743200108409,"msg":"request completed"}
+{"level":30,"time":1638318428205,"pid":29276,"hostname":"thib-Machine","reqId":"req-15","req":{"method":"OPTIONS","url":"/cards/user/61a515c6b44ed1fbcced040b/roll","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":42370},"msg":"incoming request"}
+{"level":30,"time":1638318428206,"pid":29276,"hostname":"thib-Machine","reqId":"req-15","res":{"statusCode":204},"responseTime":0.3685609996318817,"msg":"request completed"}
+{"level":30,"time":1638318428256,"pid":29276,"hostname":"thib-Machine","reqId":"req-16","req":{"method":"PUT","url":"/cards/user/61a515c6b44ed1fbcced040b/roll","hostname":"localhost:3000","remoteAddress":"127.0.0.1","remotePort":42370},"msg":"incoming request"}
+[Nest] 29276  - 01/12/2021, 01:27:08   ERROR [CardsController.roll] Id card'61a540c83a3b1c7c48f0b801' and id user '61a515c6b44ed1fbcced040b' already exists
+{"response":{"statusCode":409,"message":"Id card'61a540c83a3b1c7c48f0b801' and id user '61a515c6b44ed1fbcced040b' already exists","error":"Conflict"},"status":409,"message":"Id card'61a540c83a3b1c7c48f0b801' and id user '61a515c6b44ed1fbcced040b' already exists","name":"ConflictException"}
+{"level":30,"time":1638318428339,"pid":29276,"hostname":"thib-Machine","reqId":"req-16","res":{"statusCode":409},"responseTime":82.0454110018909,"msg":"request completed"}
+-->

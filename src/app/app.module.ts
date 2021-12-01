@@ -30,6 +30,7 @@ import { SearchUserComponent } from './search-user/search-user.component';
 import { UserMinimizedComponent } from './user-minimized/user-minimized.component';
 import { DeleteComponent } from './delete/delete.component';
 import { DeleteFormComponent } from './delete-form/delete-form.component';
+import { RollComponent } from './roll/roll.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DeleteFormComponent } from './delete-form/delete-form.component';
     SearchUserComponent,
     UserMinimizedComponent,
     DeleteComponent,
-    DeleteFormComponent
+    DeleteFormComponent,
+    RollComponent
   ],
   imports: [
     BrowserModule,

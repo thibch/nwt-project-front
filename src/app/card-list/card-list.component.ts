@@ -1,7 +1,5 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {Card} from "../shared/types/card.type";
-import {User} from "../shared/types/user.type";
-import {UserService} from "../shared/services/user.service";
 import {CardService} from "../shared/services/card.service";
 
 @Component({
