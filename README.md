@@ -62,7 +62,7 @@ La base de donnée et des collections ainsi que leurs indexes seront créée.
 
 Enfin, dans un autre terminal, il suffit de  _**lancer**_ le projet back-end grâce à la commande :
 
-    nest start —watch
+    nest start --watch
 
 ## Acceder au site web
 
