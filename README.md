@@ -54,13 +54,13 @@ Il faut créer une nouvelle base de donnée MongoDB (nous utilisons ici **Robot3
 Il faudra ensuite executer dans l'ordre les _**nwt-project-back/scripts/init.mongo.js**_ ensuite _**nwt-project-back/scripts/index.mongo.js**_ trouvable dans le dossier _**nwt-project-back/scripts**_.
 
 Pour executer dans robot3T un script vous faites cliques droit sur votre base de données `nwt` et cliquez sur `Open Shell`.\
-Dans ce shell vous pouvez copier coller le contenu des `.js`
+Dans ce shell vous pouvez copier coller le contenu des scripts.
 
 La base de donnée et des collections ainsi que leurs indexes seront créée.
 
 ## Lancement du back
 
-Enfin, il suffit de  _**lancer**_ le projet back-end grâce à la commande :
+Enfin, dans un autre terminal, il suffit de  _**lancer**_ le projet back-end grâce à la commande :
 
     nest start —watch
 
