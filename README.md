@@ -1,31 +1,59 @@
-# NwtProjectFront
+# Projet NWT 2021
+## CHONÉ Thibault
+## LIAUD Alexis
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.13.
+Prérequis pour l'installation:
+	- Angular
+	- Nest.js
+	- Webstorm
+	- MongoDB
+	- Node.js
+	- Yarn
 
-## Development server
+Ce projet a été réalisé dans le cadre du cours sur les nouvelles technologies du web  à  _**l'Université de Lorraine de Nancy**_. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change
-any of the source files.
+# Installation front 
 
-## Code scaffolding
+Afin d'installer la partie _**front-end**_ de l'application il est d'abord nécessaire de créer un dossier et d'y  _**cloner*_ le repository contenant les sources du front :
 
-Run `ng generate component component-name` to generate a new component. You can also
-use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    git clone https://github.com/thibch/nwt-project-front.git
 
-## Build
+Il faut ensuite ce rendre dans le dossier créé :
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    cd nwt-project-front
 
-## Running unit tests
+Puis  _**installer les dépendances**_ du projet avec :
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    yarn install
 
-## Running end-to-end tests
+Enfin, il suffit de  _**lancer**_ le projet directement sur Webstorm ou grâce à la commande :
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a
-package that implements end-to-end testing capabilities.
+    ng serve
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out
-the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Installation back et BDD
+## Préparation du back
+Afin d'installer la partie _**back-end**_ de l'application il est d'abord nécessaire de créer un dossier et d'y  _**cloner*_ le repository contenant les sources du back :
+
+    git clone https://github.com/liaud1u/nwt-project-back.git
+
+Il faut ensuite ce rendre dans le dossier créée :
+
+    cd nwt-project-back
+
+Puis  _**installer les dépendances**_ du projet avec :
+
+    yarn install
+    
+## Préparation de la DB
+Il faut créer une nouvelle base de donnée MongoDB (avec un outil externe comme Robot 3T par exemple) du nom de _**nwt**_.
+
+Il faudra ensuite executer dans l'ordre les scripts _**nwt-project-back/scripts/init.mongo.js**_ et _**nwt-project-back/scripts/index.mongo.js**_ trouvable dans le dossier _**nwt-project-back/scripts**_.
+
+La base de donnée et des collections ainsi que leurs indexes devraient être créée. 
+
+## Lancement
+
+ Enfin, il suffit de  _**lancer**_ le projet directement sur Webstorm ou grâce à la commande :
+
+    nest start —watch
