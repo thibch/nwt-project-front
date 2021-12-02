@@ -31,7 +31,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
    * @param _jwtHelper {JwtHelperService} service managing jwt tokens
    * @param _notificationService {NotificationsService} service managing notifications
    */
-  constructor(private _loginService: LoginService, private _dialog: MatDialog, private _storageService: StorageService, private _jwtHelper: JwtHelperService, private _notificationService: NotificationsService) {
+  constructor(
+    private _loginService: LoginService,
+    private _dialog: MatDialog,
+    private _storageService: StorageService,
+    private _jwtHelper: JwtHelperService,
+    private _notificationService: NotificationsService) {
     this._user = {} as User;
     this._notificationDialog = {} as MatDialogRef<NotificationsViewComponent, any>;
     this._notifications = [];

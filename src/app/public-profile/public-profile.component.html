@@ -1,17 +1,9 @@
 <section align="center">
-  <mat-card class="user-card">
-
-    <img class="img-fit" src="{{ user.photo }}">
-    <mat-card-content>
-      <p>
-        Pseudo: {{user.username}}
-      </p>
-    </mat-card-content>
-    <mat-card-content>
-      <p>
-        Prénom: {{user.firstname}}
-      </p>
-    </mat-card-content>
+  <mat-card class="user-card center">
+    <mat-card-header>
+      <img mat-card-avatar class="img-fit header-image" src="{{ user.photo }}">
+      <mat-card-title>{{user.username}}</mat-card-title>
+    </mat-card-header>
   </mat-card>
 </section>
 <br>

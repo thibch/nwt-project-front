@@ -2,8 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Card} from "../shared/types/card.type";
 import {CardService} from "../shared/services/card.service";
 import {Collection} from "../shared/types/collection.type";
-import {from} from "rxjs";
-import {filter, mergeMap} from "rxjs/operators";
 import {User} from "../shared/types/user.type";
 
 @Component({
@@ -107,15 +105,16 @@ export class CardsListComponent implements OnInit {
     let i: number = 0;
 
     // Get all the cards matching the collection to display
-    if (this._collections != null) {
-      from(this._collections).pipe(
-        filter((collection: Collection) => !!collection),
-        mergeMap((collection: Collection) => this._cardsService.fetchById(collection.idCard)),
-      ).subscribe({
-        next: (card: Card) => {
-          this._cards.set(card, this.collections[i++]);
+    if (!!this._collections && !!this._collections.length) {
+      this.collections.map(
+        (_) => {
+          this._cardsService.fetchById(_.idCard).subscribe(
+            value => {
+              this._cards.set(value, _);
+            }
+          );
         }
-      });
+      );
     }
   }
 

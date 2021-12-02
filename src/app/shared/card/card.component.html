@@ -1,7 +1,7 @@
 <div *ngIf="collection.amount!=0" align="center">
   <mat-card *ngIf="!tradable" class="user-card">
     <section>
-      <ng-container *ngFor="let i of [].constructor(card.level)">⭐</ng-container>
+      <ng-container *ngFor="let i of [].constructor(card.level)" style="font-size: 100px">⭐</ng-container>
     </section>
     <img class="img-fit" src="{{ card.image }}" width="288">
 
@@ -14,13 +14,8 @@
       {{card.description}}
     </mat-card-content>
 
-
-    <mat-card-content *ngIf="collection.amount>1 && collection.waiting == 0">
-      {{collection.amount}} exemplaires
-    </mat-card-content>
-
-    <mat-card-content *ngIf="collection.waiting>0">
-      {{collection.amount}} exemplaire(s) | {{collection.waiting}} exemplaire(s) en attente d'échange
+    <mat-card-content *ngIf="collection.amount>1">
+      <b>x{{collection.amount}}</b><span *ngIf="collection.waiting>0"> | {{collection.waiting}} exemplaire(s) en attente d'échange</span>
     </mat-card-content>
 
     <button (click)="buildTradeDialog()" *ngIf="!isCardOwner && !tradingOperation && suffisentAmount  && connected()" mat-mini-fab>
@@ -31,7 +26,7 @@
     <section>
       <ng-container *ngFor="let i of [].constructor(card.level)">⭐</ng-container>
     </section>
-    <img height="162" src="{{ card.image }}" width="288">
+    <img class="img-fit" height="162" src="{{ card.image }}" width="288">
 
     <br>
     <mat-card-title>
@@ -42,13 +37,8 @@
       {{card.description}}
     </mat-card-content>
 
-
-    <mat-card-content *ngIf="collection.amount>1 && collection.waiting == 0">
-      {{collection.amount}} exemplaires
-    </mat-card-content>
-
-    <mat-card-content *ngIf="collection.waiting>0">
-      {{collection.amount}} exemplaire(s) | {{collection.waiting}} exemplaire(s) en attente d'échange
+    <mat-card-content *ngIf="collection.amount>1">
+      <b>x{{collection.amount}}</b><span *ngIf="collection.waiting>0"> | {{collection.waiting}} exemplaire(s) en attente d'échange</span>
     </mat-card-content>
 
     <button (click)="buildTradeDialog()" *ngIf="!isCardOwner && !tradingOperation && suffisentAmount && connected()" mat-mini-fab>

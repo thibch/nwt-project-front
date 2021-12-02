@@ -4,3 +4,10 @@ section {
   align-items: center;
   justify-content: center;
 }
+
+h1 {
+  color: white;
+}
+header-image {
+  background-size: cover;
+}

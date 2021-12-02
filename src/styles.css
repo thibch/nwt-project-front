@@ -28,3 +28,11 @@ section {
   max-width: 100%;
   height: auto;
 }
+
+h1 {
+  color: white;
+}
+
+.user-card {
+  min-width: 300px;
+}
