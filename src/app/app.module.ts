@@ -44,6 +44,7 @@ import {CardsTradeComponent} from './cards-trade/cards-trade.component';
 import {TradeSummaryComponent} from './trade-summary/trade-summary.component';
 import {RollComponent} from './roll/roll.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatStepperModule} from "@angular/material/stepper";
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatIconModule,
     MatListModule,
     MatGridListModule,
+    MatStepperModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

@@ -12,3 +12,7 @@ app-user-minimized {
   padding: 10px;
   transition: box-shadow 0.2s;
 }
+
+.text-white {
+  color: white;
+}

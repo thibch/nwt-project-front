@@ -72,7 +72,7 @@ export class DeleteComponent implements OnInit {
         this._userService.delete(data.id).subscribe(
           data => {
             this._storageService.logout();
-            this._router.navigate(['/home'])
+            this._router.navigate(['/home']);
             this._error = false;
           },
           error => {

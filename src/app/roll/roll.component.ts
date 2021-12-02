@@ -57,7 +57,7 @@ export class RollComponent implements OnInit {
    */
   ngOnInit(): void {
     this._user = this._storageService.getUser()
-    // TODO : ADD NEW ROUTE : CHECK IF THE USER HAS HIS ROLL AVAILABLE
+    console.log(this._user.lastRollDate);
   }
 
   /**
@@ -67,7 +67,6 @@ export class RollComponent implements OnInit {
     this._collectionService.roll(this._user.id).subscribe({
       next: data => {
         this._cards = [] as Card[];
-        let i = 1;
 
         // Getting each cards of the roll
         if (data && data.length && data.length > 0) {

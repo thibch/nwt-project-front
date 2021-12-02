@@ -1,6 +1,9 @@
-<section *ngFor="let trade of tradesOffers">
-  <app-trade [tradeOwner]=false [trade]="trade"></app-trade>
+<section>
+  <section *ngFor="let trade of tradesOffers">
+    <app-trade [tradeOwner]=false [trade]="trade"></app-trade>
+    <mat-divider></mat-divider>
+  </section>
 </section>
 <section *ngIf="tradesOffers==null">
-  Vous n'avez pas d'offres d'échange en cours.
+  <span class="text-white"> Vous n'avez pas d'offres d'échange en cours. </span>
 </section>

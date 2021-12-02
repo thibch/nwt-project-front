@@ -80,7 +80,7 @@ export class LoginFormComponent implements OnInit {
    */
   redirectBack() {
     this._dialogRef.close();
-    this._router.navigate(['/home'])
+    this._router.navigate(['/home']);
   }
 
   /**

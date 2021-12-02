@@ -84,7 +84,7 @@ export class AuthFormComponent implements OnInit {
    */
   redirectBack() {
     this._dialogRef.close();
-    this._router.navigate(['/home'])
+    this._router.navigate(['/home']);
   }
 
   /**

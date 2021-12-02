@@ -1,9 +1,9 @@
 <div *ngIf="collection.amount!=0" align="center">
-  <mat-card *ngIf="!tradable" class="user-card">
+  <mat-card *ngIf="!tradable" class="card">
     <section>
-      <ng-container *ngFor="let i of [].constructor(card.level)" style="font-size: 100px">⭐</ng-container>
+      <ng-container *ngFor="let i of [].constructor(card.level)">⭐</ng-container>
     </section>
-    <img class="img-fit" src="{{ card.image }}" width="288">
+    <img class="img" src="{{ card.image }}">
 
     <br>
     <mat-card-title>
@@ -11,22 +11,24 @@
     </mat-card-title>
     <br>
     <mat-card-content>
-      {{card.description}}
+      <p class="break-words-pls">
+        {{card.description}}
+      </p>
     </mat-card-content>
 
-    <mat-card-content *ngIf="collection.amount>1">
-      <b>x{{collection.amount}}</b><span *ngIf="collection.waiting>0"> | {{collection.waiting}} exemplaire(s) en attente d'échange</span>
-    </mat-card-content>
+    <mat-card-actions *ngIf="collection.amount>0">
+      <b>x{{collection.amount}}</b><span *ngIf="collection.waiting>0"> | <b>x{{collection.waiting}}</b> en attente d'échange</span>
 
+    </mat-card-actions>
     <button (click)="buildTradeDialog()" *ngIf="!isCardOwner && !tradingOperation && suffisentAmount  && connected()" mat-mini-fab>
       <mat-icon>swap_horiz</mat-icon>
     </button>
   </mat-card>
-  <mat-card (click)="tradeOffer(card)" *ngIf="tradable" class="user-card">
+  <mat-card (click)="tradeOffer(card)" *ngIf="tradable" class="card">
     <section>
       <ng-container *ngFor="let i of [].constructor(card.level)">⭐</ng-container>
     </section>
-    <img class="img-fit" height="162" src="{{ card.image }}" width="288">
+    <img class="img" src="{{ card.image }}">
 
     <br>
     <mat-card-title>
@@ -34,13 +36,15 @@
     </mat-card-title>
     <br>
     <mat-card-content>
-      {{card.description}}
+      <p class="break-words-pls">
+        {{card.description}}
+      </p>
     </mat-card-content>
 
-    <mat-card-content *ngIf="collection.amount>1">
-      <b>x{{collection.amount}}</b><span *ngIf="collection.waiting>0"> | {{collection.waiting}} exemplaire(s) en attente d'échange</span>
-    </mat-card-content>
+    <mat-card-actions *ngIf="collection.amount>0">
+      <b>x{{collection.amount}}</b><span *ngIf="collection.waiting>0"> | <b>x{{collection.waiting}}</b> en attente d'échange</span>
 
+    </mat-card-actions>
     <button (click)="buildTradeDialog()" *ngIf="!isCardOwner && !tradingOperation && suffisentAmount && connected()" mat-mini-fab>
       <mat-icon>swap_horiz</mat-icon>
     </button>

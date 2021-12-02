@@ -1,24 +1,23 @@
-<mat-card>
-  <mat-card-content *ngIf="tradeOwner">
-    Vous proposez à
-    <app-user-minimized (click)="openProfile(secondUser)" [user]="secondUser"></app-user-minimized>
-    votre carte
-    <app-card [cardOwner]="userWaiting" [card]="card" [tradingOperation]="true"></app-card>
-    contre sa carte
-    <app-card [cardOwner]="secondUser" [card]="cardWanted" [tradingOperation]="true"></app-card>
-  </mat-card-content>
 
-  <mat-card-content *ngIf="!tradeOwner">
-    {{trade.creationTime | date:'M/d, h:mm a' }}
-    <app-user-minimized (click)="openProfile(userWaiting)" [user]="userWaiting"></app-user-minimized>
-    vous propose
-    <app-card [cardOwner]="userWaiting" [card]="card" [tradingOperation]="true"></app-card>
-    contre la carte
-    <app-card [cardOwner]="secondUser" [card]="cardWanted" [tradingOperation]="true"></app-card>
+<div *ngIf="tradeOwner">
+  <span class=" span-pos">Vous proposez à</span><br>
+  <app-user-minimized (click)="openProfile(secondUser)" [user]="secondUser"></app-user-minimized>
+  <span class=" span-pos">votre carte</span><br>
+  <app-card [cardOwner]="userWaiting" [card]="card" [tradingOperation]="true"></app-card>
+  <span class=" span-pos">contre sa carte</span><br>
+  <app-card [cardOwner]="secondUser" [card]="cardWanted" [tradingOperation]="true"></app-card>
+</div>
 
-    <mat-dialog-actions>
-      <button (click)="refuse()" mat-button type="button">Refuser</button>
-      <button (click)="accept()" mat-button type="button">Accepter</button>
-    </mat-dialog-actions>
-  </mat-card-content>
-</mat-card>
+<div *ngIf="!tradeOwner">
+  <span class=" span-pos">{{trade.creationTime | date:'M/d, h:mm a' }}</span><br>
+  <app-user-minimized (click)="openProfile(userWaiting)" [user]="userWaiting"></app-user-minimized>
+  <span class=" span-pos">vous propose</span><br>
+  <app-card [cardOwner]="userWaiting" [card]="card" [tradingOperation]="true"></app-card>
+  <span class=" span-pos">contre la carte</span><br>
+  <app-card [cardOwner]="secondUser" [card]="cardWanted" [tradingOperation]="true"></app-card>
+
+  <mat-dialog-actions>
+    <button (click)="refuse()" mat-button type="button">Refuser</button>
+    <button (click)="accept()" mat-button type="button">Accepter</button>
+  </mat-dialog-actions>
+</div>

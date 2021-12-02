@@ -111,7 +111,7 @@ export class AccountComponent implements OnInit {
           this._user = data;
           this._user.id = this._storageService.getUser().id;
           this._storageService.saveUser(this.user);
-          this._router.navigate(['/home']);
+          //this._router.navigate(['/home']);
         },
         error => {
           // Else, update the same form again with an error
@@ -150,7 +150,7 @@ export class AccountComponent implements OnInit {
           // If all is ok, save user in localstorage and redirect back to home
           this._error = false;
           this._storageService.saveUser(this.user);
-          this._router.navigate(['/home']);
+          //this._router.navigate(['/home']);
         },
         error => {
           // Else, print error and reopen the form

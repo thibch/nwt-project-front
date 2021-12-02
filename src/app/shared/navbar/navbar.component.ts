@@ -8,6 +8,7 @@ import {NotificationsViewComponent} from "../../notifications-view/notifications
 import {Notification} from "../types/notification.type";
 import {NotificationsService} from "../services/notifications.service";
 import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private _notificationDialog: MatDialogRef<NotificationsViewComponent, any>;
 
   /// Subscription subscription to the notifications findAll
-  private _subscription: Subscription;
+  private _subscriptionStorage: Subscription;
+  private _subscriptionRouter: Subscription;
 
   /**
    * Constructor of the navbar
@@ -30,17 +32,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
    * @param _storageService {StorageService} service managing tokens and users storage
    * @param _jwtHelper {JwtHelperService} service managing jwt tokens
    * @param _notificationService {NotificationsService} service managing notifications
+   * @param _router router
    */
   constructor(
     private _loginService: LoginService,
     private _dialog: MatDialog,
     private _storageService: StorageService,
     private _jwtHelper: JwtHelperService,
-    private _notificationService: NotificationsService) {
+    private _notificationService: NotificationsService,
+    private _router :Router) {
     this._user = {} as User;
     this._notificationDialog = {} as MatDialogRef<NotificationsViewComponent, any>;
     this._notifications = [];
-    this._subscription = {} as Subscription;
+    this._subscriptionStorage = {} as Subscription;
+    this._subscriptionRouter = {} as Subscription;
   }
 
   /// User currently logged in
@@ -74,10 +79,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.checkToken();
     this.checkUser();
     // Set user value and notifications
-    this._subscription = this._storageService.subjectUser.subscribe(value => {
+    this._subscriptionStorage = this._storageService.subjectUser.subscribe(value => {
       this.checkToken();
       this.checkUser();
     });
+    this._subscriptionRouter = this._router.events.subscribe(value => {
+      this.checkToken();
+      this.checkUser();
+    })
   }
 
   /**
@@ -106,7 +115,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
    * On Destroy implementation
    */
   ngOnDestroy(): void {
-    this._subscription && this._subscription.unsubscribe();
+    this._subscriptionStorage && this._subscriptionStorage.unsubscribe();
+    this._subscriptionRouter && this._subscriptionRouter.unsubscribe();
   }
 
   /**

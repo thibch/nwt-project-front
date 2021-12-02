@@ -238,7 +238,7 @@ export class CardComponent implements OnInit {
 
     // create modal with initial data inside
     this._tradeSummaryDialog = this._dialog.open(TradeSummaryComponent, {
-      width: '900px',
+      width: '500px',
       disableClose: true,
       data: {trade: trade}
     });

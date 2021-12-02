@@ -1,6 +1,10 @@
 
-.user-card {
-  min-width: 300px;
+.card {
+  max-width: 200px;
   height: 400px;
 }
 
+.img {
+  height: 200px;
+  width: 200px;
+}

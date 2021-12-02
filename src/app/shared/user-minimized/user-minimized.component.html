@@ -1,7 +1,7 @@
 <div align="center">
   <mat-card class="user-card">
     <mat-card-content>
-      <img class="img-fit" alt="image-profile" height="100%" src="{{ user.photo }}" width="100%">
+      <img class="img" alt="image-profile" height="100%" src="{{ user.photo && user.photo.trim() != ''? user.photo : 'https://randomuser.me/portraits/women/58.jpg' }}" width="100%">
       <br>
       <span>
         {{user.username}}

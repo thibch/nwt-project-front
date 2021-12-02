@@ -1,9 +1,10 @@
-<div class="center width-min">
+<div class="center width-min" *ngIf="!hasRolled">
   <button (click)="roll()" color="primary" mat-flat-button>ROLL !</button>
 </div>
 
+<span *ngIf="hasRolled" class="span-pos">Votre carte reçues :</span><br>
 <section *ngIf="hasRolled">
-  <div *ngFor="let card of cards">
-    <app-card [card]="card"></app-card>
-  </div>
+    <div *ngFor="let card of cards">
+      <app-card [card]="card"></app-card>
+    </div>
 </section>

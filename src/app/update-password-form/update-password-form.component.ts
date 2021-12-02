@@ -96,7 +96,6 @@ export class UpdatePasswordFormComponent implements OnInit {
   redirectBack() {
     // Close the dialog and redirect back to home
     this._dialogRef.close();
-    this._router.navigate(['/home'])
   }
 
   /**

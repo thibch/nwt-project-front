@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
         this._storageService.saveToken(data.access_token);
 
         // Redirect back to home
-        this._router.navigate(['/home'])
+        this._router.navigate(['/home']);
         this._error = false;
       },
       error => {
