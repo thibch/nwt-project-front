@@ -57,7 +57,6 @@ export class RollComponent implements OnInit {
    */
   ngOnInit(): void {
     this._user = this._storageService.getUser()
-    console.log(this._user.lastRollDate);
   }
 
   /**

@@ -12,10 +12,11 @@ import {PublicProfileComponent} from "./public-profile/public-profile.component"
 import {UserCardsComponent} from "./shared/user-cards/user-cards.component";
 import {TradesComponent} from "./trades/trades.component";
 import {RollComponent} from "./roll/roll.component";
+import {NotFoundComponent} from "./not-found/not-found.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: CardsListComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'user/:id/profile', component: PublicProfileComponent},
@@ -26,6 +27,8 @@ const routes: Routes = [
   {path: 'cards', component: CardsListComponent, canActivate: [AuthGuard]},
   {path: 'mycards', component: UserCardsComponent, canActivate: [AuthGuard]},
   {path: 'trades', component: TradesComponent, canActivate: [AuthGuard]},
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'},
 ];
 
 @NgModule({

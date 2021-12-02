@@ -140,6 +140,7 @@ export class AccountComponent implements OnInit {
         map((user: any) => {
           // Delete unused fields
           delete user.id;
+          delete user.lastRollDate;
           this._user = user;
           return user;
         }),

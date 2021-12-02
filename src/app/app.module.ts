@@ -45,6 +45,7 @@ import {TradeSummaryComponent} from './trade-summary/trade-summary.component';
 import {RollComponent} from './roll/roll.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatStepperModule} from "@angular/material/stepper";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import {MatStepperModule} from "@angular/material/stepper";
     TradeComponent,
     CardsTradeComponent,
     TradeSummaryComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

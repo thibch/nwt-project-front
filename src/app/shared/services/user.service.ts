@@ -69,7 +69,6 @@ export class UserService {
    * @return {Observable<string>}
    */
   delete(id: string): Observable<string> {
-    console.log(id);
     return this._http.delete(this._backendURL.getById.replace(":id", id), this._options()).pipe(map(() => id));
   }
 

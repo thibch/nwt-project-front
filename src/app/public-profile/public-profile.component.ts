@@ -71,7 +71,6 @@ export class PublicProfileComponent implements OnInit {
   @Input('user')
   set user(value: User) {
     this._user = value;
-    console.log(this._user);
   }
 
   /**
@@ -87,7 +86,6 @@ export class PublicProfileComponent implements OnInit {
     ).subscribe({
       next: (user: User) => {
         this._user = user;
-        console.log(this._user);
       },
       error: () => {
         this._user = {} as User;
